@@ -89,7 +89,7 @@ Levels have their own unique set of subtypes; these subtypes are called level ty
 
 Levels define the amount of full turns they can be played as a battle. 
 
-```A full turn is equal to the number of players. In a two-player game a full turn is equal to two turns, one for each player.```
+> A full turn is equal to the number of players. In a two-player game a full turn is equal to two turns, one for each player.
 
 A level defines it's possible battle length(s) at the bottom right of the card. This length(s) can be a number or a range between 1 and 6 full turns. 
 
