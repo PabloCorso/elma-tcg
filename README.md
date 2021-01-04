@@ -51,7 +51,7 @@ The text box is printed on the lower half of the card. It usually contains rules
 If a rule is described with a keyword it may contain the explanation written in italics and between parenthesis. For example: "First Finish (Only the first finish of each Kuski is taken into account in the result)."
 
 #### Personal Records
-A Kuski card has personal record times (or PRs for short) shown at the bottom of the card. These tell their personal best time (in seconds) they can accomplish in a level during a battle for each consecutive turn they play that battle under their owner's control. 
+A Kuski card has personal record times (or PRs for short) shown at the bottom of the card. These tell their personal best time they can accomplish in a level during a battle for each consecutive turn they play that battle under their owner's control.
 
 #### Battle length range
 A level card has a range or a single number that represent the possible battle length(s) this level can be started with. This length(s) are shown a the bottom right of a level card.
