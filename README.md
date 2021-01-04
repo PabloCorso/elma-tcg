@@ -77,7 +77,7 @@ Kuskis define the times they can achieve during a battle for each turn they play
 
 For example: `38.5 | 36.0 | NF | 34.8`. This reads as:
 1. When the Kuski enters an ongoing battle, its best time is equal to the first personal record (PR), being 38.5 seconds in this example.
-2. On each following turn that the Kuski keeps playing that battle, it improves itss best time with the next PR on the list. For this example, on the next turn of his or her owner the Kuski will improve up to 36.0 seconds.
+2. On each following turn that the Kuski keeps playing that battle, it improves its best time with the next PR on the list. In this example, on the next turn of his or her owner, the Kuski will improve up to 36.0 seconds.
 3. The third PR on the list specifies NF or No Finish, meaning that after the first improvement there is one turn in which the Kuski won't improve its best time.
 4. Finally, on the third consecutive turn the Kuski plays the ongoing battle it will improve its best time up to 34.8 seconds, and won't improve any longee in future turns.
 
