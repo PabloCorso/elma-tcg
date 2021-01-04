@@ -87,13 +87,11 @@ Level cards are battled by Kuski cards to earn points. More on how battles are s
 
 Levels have their own unique set of subtypes; these subtypes are called level types. The level types are: Across, Apple harvest, Flat track, Gravity, Hoyla, Internal, Labyrinth, Long cruise, Mirrored, Multi-route, Normal, Pipe, Puzzle, Remix, Roller coaster, Tricky, World cup.
 
-Levels define the amount of full turns they can be played as a battle.
-
-A full turn is equal to the number of players. In a two-player game a full turn is equal to two turns, one for each player.
+Levels define the amount of full turns they can be played as a battle. A full turn is equal to the number of players. In a two-player game a full turn is equal to two turns, one for each player.
 
 A level defines it's possible battle length(s) at the bottom right of the card. This length(s) can be a number or a range between 1 and 6 full turns. 
 
-When a level that defines a length range is added to the queue, the player that played that level card decides the length (between that range) that the battle will be started with. If the level defines a single number instead of a range, that's the length the battle it will be started with.
+When a level that defines a length range is added to the queue, the player that played that level card decides the length (between that range) that the battle will be started with. If the level defines a single number instead of a range, that's the length the battle will be started with.
 
 
 #### Battles (Kuski + Level cards)
