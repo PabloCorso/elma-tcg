@@ -65,7 +65,7 @@ A level card defines a range or single number that represent the possible battle
 
 #### Kuski
 
-An active player may put into play a Kuski card from their hand during his or her main phase. By default, only one Kuski can be played per turn in this way, and it enters the game as offline.
+An active player may put into play a Kuski card from his or her hand during the main phase. By default, only one Kuski can be played per turn in this way, and it enters the game as offline.
 
 Played Kuskis can be at one area of the game and on one or more states: offline or online, playing a battle or playing an after battle, discarded or banned from the game.
 
