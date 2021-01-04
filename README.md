@@ -104,7 +104,7 @@ A Kuski can have only one level on the queue at a time. If a battle is ongoing, 
 
 Only online Kuskis that are not already playing a battle or after battle can enter an ongoing battle. By default, a Kuski cannot enter a battle on a level added by itself. Kuskis that enter a battle or after battle are still considered as online.
 
-When a battle ends, the Kuskis that were playing that battle go into an after battle on the same level. At this point, the points for each Kuski are calculated and summed to the player's total points. 
+When a battle ends, the Kuskis that were playing that battle go into an after battle on the same level. Then, the points for each Kuski are calculated and summed to the player's total points. 
 
 A battle cannot be started if there was an ongoing battle at the beginning of the turn. As consequence, right after a battle has ended, if there is a new level card on the queue waiting to be started, it will wait one turn before being started as a new battle. 
 
