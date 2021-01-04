@@ -15,7 +15,7 @@ Earn points by battling level cards with your Kuski cards.
 A player is one of the people in the game. The active player is the player whose turn it is. The other players are nonactive players.
 
 #### Kuski
-Kuski cards are the ones that will help you earn points to win, theses are you soldiers in the game.
+Kuski cards are the ones that will help you earn points to win, these are you soldiers in the game.
 
 #### Level
 Level cards are added to a queue by Kuskis, were the first level on the queue is played as a battle. When a battle ends, the next level on the queue is played. Kuskis battle over levels in this way to earn points.
