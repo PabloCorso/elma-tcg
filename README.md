@@ -73,7 +73,7 @@ Kuskis that started this turn as offline can be put online by their active playe
 
 If a Kuski is discarded or banned from the game, it is no longer considered online nor offline.
 
-Kuskis define the times they can achieve during a battle for each turn they play the ongoing battle. This times are defined in the personal records (PRs) line.
+Kuskis define the times they can achieve during a battle for each turn they play the ongoing battle. These times are defined in the personal records (PRs) line.
 
 For example: `38.5 | 36.0 | NF | 34.8`. This reads as:
 1. When the Kuski enters an ongoing battle, its best time is equal to the first personal record (PR), being 38.5 seconds in this example.
