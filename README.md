@@ -54,7 +54,7 @@ If a rule is described with a keyword it may contain the explanation written in 
 A Kuski card has personal record times (or PRs for short) shown at the bottom of the card. These tell their personal best time they can accomplish in a level during a battle for each consecutive turn they play that battle under their owner's control.
 
 #### Battle length range
-A level card has a range or a single number that represent the possible battle length(s) this level can be started with. This length(s) are shown a the bottom right of a level card.
+A level card defines a range or single number that represent the possible battle length(s) this level can be started with. This length(s) are shown a the bottom right of a level card.
 
 > #### Information below the text box `(To be defined)`
 > Cards may feature text below the text box that has no effect on game play.
