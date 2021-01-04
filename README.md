@@ -137,7 +137,7 @@ If a level is added to the queue and there is no ongoing battle, plus one turn h
 
 You can put any number of Kuskis online that started this turn as offline.
 
-If a battle is ongoing, any number of online Kuskis can enter the battle. When Kuskis enter a battle, their times are update immediately, if applicable.
+If a battle is ongoing, any number of online Kuskis can enter that battle. When Kuskis enter a battle, their times are updated immediately, if applicable.
 
 #### 6. Clean up 
 If you have more than seven cards in your hand, choose and discard cards until you have only seven.
