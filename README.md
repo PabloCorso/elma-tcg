@@ -85,7 +85,6 @@ For example: `38.5 | 36.0 | NF | 34.8`. This reads as:
 
 Level cards are battled by Kuski cards to earn points. More on how battles are started and played on the next section.
 
-Level subtypes
 Levels have their own unique set of subtypes; these subtypes are called level types. The level types are: Across, Apple harvest, Flat track, Gravity, Hoyla, Internal, Labyrinth, Long cruise, Mirrored, Multi-route, Normal, Pipe, Puzzle, Remix, Roller coaster, Tricky, World cup.
 
 Levels define the amount of full turns they can be played as a battle.
