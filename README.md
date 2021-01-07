@@ -108,6 +108,9 @@ When a battle ends, the Kuskis that were playing that battle go into an after ba
 
 A battle cannot be started if there was an ongoing battle at the beginning of the turn. As consequence, right after a battle has ended, if there is a new level card on the queue waiting to be started, it will wait one turn before being started as a new battle. 
 
+## Game field
+
+![Game field image](./game-field.png)
 
 ## Game phases
 
