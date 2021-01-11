@@ -13,7 +13,7 @@
     "health-check": "heroku ps:scale web=1",
     "open-app": "heroku open",
     "open-remote-dyno": "heroku run bash",
-    "show-config-vars": "heroku config"
+    "config-vars": "heroku config"
   },
   "repository": {
     "type": "git",
