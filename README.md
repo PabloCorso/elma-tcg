@@ -61,7 +61,7 @@ A level card defines a range or single number that represent the possible battle
 > A card’s rarity is indicated with a single letter following the collector number.
 > The illustration credit for a card follows the paintbrush icon.
 
-![Card example image](./card-example-2x.png)
+![Card example image](./src/images/card-example-2x.png)
 
 
 ### Card types
@@ -113,7 +113,7 @@ A battle cannot be started if there was an ongoing battle at the beginning of th
 
 ## Game field
 
-![Game field image](./game-field.png)
+![Game field image](./src/images/game-field.png)
 
 ## Game phases
 

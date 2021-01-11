@@ -1,0 +1,31 @@
+{
+  "name": "elma-tcg",
+  "version": "1.0.0",
+  "description": "This page defines rules for a possible trading card game based on Elastomania (online).",
+  "main": "app.js",
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "start": "heroku local web",
+    "logs": "heroku logs --tail",
+    "deploy": "git push heroku main",
+    "health-check": "heroku ps:scale web=1",
+    "open-app": "heroku open",
+    "open-remote-dyno": "heroku run bash"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PabloCorso/elma-tcg.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PabloCorso/elma-tcg/issues"
+  },
+  "homepage": "https://github.com/PabloCorso/elma-tcg#readme",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}
