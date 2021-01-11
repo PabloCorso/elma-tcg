@@ -12,7 +12,8 @@
     "deploy": "git push heroku main",
     "health-check": "heroku ps:scale web=1",
     "open-app": "heroku open",
-    "open-remote-dyno": "heroku run bash"
+    "open-remote-dyno": "heroku run bash",
+    "show-config-vars": "heroku config"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/PabloCorso/elma-tcg#readme",
   "dependencies": {
-    "express": "4.17.1"
+    "express": "4.17.1",
+    "pg": "8.5.1"
   }
 }
