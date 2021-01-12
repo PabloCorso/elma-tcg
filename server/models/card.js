@@ -1,0 +1,43 @@
+const Card = ({
+  name,
+  card_type,
+  type1,
+  type2,
+  pr1,
+  pr2,
+  pr3,
+  pr4,
+  pr5,
+  pr6,
+  battle_length_min,
+  battle_length_max,
+  set_name,
+  collector_number,
+  text,
+  explanation,
+  is_keyword,
+  effect_name,
+}) => {
+  return {
+    name,
+    cardType: card_type,
+    type1,
+    type2,
+    pr1,
+    pr2,
+    pr3,
+    pr4,
+    pr5,
+    pr6,
+    battleLengthMin: battle_length_min,
+    battleLengthMax: battle_length_max,
+    setName: set_name,
+    collectorNumber: collector_number,
+    text,
+    explanation,
+    isKeyword: is_keyword,
+    effectName: effect_name,
+  };
+};
+
+module.exports = Card;
