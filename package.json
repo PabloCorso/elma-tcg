@@ -4,13 +4,15 @@
   "description": "This page defines rules for a possible trading card game based on Elastomania (online).",
   "main": "app.js",
   "engines": {
-    "node": "14.x"
+    "node": "14.x",
+    "npm": "6.x"
   },
   "scripts": {
     "dev": "run-p dev:*",
     "dev:server": "npx nodemon --exec 'heroku local web' --signal SIGTERM",
     "dev:webpack": "npx webpack --watch --config webpack.dev.js --mode development",
-    "build": "webpack --config webpack.prod.js --mode production",
+    "heroku-prebuild": "npm install --dev",
+    "heroku-postbuild": "npx webpack --config webpack.prod.js --mode production",
     "logs": "heroku logs --tail",
     "deploy": "git push heroku main",
     "health-check": "heroku ps:scale web=1",
