@@ -18,7 +18,7 @@ FROM
   INNER JOIN effects AS e ON e.name = ce.effect_name
 `;
 
-router.get("/", async (_req, res) => {
+router.get("/api/v1.0/cards", async (_req, res) => {
   try {
     const client = await pool.connect();
     const result = await client.query(selectCardsQuery);
