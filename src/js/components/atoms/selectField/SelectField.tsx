@@ -1,22 +1,24 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Select, FormControl, InputLabel, MenuItem } from "@material-ui/core";
+import { Option } from "../types";
 
-const SelectField = ({ label, value, options }) => (
+type Props = {
+  label: string;
+  value: string;
+  options: Option[];
+};
+
+const SelectField: React.FC<Props> = ({ label, value, options }) => (
   <FormControl variant="outlined">
     <InputLabel>{label}</InputLabel>
     <Select value={value} label={label}>
       {options.map((option) => (
-        <MenuItem value={option.value}>{option.label}</MenuItem>
+        <MenuItem key={option.value} value={option.value}>
+          {option.label}
+        </MenuItem>
       ))}
     </Select>
   </FormControl>
 );
-
-SelectField.propTypes = {
-  label: PropTypes.string,
-  value: PropTypes.string,
-  options: PropTypes.string,
-};
 
 export default SelectField;

@@ -15,7 +15,7 @@ module.exports = {
 
   // https://webpack.js.org/concepts/entry-points/#multi-page-application
   entry: {
-    index: "./src/js/index.js",
+    index: "./src/js/index.tsx",
   },
 
   // how to write the compiled files to disk
@@ -27,29 +27,16 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".js"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
 
   // https://webpack.js.org/concepts/loaders/
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         loader: "babel-loader",
-        options: {
-          presets: [
-            [
-              "@babel/preset-env",
-              {
-                targets: {
-                  esmodules: true,
-                },
-              },
-            ],
-            "@babel/preset-react",
-          ],
-        },
       },
       {
         test: /\.css$/i,

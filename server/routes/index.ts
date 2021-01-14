@@ -1,7 +1,8 @@
-const express = require("express");
+import express from "express";
+import { Pool } from "pg";
+import { Card, CardEffect } from "../models/index";
+
 const router = express.Router();
-const { Pool } = require("pg");
-const { Card } = require("../models");
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -23,8 +24,23 @@ router.get("/api/v1.0/cards", async (_req, res) => {
     const client = await pool.connect();
     const result = await client.query(selectCardsQuery);
     const rows = result.rows || [];
-    const cards = rows.map((row) => Card(row));
-    res.send(cards);
+
+    const cards = [];
+    let currentCardName = "";
+    for (const row of rows) {
+      if (currentCardName !== row.name) {
+        cards.push(Card(row));
+        currentCardName = row.name;
+      }
+
+      if (row.effect_name) {
+        const effect = CardEffect(row);
+        const currentCard = cards[cards.length - 1];
+        currentCard.effects.push(effect);
+      }
+    }
+
+    res.send(JSON.stringify(cards));
     client.release();
   } catch (err) {
     console.error(err);
@@ -32,4 +48,4 @@ router.get("/api/v1.0/cards", async (_req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
