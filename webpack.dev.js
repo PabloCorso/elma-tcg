@@ -8,7 +8,7 @@ module.exports = {
 
   // https://webpack.js.org/concepts/entry-points/#multi-page-application
   entry: {
-    index: "./src/js/index.js",
+    index: "./src/js/index.jsx",
   },
 
   output: {
@@ -29,7 +29,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/i,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: "babel-loader",
         options: {
