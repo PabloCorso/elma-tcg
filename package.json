@@ -13,7 +13,7 @@
     "dev:webpack": "webpack --watch --config webpack.dev.js --mode development",
     "end-node": "pkill node",
     "build": "npm install --also=dev",
-    "postinstall": "webpack --config webpack.prod.js --mode production",
+    "postinstall": "tsc -p tsconfig.server.json && webpack --config webpack.prod.js --mode production",
     "logs": "heroku logs --tail",
     "deploy": "git push heroku main",
     "health-check": "heroku ps:scale web=1",
