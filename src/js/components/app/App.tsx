@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CardType } from "server/models/card";
+import { CardType } from "../../../../server/models/card";
 import { Button } from "../atoms";
 import { CreateCard, CardsList } from "../organisms";
 

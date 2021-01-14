@@ -6,7 +6,7 @@
     "node": "14.x",
     "npm": "6.x"
   },
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
     "dev": "run-p dev:*",
     "dev:server": "heroku local -f Procfile.dev",
