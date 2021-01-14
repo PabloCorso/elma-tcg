@@ -12,15 +12,15 @@
     "dev:server": "heroku local -f Procfile.dev",
     "dev:webpack": "webpack --watch --config webpack.dev.js --mode development",
     "end-node": "pkill node",
-    "build": "npm install --also=dev && webpack --config webpack.prod.js --mode production",
+    "build": "npm install --also=dev",
+    "postinstall": "webpack --config webpack.prod.js --mode production",
     "logs": "heroku logs --tail",
     "deploy": "git push heroku main",
     "health-check": "heroku ps:scale web=1",
     "open-app": "heroku open",
     "open-remote-dyno": "heroku run bash",
     "config-vars": "heroku config",
-    "db": "heroku pg:psql",
-    "build2": "tsc -p ."
+    "db": "heroku pg:psql"
   },
   "repository": {
     "type": "git",
