@@ -1,8 +1,9 @@
-import CardEffect, { CardEffectDBType, CardEffectType } from "./cardEffect";
+import { CardEffectType } from "./cardEffect";
+import CardTypeEnum from "./cardTypeEnum";
 
 export type CardType = {
   name: string;
-  cardType: string;
+  cardType: CardTypeEnum;
   type1?: string;
   type2?: string;
   pr1?: number;
@@ -20,7 +21,7 @@ export type CardType = {
 
 type CardDBType = {
   name: string;
-  card_type: string;
+  card_type: CardTypeEnum;
   type1?: string;
   type2?: string;
   pr1?: number;
@@ -39,8 +40,8 @@ type CardDBType = {
 const Card = ({
   name,
   card_type,
-  type1,
-  type2,
+  type1 = "",
+  type2 = "",
   pr1,
   pr2,
   pr3,
