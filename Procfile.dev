@@ -1,1 +1,1 @@
-web: nodemon --watch server --exec ts-node index.js
+web: nodemon --watch server/ --exec npx ts-node server/index.ts
