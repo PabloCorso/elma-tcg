@@ -1,7 +1,9 @@
-import { CardEffectType } from "./cardEffect";
+import { EffectType } from "./effect";
 import CardTypeEnum from "./cardTypeEnum";
+import Rarity from "./rarity";
 
 export type CardType = {
+  id: number;
   name: string;
   cardType: CardTypeEnum;
   type1?: string;
@@ -14,12 +16,15 @@ export type CardType = {
   pr6?: number;
   battleLengthMin?: number;
   battleLengthMax?: number;
+  flavorText?: string;
   setName: string;
   collectorNumber: number;
-  effects?: CardEffectType[];
+  effects?: EffectType[];
+  rarity?: Rarity;
 };
 
 type CardDBType = {
+  id: number;
   name: string;
   card_type: CardTypeEnum;
   type1?: string;
@@ -32,12 +37,15 @@ type CardDBType = {
   pr6?: number;
   battle_length_min?: number;
   battle_length_max?: number;
+  flavor_text: string;
   set_name: string;
   collector_number: number;
-  effects?: CardEffectType[];
+  rarity: Rarity;
+  effects?: EffectType[];
 };
 
 const Card = ({
+  id,
   name,
   card_type,
   type1 = "",
@@ -50,11 +58,14 @@ const Card = ({
   pr6,
   battle_length_min,
   battle_length_max,
-  set_name,
-  collector_number,
-  effects,
+  flavor_text = "",
+  set_name = "",
+  collector_number = 0,
+  rarity = Rarity.COMMON,
+  effects = [],
 }: CardDBType) => {
   return {
+    id,
     name,
     cardType: card_type,
     type1,
@@ -67,9 +78,11 @@ const Card = ({
     pr6,
     battleLengthMin: battle_length_min,
     battleLengthMax: battle_length_max,
+    flavorText: flavor_text,
     setName: set_name,
     collectorNumber: collector_number,
-    effects: effects || [],
+    rarity,
+    effects,
   };
 };
 

@@ -1,0 +1,32 @@
+.add-effect-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-effect-item > div,
+.add-effect-item > section {
+  margin-bottom: var(--margin-s);
+}
+
+.add-effect-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: var(--margin-s);
+}
+
+.add-effect-title {
+  display: inline;
+  width: 80px;
+}
+
+.add-effect-action {
+  cursor: pointer;
+}
+
+@media (min-width: 500px) {
+  .add-effect-name {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

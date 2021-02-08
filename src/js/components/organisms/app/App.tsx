@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { SortEnd } from "react-sortable-hoc";
 import arrayMove from "array-move";
-import { CardType } from "../../../../server/models/card";
-import { Button } from "../atoms";
-import { CreateCard, CardsList } from "../organisms";
-import { apiCards } from "../../api";
+import { CardType } from "../../../../../server/models/card";
+import { CreateCard, CardsList } from "..";
+import { apiCards } from "../../../api";
+import "./app.css";
 
 const App = () => {
   const [cards, setCards] = useState<CardType[]>([]);
@@ -24,11 +24,18 @@ const App = () => {
   };
 
   return (
-    <div>
-      <CreateCard />
-      <Button>Create</Button>
-      <CardsList cards={cards} onSortEnd={onSortEnd} />
-    </div>
+    <main className="main">
+      <section className="create-card-section">
+        <CreateCard
+          createCard={() => {
+            console.log("create card");
+          }}
+        />
+      </section>
+      <section>
+        <CardsList cards={cards} onSortEnd={onSortEnd} />
+      </section>
+    </main>
   );
 };
 

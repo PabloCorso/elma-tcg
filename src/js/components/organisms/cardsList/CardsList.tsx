@@ -1,5 +1,5 @@
 import React from "react";
-import { CardType, CardTypeEnum } from "../../../../../server/models";
+import { CardType, CardTypeEnum } from "server/models";
 import {
   SortableContainer,
   SortableElement,

@@ -20,5 +20,32 @@ To learn the game rules check [the guides](./guides/elma-tcg.md).
 ### Usefull commands
 
 - `\dt`: list tables.
-- `\d table_name`: show table with details.
+- `\d` or `\d table_name`: show table with details.
+- `\dT` or `\dT+ type_name`: show user defined types.
 - `\?`: list all available commands.
+
+Quick PSQL examples: https://www.postgresqltutorial.com/
+
+#### Add column
+```sql
+ALTER TABLE table_name
+ADD COLUMN new_column_name data_type constraint;
+```
+
+#### Drop column
+```sql
+ALTER TABLE table_name
+DROP COLUMN column_name;
+```
+
+#### Update column value
+```sql
+UPDATE table_name
+SET column_name = new_value 
+WHERE id = identifier;
+```
+
+### Delete values from table
+```sql
+DELETE FROM table_name WHERE condition;
+```

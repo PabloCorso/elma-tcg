@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Breakpoints: 500px - 800px */
+  --font-size-s: 1em;
+  --font-size-m: clamp(1em, 0.7917em + 0.6667vw, 1.125em);
+  --font-size-l: clamp(1.125em, 0.5em + 2vw, 1.5em);
+  --font-size-xl: clamp(1.5em, 0.6667em + 2.6667vw, 2em);
+  --font-size-xxl: clamp(2em, 0.3333em + 5.3333vw, 3em);
+  --font-size-h: clamp(3em, 1.3333em + 5.3333vw, 4em);
+
+  --normal: 400;
+  --semibold: 600;
+  --bold: 700;
+  --black: 900;
+
+  --margin-xs: 8px;
+  --margin-s: 16px;
+  --margin-m: 24px;
+  --margin-l: 32px;
+  --margin-xl: 40px;
+  --margin-xxl: 48px;
+  --margin-xxxl: 56px;
+  --margin-h: 82px;
+}
+
+html {
+  font-family: Roboto, sans-serif;
+}
+
+.title {
+  margin-bottom: var(--margin-m);
+}
+
+.main {
+  padding: 20px;
+}
+
+.create-card-section {
+  margin-bottom: var(--margin-xxl);
+}

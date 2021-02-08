@@ -3,6 +3,32 @@
   flex-direction: column;
 }
 
-.create-card > *:not(:last-child) {
-  margin-bottom: 12px;
+.create-card__values {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-card__values > div {
+  margin-bottom: var(--margin-s);
+}
+
+@media (min-width: 500px) {
+  .create-card__values {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--margin-s);
+    margin-bottom: var(--margin-m);
+  }
+
+  .create-card__values > div {
+    margin-bottom: 0;
+  }
+}
+
+.create-card__effects {
+  margin-bottom: var(--margin-l);
+}
+
+.create-card__submit {
+  width: 200px;
 }

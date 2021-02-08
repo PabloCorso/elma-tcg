@@ -28,6 +28,9 @@ module.exports = {
 
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
+    alias: {
+      server: path.resolve(__dirname, "server/"),
+    },
   },
 
   // https://webpack.js.org/concepts/loaders/
