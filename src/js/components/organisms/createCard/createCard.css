@@ -25,6 +25,14 @@
   }
 }
 
+.create-card__flavor {
+  margin-bottom: var(--margin-m);
+}
+
+.create-card__flavor > div {
+  width: 100%;
+}
+
 .create-card__effects {
   margin-bottom: var(--margin-l);
 }

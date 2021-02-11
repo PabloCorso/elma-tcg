@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ClipboardEvent, useState } from "react";
 import { CardType, CardTypeEnum, Rarity, EffectType } from "server/models";
 import { TextField, SelectField, Button } from "../../atoms";
 import TextFieldAutocomplete from "../../atoms/textFieldAutocomplete";
@@ -11,7 +11,10 @@ const cardTypes = [
   { value: "Instant", label: "Instant" },
 ];
 
-const kuskiTypes = [{ value: "Moporator", label: "Moporator" }];
+const kuskiTypes = [
+  { value: "Moporator", label: "Moporator" },
+  { value: "Battler", label: "Battler" },
+];
 
 const levelTypes = [
   { value: "Long cruise", label: "Long cruise" },
@@ -33,44 +36,50 @@ const rarityOptions = [
   { value: "R", label: "Rare" },
 ];
 
+type PrNames = "pr1" | "pr2" | "pr3" | "pr4" | "pr5" | "pr6";
+const prIndices = [1, 2, 3, 4, 5, 6];
+
+const EmptyCard = () => {
+  return {
+    id: 0,
+    name: "",
+    cardType: CardTypeEnum.KUSKI,
+    type1: "",
+    type2: "",
+    setName: gameSetNames[0].value,
+    rarity: Rarity.COMMON,
+    flavorText: "",
+    effects: [],
+  } as CardType;
+};
+
 type Props = {
   createCard: (card: CardType) => void;
 };
 
 const CreateCard: React.FC<Props> = ({ createCard }) => {
-  const [name, setName] = useState("");
-  const [cardType, setCardType] = useState(CardTypeEnum.KUSKI);
-  const [type1, setType1] = useState("");
-  const [type2, setType2] = useState("");
-  const [pr1, setPr1] = useState("");
-  const [pr2, setPr2] = useState("");
-  const [pr3, setPr3] = useState("");
-  const [pr4, setPr4] = useState("");
-  const [pr5, setPr5] = useState("");
-  const [pr6, setPr6] = useState("");
-  const [battleLengthMin, setBattleLengthMin] = useState("");
-  const [battleLengthMax, setBattleLengthMax] = useState("");
-  const [gameSetName, setGameSetName] = useState(gameSetNames[0].value);
-  const [rarity, setRarity] = useState(Rarity.COMMON);
-  const [effects, setEffects] = useState<EffectType[]>([]);
+  const [card, setCard] = useState<CardType>(EmptyCard());
 
-  const onCreate = () => {
-    console.log(
-      name,
-      cardType,
-      type1,
-      type2,
-      pr1,
-      pr2,
-      pr3,
-      pr4,
-      pr5,
-      pr6,
-      battleLengthMin,
-      battleLengthMax,
-      gameSetName,
-      rarity
-    );
+  const stringToNumber = (value: string) => (value ? Number(value) : null);
+  const numberToString = (value: number) => (value ? value + "" : "");
+
+  const handleCreate = () => {
+    createCard(card);
+  };
+
+  const onPastePrs = (event: ClipboardEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    const data = event.clipboardData.getData("Text");
+    if (data) {
+      const possiblePrs = data.split(">");
+      for (let i = 0; i < possiblePrs.length; i++) {
+        const pr = possiblePrs[i].trim();
+        if (pr) {
+          const prName = `pr${i}` as PrNames;
+          setCard((state) => ({ ...state, [prName]: pr }));
+        }
+      }
+    }
   };
 
   return (
@@ -80,125 +89,121 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
         <section className="create-card__values">
           <TextField
             label="Name"
-            value={name}
-            onChange={(value) => {
-              setName(value);
+            value={card.name}
+            onChange={(name) => {
+              setCard((state) => ({ ...state, name }));
             }}
           />
           <SelectField
             label="Card type"
-            value={cardType}
+            value={card.cardType}
             options={cardTypes}
-            onChange={(value) => {
-              setCardType(value as CardTypeEnum);
+            onChange={(cardType: CardTypeEnum) => {
+              setCard((state) => ({ ...state, cardType }));
             }}
           />
           <TextFieldAutocomplete
             label="Type 1"
-            value={type1}
-            options={getTypes(cardType)}
-            onChange={(value) => {
-              setType1(value);
+            value={card.type1}
+            options={getTypes(card.cardType)}
+            onChange={(type1) => {
+              setCard((state) => ({ ...state, type1 }));
             }}
           />
           <TextFieldAutocomplete
             label="Type 2"
-            value={type2}
-            options={getTypes(cardType)}
-            onChange={(value) => {
-              setType2(value);
+            value={card.type2}
+            options={getTypes(card.cardType)}
+            onChange={(type2) => {
+              setCard((state) => ({ ...state, type2 }));
             }}
           />
-          <TextField
-            label="PR 1"
-            type="number"
-            value={pr1}
-            onChange={(value) => {
-              setPr1(value);
-            }}
-          />
-          <TextField
-            label="PR 2"
-            type="number"
-            value={pr2}
-            onChange={(value) => {
-              setPr2(value);
-            }}
-          />
-          <TextField
-            label="PR 3"
-            type="number"
-            value={pr3}
-            onChange={(value) => {
-              setPr3(value);
-            }}
-          />
-          <TextField
-            label="PR 4"
-            type="number"
-            value={pr4}
-            onChange={(value) => {
-              setPr4(value);
-            }}
-          />
-          <TextField
-            label="PR 5"
-            type="number"
-            value={pr5}
-            onChange={(value) => {
-              setPr5(value);
-            }}
-          />
-          <TextField
-            label="PR 6"
-            type="number"
-            value={pr6}
-            onChange={(value) => {
-              setPr6(value);
-            }}
-          />
-          <SelectField
-            label="Battle min length"
-            value={battleLengthMin}
-            options={battleLengthOptions}
-            onChange={(value) => {
-              setBattleLengthMin(value);
-            }}
-          />
-          <SelectField
-            label="Battle max length"
-            value={battleLengthMax}
-            options={battleLengthOptions}
-            onChange={(value) => {
-              setBattleLengthMax(value);
-            }}
-          />
+          {card.cardType === CardTypeEnum.KUSKI &&
+            prIndices.map((index) => {
+              const prName = `pr${index}` as PrNames;
+              return (
+                <TextField
+                  key={prName}
+                  label={`PR ${index}`}
+                  type="number"
+                  value={numberToString(card[prName])}
+                  onChange={(value: string) => {
+                    setCard((state) => ({
+                      ...state,
+                      [prName]: stringToNumber(value),
+                    }));
+                  }}
+                  onPaste={onPastePrs}
+                />
+              );
+            })}
+          {card.cardType === CardTypeEnum.LEVEL && (
+            <>
+              <SelectField
+                label="Battle min length"
+                value={numberToString(card.battleLengthMin)}
+                options={battleLengthOptions}
+                onChange={(value: string) => {
+                  setCard((state) => ({
+                    ...state,
+                    battleLengthMin: stringToNumber(value),
+                  }));
+                }}
+              />
+              <SelectField
+                label="Battle max length"
+                value={numberToString(card.battleLengthMax)}
+                options={battleLengthOptions}
+                onChange={(value: string) => {
+                  setCard((state) => ({
+                    ...state,
+                    battleLengthMax: stringToNumber(value),
+                  }));
+                }}
+              />
+            </>
+          )}
           <SelectField
             label="Set name"
-            value={gameSetName}
+            value={card.setName}
             options={gameSetNames}
-            onChange={(value) => {
-              setGameSetName(value);
+            onChange={(setName) => {
+              setCard((state) => ({ ...state, setName }));
             }}
           />
           <SelectField
             label="Rarity"
-            value={rarity}
+            value={card.rarity}
             options={rarityOptions}
-            onChange={(value) => {
-              setRarity(value as Rarity);
+            onChange={(rarity: Rarity) => {
+              setCard((state) => ({ ...state, rarity }));
+            }}
+          />
+        </section>
+        <section className="create-card__flavor">
+          <TextField
+            multiline
+            label="Flavor Text"
+            value={card.flavorText}
+            onChange={(flavorText) => {
+              setCard((state) => ({ ...state, flavorText }));
             }}
           />
         </section>
         <section className="create-card__effects">
-          <AddCardEffects effects={effects} setEffects={setEffects} />
+          <AddCardEffects
+            effects={card.effects}
+            setEffects={(effects) => {
+              setCard((state) => ({ ...state, effects }));
+            }}
+          />
         </section>
         <Button
           type="submit"
           className="create-card__submit"
           onClick={(event) => {
             event.preventDefault();
-            onCreate();
+            handleCreate();
           }}
         >
           Create

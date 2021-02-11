@@ -4,9 +4,13 @@ import arrayMove from "array-move";
 import { CardType } from "../../../../../server/models/card";
 import { CreateCard, CardsList } from "..";
 import { apiCards } from "../../../api";
+import { Fab } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import "./app.css";
 
 const App = () => {
+  const [isOnCardCreation, setIsOnCardCreation] = useState(false);
+
   const [cards, setCards] = useState<CardType[]>([]);
 
   useEffect(() => {
@@ -25,16 +29,34 @@ const App = () => {
 
   return (
     <main className="main">
-      <section className="create-card-section">
-        <CreateCard
-          createCard={() => {
-            console.log("create card");
-          }}
-        />
-      </section>
-      <section>
-        <CardsList cards={cards} onSortEnd={onSortEnd} />
-      </section>
+      {!isOnCardCreation && (
+        <section>
+          <CardsList cards={cards} onSortEnd={onSortEnd} />
+          <Fab
+            className="fab-add"
+            classes={{ root: "fab-add" }}
+            color="primary"
+            aria-label="add"
+            onClick={() => {
+              setIsOnCardCreation(true);
+            }}
+          >
+            <AddIcon />
+          </Fab>
+        </section>
+      )}
+      {isOnCardCreation && (
+        <section className="create-card-section">
+          <CreateCard
+            createCard={async (card: CardType) => {
+              const response = await apiCards.create(card);
+              const data = await response.json();
+              console.log(data);
+              setIsOnCardCreation(false);
+            }}
+          />
+        </section>
+      )}
     </main>
   );
 };

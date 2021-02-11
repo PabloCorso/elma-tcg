@@ -17,8 +17,8 @@ export type CardType = {
   battleLengthMin?: number;
   battleLengthMax?: number;
   flavorText?: string;
-  setName: string;
-  collectorNumber: number;
+  setName?: string;
+  collectorNumber?: number;
   effects?: EffectType[];
   rarity?: Rarity;
 };
