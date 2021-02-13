@@ -51,7 +51,7 @@ const App = () => {
             createCard={async (card: CardType) => {
               const response = await apiCards.create(card);
               const data = await response.json();
-              console.log(data);
+              console.log(data.result.id);
               setIsOnCardCreation(false);
             }}
           />

@@ -1,5 +1,5 @@
 import React, { ClipboardEvent, useState } from "react";
-import { CardType, CardTypeEnum, Rarity, EffectType } from "server/models";
+import { CardType, CardTypeEnum, Rarity, Card } from "server/models";
 import { TextField, SelectField, Button } from "../../atoms";
 import TextFieldAutocomplete from "../../atoms/textFieldAutocomplete";
 import AddCardEffects from "./addCardEffects";
@@ -14,6 +14,7 @@ const cardTypes = [
 const kuskiTypes = [
   { value: "Moporator", label: "Moporator" },
   { value: "Battler", label: "Battler" },
+  { value: "Casual", label: "Casual" },
 ];
 
 const levelTypes = [
@@ -39,26 +40,12 @@ const rarityOptions = [
 type PrNames = "pr1" | "pr2" | "pr3" | "pr4" | "pr5" | "pr6";
 const prIndices = [1, 2, 3, 4, 5, 6];
 
-const EmptyCard = () => {
-  return {
-    id: 0,
-    name: "",
-    cardType: CardTypeEnum.KUSKI,
-    type1: "",
-    type2: "",
-    setName: gameSetNames[0].value,
-    rarity: Rarity.COMMON,
-    flavorText: "",
-    effects: [],
-  } as CardType;
-};
-
 type Props = {
   createCard: (card: CardType) => void;
 };
 
 const CreateCard: React.FC<Props> = ({ createCard }) => {
-  const [card, setCard] = useState<CardType>(EmptyCard());
+  const [card, setCard] = useState<CardType>(Card({}));
 
   const stringToNumber = (value: string) => (value ? Number(value) : null);
   const numberToString = (value: number) => (value ? value + "" : "");
@@ -75,7 +62,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
       for (let i = 0; i < possiblePrs.length; i++) {
         const pr = possiblePrs[i].trim();
         if (pr) {
-          const prName = `pr${i}` as PrNames;
+          const prName = `pr${i + 1}` as PrNames;
           setCard((state) => ({ ...state, [prName]: pr }));
         }
       }

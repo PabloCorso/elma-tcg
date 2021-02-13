@@ -1,6 +1,6 @@
 import express from "express";
 import { Pool } from "pg";
-import { Card, Effect, CardType } from "../models";
+import { CardFromDbCard, Effect, CardType } from "../models";
 
 const cardRoutes = (pool: Pool) => {
   const router = express.Router();
@@ -23,7 +23,7 @@ FROM
       let currentCardName = "";
       for (const row of rows) {
         if (currentCardName !== row.name) {
-          cards.push(Card(row));
+          cards.push(CardFromDbCard(row));
           currentCardName = row.name;
         }
 
@@ -97,7 +97,7 @@ SELECT last_value FROM cards_id_seq;
       const result = await client.query(getCreateCardQuery(req.body));
       const rows = result.rows || [];
 
-      res.send(JSON.stringify(rows[0]));
+      res.send(JSON.stringify({ result: { id: rows[0] } }));
       client.release();
     } catch (err) {
       console.error(err);

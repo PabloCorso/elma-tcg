@@ -5,6 +5,7 @@ export type CardType = CardTypeDefinition;
 export type EffectType = EffectTypeDefinition;
 
 export { default as Effect } from "./effect";
-export { default as Card } from "./card";
+export { default as Card, CardFromDbCard } from "./card";
 export { default as CardTypeEnum } from "./cardTypeEnum";
+export { default as SetName } from "./setName";
 export { default as Rarity } from "./rarity";

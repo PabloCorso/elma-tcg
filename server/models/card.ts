@@ -1,5 +1,6 @@
 import { EffectType } from "./effect";
 import CardTypeEnum from "./cardTypeEnum";
+import SetName from "./setName";
 import Rarity from "./rarity";
 
 export type CardType = {
@@ -44,10 +45,30 @@ type CardDBType = {
   effects?: EffectType[];
 };
 
-const Card = ({
-  id,
-  name,
+export const CardFromDbCard = ({
   card_type,
+  battle_length_min,
+  battle_length_max,
+  flavor_text,
+  set_name,
+  collector_number,
+  ...dbCard
+}: CardDBType) => {
+  return Card({
+    ...dbCard,
+    cardType: card_type,
+    battleLengthMin: battle_length_min,
+    battleLengthMax: battle_length_max,
+    flavorText: flavor_text,
+    setName: set_name,
+    collectorNumber: collector_number,
+  });
+};
+
+const Card = ({
+  id = 0,
+  name = "",
+  cardType = CardTypeEnum.KUSKI,
   type1 = "",
   type2 = "",
   pr1,
@@ -56,18 +77,18 @@ const Card = ({
   pr4,
   pr5,
   pr6,
-  battle_length_min,
-  battle_length_max,
-  flavor_text = "",
-  set_name = "",
-  collector_number = 0,
+  battleLengthMin,
+  battleLengthMax,
+  flavorText = "",
+  setName = SetName.ALPHA,
+  collectorNumber,
   rarity = Rarity.COMMON,
   effects = [],
-}: CardDBType) => {
+}: Partial<CardType>) => {
   return {
     id,
     name,
-    cardType: card_type,
+    cardType,
     type1,
     type2,
     pr1,
@@ -76,11 +97,11 @@ const Card = ({
     pr4,
     pr5,
     pr6,
-    battleLengthMin: battle_length_min,
-    battleLengthMax: battle_length_max,
-    flavorText: flavor_text,
-    setName: set_name,
-    collectorNumber: collector_number,
+    battleLengthMin,
+    battleLengthMax,
+    flavorText,
+    setName,
+    collectorNumber,
     rarity,
     effects,
   };
