@@ -1,6 +1,6 @@
 import React from "react";
 import { EffectType } from "server/models";
-import { Button, TextField } from "../../../atoms";
+import { Button, TextField, TextFieldAutocomplete } from "../../../atoms";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ArrowUpIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownIcon from "@material-ui/icons/ArrowDownward";
@@ -9,6 +9,7 @@ import "./addCardEffects.css";
 type Props = {
   effects: EffectType[];
   setEffects: (effects: EffectType[]) => void;
+  options?: EffectType[];
 };
 
 const getEmptyEffect = () => ({
@@ -18,7 +19,11 @@ const getEmptyEffect = () => ({
   italicText: "",
 });
 
-const AddCardEffects: React.FC<Props> = ({ effects, setEffects }) => {
+const AddCardEffects: React.FC<Props> = ({
+  effects,
+  setEffects,
+  options = [],
+}) => {
   const handleChange = (effect: EffectType, index: number) => {
     const newEffects = [
       ...effects.slice(0, index),
@@ -91,11 +96,18 @@ const AddCardEffects: React.FC<Props> = ({ effects, setEffects }) => {
             />
           </header>
           <section className="add-effect-name">
-            <TextField
+            <TextFieldAutocomplete
               label="Effect name"
               value={effect.name}
-              onChange={(name) => {
-                handleChange({ ...effect, name }, index);
+              options={options.map((option) => ({
+                value: option.id + "",
+                label: option.name,
+              }))}
+              onChange={(name, option) => {
+                const newValues = option
+                  ? options.find((o) => o.id === Number(option.value))
+                  : { name };
+                handleChange({ ...effect, ...newValues }, index);
               }}
             />
           </section>

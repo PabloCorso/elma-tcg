@@ -45,7 +45,7 @@ type CardDBType = {
   effects?: EffectType[];
 };
 
-export const CardFromDbCard = ({
+export const CardFromDb = ({
   card_type,
   battle_length_min,
   battle_length_max,

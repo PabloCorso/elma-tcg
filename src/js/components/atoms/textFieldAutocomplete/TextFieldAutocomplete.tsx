@@ -7,7 +7,7 @@ type Props = {
   label: string;
   value: string | Option;
   options: Option[];
-  onChange: (value: string) => void;
+  onChange: (value: string, option?: Option) => void;
 };
 
 const TextFieldAutocomplete: React.FC<Props> = ({
@@ -18,6 +18,7 @@ const TextFieldAutocomplete: React.FC<Props> = ({
 }) => (
   <Autocomplete
     freeSolo
+    openOnFocus
     options={options}
     value={value}
     getOptionLabel={(option: Option | string) =>
@@ -33,9 +34,12 @@ const TextFieldAutocomplete: React.FC<Props> = ({
       />
     )}
     onChange={(_event, selectedValue) => {
-      const value =
-        typeof selectedValue === "string" ? selectedValue : selectedValue.value;
-      onChange(value);
+      if (typeof selectedValue === "string") {
+        onChange(selectedValue);
+      } else {
+        const value = selectedValue ? selectedValue.value : "";
+        onChange(value, selectedValue);
+      }
     }}
   />
 );

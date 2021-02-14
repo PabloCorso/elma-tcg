@@ -1,5 +1,6 @@
 import { Pool } from "pg";
-import cardRoutes from "./cardRoutes";
+import cards from "./cardRoutes";
+import effects from "./effectRoutes";
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -8,4 +9,5 @@ const pool = new Pool({
   },
 });
 
-export default cardRoutes(pool);
+export const cardRoutes = cards(pool);
+export const effectRoutes = effects(pool);

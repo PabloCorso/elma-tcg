@@ -1,6 +1,7 @@
 import express from "express";
 import { Pool } from "pg";
-import { CardFromDbCard, Effect, CardType } from "../models";
+import { CardFromDb, Effect, CardType, EffectType } from "../models";
+import { QueryParams, getInsertQuery, getMultiInsertQuery } from "./queryUtils";
 
 const cardRoutes = (pool: Pool) => {
   const router = express.Router();
@@ -23,7 +24,7 @@ FROM
       let currentCardName = "";
       for (const row of rows) {
         if (currentCardName !== row.name) {
-          cards.push(CardFromDbCard(row));
+          cards.push(CardFromDb(row));
           currentCardName = row.name;
         }
 
@@ -34,39 +35,16 @@ FROM
         }
       }
 
-      res.send(JSON.stringify(cards));
+      res.send({ cards });
       client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
+    } catch (error) {
+      console.error(error);
+      res.send({ error });
     }
   });
 
-  type QueryParams = {
-    name: string;
-    value: string | number;
-  };
-
-  const getInsertQuery = (tableName: string, params: QueryParams[]) => {
-    const names = [];
-    const values = [];
-    for (const param of params) {
-      names.push(param.name);
-      let value: string | number = "NULL";
-      if (param.value) {
-        value =
-          typeof param.value === "string" ? `'${param.value}'` : param.value;
-      }
-      values.push(value);
-    }
-
-    return `INSERT INTO ${tableName} (${names.join(",")}) VALUES (${values.join(
-      ","
-    )});`;
-  };
-
-  const getCreateCardQuery = (card: CardType) => {
-    const params = [
+  const getInsertCardQuery = (card: CardType) => {
+    const params: QueryParams = [
       { name: "name", value: card.name },
       { name: "card_type", value: card.cardType },
       { name: "type1", value: card.type1 },
@@ -84,24 +62,68 @@ FROM
       { name: "collector_number", value: card.collectorNumber },
       { name: "rarity", value: card.rarity },
     ];
-    return `
-${getInsertQuery("cards", params)}
+    return getInsertQuery({ tableName: "cards", params, returnId: true });
+  };
 
-SELECT last_value FROM cards_id_seq;
-`;
+  const getInsertEffectQuery = (effect: EffectType) => {
+    const params: QueryParams = [
+      { name: "name", value: effect.name },
+      { name: "text", value: effect.text },
+      { name: "italic_text", value: effect.italicText },
+    ];
+    return getInsertQuery({ tableName: "effects", params, returnId: true });
+  };
+
+  const getInsertCardEffectsQuery = (cardId: number, effectIds: number[]) => {
+    const paramsGroup: QueryParams[] = [];
+    for (let i = 0; i < effectIds.length; i++) {
+      const effectId = effectIds[i];
+      const params: QueryParams = [
+        { name: "card_id", value: cardId },
+        { name: "effect_id", value: effectId },
+        { name: "position", value: i },
+      ];
+      paramsGroup.push(params);
+    }
+
+    return getMultiInsertQuery({
+      tableName: "cards_effects",
+      paramsGroup,
+    });
   };
 
   router.post("/api/v1.0/card", async (req, res) => {
+    const body = req.body as CardType;
+    const client = await pool.connect();
     try {
-      const client = await pool.connect();
-      const result = await client.query(getCreateCardQuery(req.body));
-      const rows = result.rows || [];
+      await client.query("BEGIN");
 
-      res.send(JSON.stringify({ result: { id: rows[0] } }));
+      const cardResult = await client.query(getInsertCardQuery(body));
+      const newCardId = cardResult.rows[0].id;
+
+      if (body.effects && body.effects.length > 0) {
+        const effectIds = [];
+        for (const effect of body.effects) {
+          let effectId = effect.id || 0;
+          if (!effectId) {
+            const result = await client.query(getInsertEffectQuery(effect));
+            effectId = result.rows[0].id;
+          }
+
+          effectIds.push(effectId);
+        }
+
+        await client.query(getInsertCardEffectsQuery(newCardId, effectIds));
+      }
+
+      await client.query("COMMIT");
+      res.send({ success: true });
+    } catch (error) {
+      await client.query("ROLLBACK");
+      console.error(error);
+      res.send({ error });
+    } finally {
       client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
     }
   });
 

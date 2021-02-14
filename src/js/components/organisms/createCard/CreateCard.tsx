@@ -1,7 +1,18 @@
-import React, { ClipboardEvent, useState } from "react";
-import { CardType, CardTypeEnum, Rarity, Card } from "server/models";
-import { TextField, SelectField, Button } from "../../atoms";
-import TextFieldAutocomplete from "../../atoms/textFieldAutocomplete";
+import React, { ClipboardEvent, useEffect, useState } from "react";
+import {
+  CardType,
+  CardTypeEnum,
+  Rarity,
+  Card,
+  EffectType,
+} from "server/models";
+import { apiEffects } from "../../../api";
+import {
+  TextField,
+  SelectField,
+  Button,
+  TextFieldAutocomplete,
+} from "../../atoms";
 import AddCardEffects from "./addCardEffects";
 import "./createCard.css";
 
@@ -40,15 +51,25 @@ const rarityOptions = [
 type PrNames = "pr1" | "pr2" | "pr3" | "pr4" | "pr5" | "pr6";
 const prIndices = [1, 2, 3, 4, 5, 6];
 
+const stringToNumber = (value: string) => (value ? Number(value) : null);
+const numberToString = (value: number) => (value ? value + "" : "");
+
 type Props = {
   createCard: (card: CardType) => void;
 };
 
 const CreateCard: React.FC<Props> = ({ createCard }) => {
   const [card, setCard] = useState<CardType>(Card({}));
+  const [existingEffects, setExistingEffects] = useState<EffectType[]>([]);
 
-  const stringToNumber = (value: string) => (value ? Number(value) : null);
-  const numberToString = (value: number) => (value ? value + "" : "");
+  useEffect(() => {
+    const getEffects = async () => {
+      const response = await apiEffects.getAll();
+      setExistingEffects(response);
+    };
+
+    getEffects();
+  }, []);
 
   const handleCreate = () => {
     createCard(card);
@@ -92,7 +113,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
           <TextFieldAutocomplete
             label="Type 1"
             value={card.type1}
-            options={getTypes(card.cardType)}
+            options={getLineTypeCardTypes(card.cardType)}
             onChange={(type1) => {
               setCard((state) => ({ ...state, type1 }));
             }}
@@ -100,7 +121,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
           <TextFieldAutocomplete
             label="Type 2"
             value={card.type2}
-            options={getTypes(card.cardType)}
+            options={getLineTypeCardTypes(card.cardType)}
             onChange={(type2) => {
               setCard((state) => ({ ...state, type2 }));
             }}
@@ -183,6 +204,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
             setEffects={(effects) => {
               setCard((state) => ({ ...state, effects }));
             }}
+            options={existingEffects}
           />
         </section>
         <Button
@@ -200,7 +222,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
   );
 };
 
-const getTypes = (cardType: CardTypeEnum) => {
+const getLineTypeCardTypes = (cardType: CardTypeEnum) => {
   switch (cardType) {
     case CardTypeEnum.KUSKI:
       return kuskiTypes;

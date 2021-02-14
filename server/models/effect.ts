@@ -12,12 +12,24 @@ export type EffectDBType = {
   italic_text?: string;
 };
 
-const Effect = ({ id, name, text = "", italic_text = "" }: EffectDBType) => {
+export const EffectFromDb = ({ italic_text, ...dbEffect }: EffectDBType) => {
+  return Effect({
+    ...dbEffect,
+    italicText: italic_text,
+  });
+};
+
+const Effect = ({
+  id = 0,
+  name = "",
+  text = "",
+  italicText = "",
+}: Partial<EffectType>) => {
   return {
     id,
     name,
     text,
-    italicText: italic_text,
+    italicText,
   };
 };
 

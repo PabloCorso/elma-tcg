@@ -16,8 +16,7 @@ const App = () => {
   useEffect(() => {
     const getCards = async () => {
       const response = await apiCards.getAll();
-      const cards: CardType[] = await response.json();
-      setCards(cards);
+      setCards(response);
     };
 
     getCards();
@@ -31,7 +30,7 @@ const App = () => {
     <main className="main">
       {!isOnCardCreation && (
         <section>
-          <CardsList cards={cards} onSortEnd={onSortEnd} />
+          <CardsList cards={cards || []} onSortEnd={onSortEnd} />
           <Fab
             className="fab-add"
             classes={{ root: "fab-add" }}
@@ -51,8 +50,8 @@ const App = () => {
             createCard={async (card: CardType) => {
               const response = await apiCards.create(card);
               const data = await response.json();
-              console.log(data.result.id);
-              setIsOnCardCreation(false);
+              console.log(data.success);
+              // setIsOnCardCreation(false);
             }}
           />
         </section>
