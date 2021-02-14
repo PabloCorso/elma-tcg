@@ -6,6 +6,7 @@ import {
   Card,
   EffectType,
 } from "server/models";
+import { CreateCardResult } from "../../../../../server/routes/cardRoutes";
 import { apiEffects } from "../../../api";
 import {
   TextField,
@@ -55,12 +56,17 @@ const stringToNumber = (value: string) => (value ? Number(value) : null);
 const numberToString = (value: number) => (value ? value + "" : "");
 
 type Props = {
-  createCard: (card: CardType) => void;
+  createCard: (card: CardType) => Promise<CreateCardResult>;
 };
 
 const CreateCard: React.FC<Props> = ({ createCard }) => {
   const [card, setCard] = useState<CardType>(Card({}));
+
   const [existingEffects, setExistingEffects] = useState<EffectType[]>([]);
+
+  const [isCreatingCard, setIsCreatingCard] = useState(false);
+  const [createRequested, setCreateRequested] = useState(false);
+  const [createResult, setCreateResult] = useState<CreateCardResult>({});
 
   useEffect(() => {
     const getEffects = async () => {
@@ -71,8 +77,18 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
     getEffects();
   }, []);
 
-  const handleCreate = () => {
-    createCard(card);
+  const handleCreate = async () => {
+    setIsCreatingCard(true);
+    setCreateRequested(true);
+    const result = await createCard(card);
+    setIsCreatingCard(false);
+    console.log(result);
+    setCreateResult(result || {});
+  };
+
+  const handleChange = (newValues: Partial<CardType>) => {
+    setCreateRequested(false);
+    setCard((state) => ({ ...state, ...newValues }));
   };
 
   const onPastePrs = (event: ClipboardEvent<HTMLDivElement>) => {
@@ -107,7 +123,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
             value={card.cardType}
             options={cardTypes}
             onChange={(cardType: CardTypeEnum) => {
-              setCard((state) => ({ ...state, cardType }));
+              handleChange({ cardType });
             }}
           />
           <TextFieldAutocomplete
@@ -115,7 +131,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
             value={card.type1}
             options={getLineTypeCardTypes(card.cardType)}
             onChange={(type1) => {
-              setCard((state) => ({ ...state, type1 }));
+              handleChange({ type1 });
             }}
           />
           <TextFieldAutocomplete
@@ -123,7 +139,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
             value={card.type2}
             options={getLineTypeCardTypes(card.cardType)}
             onChange={(type2) => {
-              setCard((state) => ({ ...state, type2 }));
+              handleChange({ type2 });
             }}
           />
           {card.cardType === CardTypeEnum.KUSKI &&
@@ -136,10 +152,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
                   type="number"
                   value={numberToString(card[prName])}
                   onChange={(value: string) => {
-                    setCard((state) => ({
-                      ...state,
-                      [prName]: stringToNumber(value),
-                    }));
+                    handleChange({ [prName]: stringToNumber(value) });
                   }}
                   onPaste={onPastePrs}
                 />
@@ -152,10 +165,9 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
                 value={numberToString(card.battleLengthMin)}
                 options={battleLengthOptions}
                 onChange={(value: string) => {
-                  setCard((state) => ({
-                    ...state,
+                  handleChange({
                     battleLengthMin: stringToNumber(value),
-                  }));
+                  });
                 }}
               />
               <SelectField
@@ -163,10 +175,9 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
                 value={numberToString(card.battleLengthMax)}
                 options={battleLengthOptions}
                 onChange={(value: string) => {
-                  setCard((state) => ({
-                    ...state,
+                  handleChange({
                     battleLengthMax: stringToNumber(value),
-                  }));
+                  });
                 }}
               />
             </>
@@ -176,7 +187,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
             value={card.setName}
             options={gameSetNames}
             onChange={(setName) => {
-              setCard((state) => ({ ...state, setName }));
+              handleChange({ setName });
             }}
           />
           <SelectField
@@ -184,7 +195,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
             value={card.rarity}
             options={rarityOptions}
             onChange={(rarity: Rarity) => {
-              setCard((state) => ({ ...state, rarity }));
+              handleChange({ rarity });
             }}
           />
         </section>
@@ -194,7 +205,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
             label="Flavor Text"
             value={card.flavorText}
             onChange={(flavorText) => {
-              setCard((state) => ({ ...state, flavorText }));
+              handleChange({ flavorText });
             }}
           />
         </section>
@@ -202,7 +213,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
           <AddCardEffects
             effects={card.effects}
             setEffects={(effects) => {
-              setCard((state) => ({ ...state, effects }));
+              handleChange({ effects });
             }}
             options={existingEffects}
           />
@@ -214,10 +225,24 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
             event.preventDefault();
             handleCreate();
           }}
+          isLoading={createRequested && isCreatingCard}
         >
           Create
         </Button>
       </form>
+      {createRequested && !isCreatingCard && !createResult.error && (
+        <span className="create-card-result">
+          ✔ New card created with id: {createResult.cardId}{" "}
+          {createResult.effectIds && createResult.effectIds.length
+            ? `(effect ids: ${createResult.effectIds.join(", ")})`
+            : ""}
+        </span>
+      )}
+      {createRequested && !isCreatingCard && createResult.error && (
+        <span className="create-card-result">
+          ❌ Error ocurred: {JSON.stringify(createResult.error)}
+        </span>
+      )}
     </>
   );
 };

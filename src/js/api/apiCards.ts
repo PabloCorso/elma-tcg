@@ -1,4 +1,5 @@
 import { CardType } from "server/models";
+import { CreateCardResult } from "../../../server/routes/cardRoutes";
 import { ApiClientType } from "./apiClient";
 
 const ApiCards = (ApiClient: ApiClientType) => {
@@ -14,7 +15,18 @@ const ApiCards = (ApiClient: ApiClientType) => {
   };
 
   const create = async (card: CardType) => {
-    return ApiClient.post("/api/v1.0/card", card);
+    try {
+      const response = await ApiClient.post("/api/v1.0/card", card);
+      const data: CreateCardResult = await response.json();
+      return {
+        cardId: data.cardId || 0,
+        effectIds: data.effectIds || [],
+        error: data.error,
+      } as CreateCardResult;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
   };
 
   return {

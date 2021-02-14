@@ -40,3 +40,7 @@
 .create-card__submit {
   width: 200px;
 }
+
+.create-card-result {
+  overflow-wrap: break-word;
+}

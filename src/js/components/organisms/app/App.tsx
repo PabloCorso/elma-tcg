@@ -26,6 +26,10 @@ const App = () => {
     setCards((state) => arrayMove(state, oldIndex, newIndex));
   };
 
+  const createCard = async (card: CardType) => {
+    return apiCards.create(card);
+  };
+
   return (
     <main className="main">
       {!isOnCardCreation && (
@@ -46,14 +50,7 @@ const App = () => {
       )}
       {isOnCardCreation && (
         <section className="create-card-section">
-          <CreateCard
-            createCard={async (card: CardType) => {
-              const response = await apiCards.create(card);
-              const data = await response.json();
-              console.log(data.success);
-              // setIsOnCardCreation(false);
-            }}
-          />
+          <CreateCard createCard={createCard} />
         </section>
       )}
     </main>

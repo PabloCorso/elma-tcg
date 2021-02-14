@@ -15,7 +15,7 @@ CREATE TABLE cards (
   flavor_text text,
   set_name text,
   collector_number integer,
-  rarity rarity,
+  rarity rarity
 );
 
 CREATE TABLE effects (

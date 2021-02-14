@@ -3,6 +3,12 @@ import { Pool } from "pg";
 import { CardFromDb, Effect, CardType, EffectType } from "../models";
 import { QueryParams, getInsertQuery, getMultiInsertQuery } from "./queryUtils";
 
+export type CreateCardResult = {
+  cardId?: number;
+  effectIds?: number[];
+  error?: string;
+};
+
 const cardRoutes = (pool: Pool) => {
   const router = express.Router();
 
@@ -95,14 +101,16 @@ FROM
   router.post("/api/v1.0/card", async (req, res) => {
     const body = req.body as CardType;
     const client = await pool.connect();
+
+    let result: CreateCardResult;
     try {
       await client.query("BEGIN");
 
       const cardResult = await client.query(getInsertCardQuery(body));
       const newCardId = cardResult.rows[0].id;
 
+      const effectIds = [];
       if (body.effects && body.effects.length > 0) {
-        const effectIds = [];
         for (const effect of body.effects) {
           let effectId = effect.id || 0;
           if (!effectId) {
@@ -117,14 +125,17 @@ FROM
       }
 
       await client.query("COMMIT");
-      res.send({ success: true });
+
+      result = { cardId: newCardId, effectIds };
     } catch (error) {
       await client.query("ROLLBACK");
       console.error(error);
-      res.send({ error });
+      result = { error };
     } finally {
       client.release();
     }
+
+    res.send(result);
   });
 
   return router;
