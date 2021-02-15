@@ -40,12 +40,13 @@ html {
   padding: 20px;
 }
 
-.create-card-section {
-  margin-bottom: var(--margin-xxl);
+.nav {
+  margin-bottom: var(--margin-l);
 }
 
-.fab-add {
-  position: absolute !important;
-  right: var(--margin-s);
-  bottom: var(--margin-s);
+.nav > a,
+.nav > a:link,
+.nav > a:visited {
+  text-decoration: none;
+  color: black;
 }

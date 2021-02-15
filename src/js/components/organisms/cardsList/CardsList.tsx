@@ -19,7 +19,7 @@ import "./cardsList.css";
 
 type Props = {
   cards: CardType[];
-  maxWidth: number;
+  maxWidth?: number;
 };
 
 const CardsList: React.FC<Props> = ({ cards, maxWidth = 600 }) => {

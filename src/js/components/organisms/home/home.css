@@ -1,0 +1,5 @@
+.fab-add {
+  position: absolute !important;
+  right: var(--margin-s);
+  bottom: var(--margin-s);
+}

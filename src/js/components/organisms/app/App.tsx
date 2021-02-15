@@ -1,53 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { CardType } from "../../../../../server/models/card";
-import { CreateCard, CardsList } from "..";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { CardType } from "../../../../../server/models";
 import { apiCards } from "../../../api";
-import { Fab } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+import { paths } from "../../../utils";
+import CreateCard from "../createCard";
+import Home from "../home";
+
 import "./app.css";
 
 const App = () => {
-  const [isOnCardCreation, setIsOnCardCreation] = useState(false);
-
-  const [cards, setCards] = useState<CardType[]>([]);
-
-  useEffect(() => {
-    const getCards = async () => {
-      const response = await apiCards.getAll();
-      setCards(response);
-    };
-
-    getCards();
-  }, []);
-
   const createCard = async (card: CardType) => {
     return apiCards.create(card);
   };
 
   return (
-    <main className="main">
-      {!isOnCardCreation && (
-        <section>
-          <CardsList cards={cards || []} />
-          <Fab
-            className="fab-add"
-            classes={{ root: "fab-add" }}
-            color="primary"
-            aria-label="add"
-            onClick={() => {
-              setIsOnCardCreation(true);
-            }}
-          >
-            <AddIcon />
-          </Fab>
-        </section>
-      )}
-      {isOnCardCreation && (
-        <section className="create-card-section">
-          <CreateCard createCard={createCard} />
-        </section>
-      )}
-    </main>
+    <Router>
+      <main className="main">
+        <nav className="nav">
+          <Link to={paths.home}>elma-tcg</Link>
+        </nav>
+        <Switch>
+          <Route path={paths.newCard}>
+            <CreateCard createCard={createCard} />
+          </Route>
+          <Route path={paths.home}>
+            <Home />
+          </Route>
+        </Switch>
+      </main>
+    </Router>
   );
 };
 
