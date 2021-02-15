@@ -1,11 +1,9 @@
 import React from "react";
 import { CardType, CardTypeEnum } from "server/models";
 import {
-  SortableContainer,
-  SortableElement,
-  SortEnd,
-} from "react-sortable-hoc";
-import {
+  IconButton,
+  Menu,
+  MenuItem,
   Paper,
   Table,
   TableBody,
@@ -14,44 +12,79 @@ import {
   TableHead,
   TableRow,
 } from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/MoreVert";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import "./cardsList.css";
 
 type Props = {
   cards: CardType[];
-  onSortEnd: (sortEnd: SortEnd) => void;
+  maxWidth: number;
 };
 
-const CardsList: React.FC<Props> = ({ cards, onSortEnd }) => {
+const CardsList: React.FC<Props> = ({ cards, maxWidth = 600 }) => {
+  const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(
+    null
+  );
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {};
+  const handleMenuClose = () => {
+    setMenuAnchorEl(null);
+  };
+
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Card type</TableCell>
-            <TableCell>Type 1</TableCell>
-            <TableCell>Type 2</TableCell>
-            <TableCell>PRs or Battle length</TableCell>
-            <TableCell>Effects</TableCell>
-          </TableRow>
-        </TableHead>
-        <SortableTableBody onSortEnd={onSortEnd}>
-          {cards.map((card, index) => (
-            <SortableTableRow key={card.name} index={index}>
-              <TableCell>{card.name}</TableCell>
-              <TableCell>{card.cardType}</TableCell>
-              <TableCell>{card.type1}</TableCell>
-              <TableCell>{card.type2}</TableCell>
-              <TableCell>
-                {card.cardType === CardTypeEnum.KUSKI && displayCardPrs(card)}
-                {card.cardType === CardTypeEnum.LEVEL &&
-                  displayCardBattleLengths(card)}
-              </TableCell>
-              <TableCell>{card.effects.length || "None"}</TableCell>
-            </SortableTableRow>
-          ))}
-        </SortableTableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper} style={{ maxWidth }}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell>PRs or Battle length</TableCell>
+              <TableCell align="right"></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {cards.map((card, index) => (
+              <TableRow key={card.name}>
+                <TableCell component="th" scope="row">
+                  {card.name}
+                </TableCell>
+                <TableCell>
+                  {card.cardType} - {card.rarity}
+                </TableCell>
+                <TableCell>
+                  {card.cardType === CardTypeEnum.KUSKI && displayCardPrs(card)}
+                  {card.cardType === CardTypeEnum.LEVEL &&
+                    displayCardBattleLengths(card)}
+                </TableCell>
+                <TableCell align="right">
+                  <IconButton
+                    onClick={(event) => {
+                      setMenuAnchorEl(event.currentTarget);
+                    }}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <Menu
+        anchorEl={menuAnchorEl}
+        keepMounted
+        open={Boolean(menuAnchorEl)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleMenuClose}>
+          <EditIcon /> Edit
+        </MenuItem>
+        {/* <MenuItem onClick={handleMenuClose}>
+          <DeleteIcon /> Delete
+        </MenuItem> */}
+      </Menu>
+    </>
   );
 };
 
@@ -66,8 +99,5 @@ const displayCardPrs = (card: CardType) => {
     card.pr4 || ""
   } > ${card.pr5 || ""} > ${card.pr6 || ""}`;
 };
-
-const SortableTableBody = SortableContainer(TableBody);
-const SortableTableRow = SortableElement(TableRow);
 
 export default CardsList;

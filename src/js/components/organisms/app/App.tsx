@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { SortEnd } from "react-sortable-hoc";
-import arrayMove from "array-move";
 import { CardType } from "../../../../../server/models/card";
 import { CreateCard, CardsList } from "..";
 import { apiCards } from "../../../api";
@@ -22,10 +20,6 @@ const App = () => {
     getCards();
   }, []);
 
-  const onSortEnd = ({ oldIndex, newIndex }: SortEnd) => {
-    setCards((state) => arrayMove(state, oldIndex, newIndex));
-  };
-
   const createCard = async (card: CardType) => {
     return apiCards.create(card);
   };
@@ -34,7 +28,7 @@ const App = () => {
     <main className="main">
       {!isOnCardCreation && (
         <section>
-          <CardsList cards={cards || []} onSortEnd={onSortEnd} />
+          <CardsList cards={cards || []} />
           <Fab
             className="fab-add"
             classes={{ root: "fab-add" }}
