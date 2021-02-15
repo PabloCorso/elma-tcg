@@ -13,8 +13,6 @@ CREATE TABLE cards (
   battle_length_min integer,
   battle_length_max integer,
   flavor_text text,
-  set_name text,
-  collector_number integer,
   rarity rarity
 );
 
@@ -36,3 +34,12 @@ CREATE TABLE cards_effects (
 
 CREATE TYPE card_type AS ENUM ('Kuski', 'Level', 'Instant');
 CREATE TYPE rarity AS ENUM ('C', 'U', 'R');
+
+-- DROPS
+
+DROP TABLE cards_effects;
+DROP TABLE effects;
+DROP TABLE cards;
+
+DROP TYPE rarity;
+DROP TYPE card_type;

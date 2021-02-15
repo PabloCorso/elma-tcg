@@ -41,8 +41,6 @@ const battleLengthOptions = [{ value: "", label: "None" }].concat(
   })
 );
 
-const gameSetNames = [{ value: "Alpha", label: "Alpha" }];
-
 const rarityOptions = [
   { value: "C", label: "Common" },
   { value: "U", label: "Uncommon" },
@@ -182,14 +180,6 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
               />
             </>
           )}
-          <SelectField
-            label="Set name"
-            value={card.setName}
-            options={gameSetNames}
-            onChange={(setName) => {
-              handleChange({ setName });
-            }}
-          />
           <SelectField
             label="Rarity"
             value={card.rarity}

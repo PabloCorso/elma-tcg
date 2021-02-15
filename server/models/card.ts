@@ -1,6 +1,5 @@
 import { EffectType } from "./effect";
 import CardTypeEnum from "./cardTypeEnum";
-import SetName from "./setName";
 import Rarity from "./rarity";
 
 export type CardType = {
@@ -18,8 +17,6 @@ export type CardType = {
   battleLengthMin?: number;
   battleLengthMax?: number;
   flavorText?: string;
-  setName?: string;
-  collectorNumber?: number;
   effects?: EffectType[];
   rarity?: Rarity;
 };
@@ -39,8 +36,6 @@ type CardDBType = {
   battle_length_min?: number;
   battle_length_max?: number;
   flavor_text: string;
-  set_name: string;
-  collector_number: number;
   rarity: Rarity;
   effects?: EffectType[];
 };
@@ -50,8 +45,6 @@ export const CardFromDb = ({
   battle_length_min,
   battle_length_max,
   flavor_text,
-  set_name,
-  collector_number,
   ...dbCard
 }: CardDBType) => {
   return Card({
@@ -60,8 +53,6 @@ export const CardFromDb = ({
     battleLengthMin: battle_length_min,
     battleLengthMax: battle_length_max,
     flavorText: flavor_text,
-    setName: set_name,
-    collectorNumber: collector_number,
   });
 };
 
@@ -80,8 +71,6 @@ const Card = ({
   battleLengthMin,
   battleLengthMax,
   flavorText = "",
-  setName = SetName.ALPHA,
-  collectorNumber,
   rarity = Rarity.COMMON,
   effects = [],
 }: Partial<CardType>) => {
@@ -100,8 +89,6 @@ const Card = ({
     battleLengthMin,
     battleLengthMax,
     flavorText,
-    setName,
-    collectorNumber,
     rarity,
     effects,
   };

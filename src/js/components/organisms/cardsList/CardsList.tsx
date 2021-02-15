@@ -26,20 +26,17 @@ const CardsList: React.FC<Props> = ({ cards, onSortEnd }) => {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>#</TableCell>
             <TableCell>Name</TableCell>
             <TableCell>Card type</TableCell>
             <TableCell>Type 1</TableCell>
             <TableCell>Type 2</TableCell>
             <TableCell>PRs or Battle length</TableCell>
-            <TableCell>Set</TableCell>
             <TableCell>Effects</TableCell>
           </TableRow>
         </TableHead>
         <SortableTableBody onSortEnd={onSortEnd}>
           {cards.map((card, index) => (
             <SortableTableRow key={card.name} index={index}>
-              <TableCell>{card.collectorNumber}</TableCell>
               <TableCell>{card.name}</TableCell>
               <TableCell>{card.cardType}</TableCell>
               <TableCell>{card.type1}</TableCell>
@@ -49,7 +46,6 @@ const CardsList: React.FC<Props> = ({ cards, onSortEnd }) => {
                 {card.cardType === CardTypeEnum.LEVEL &&
                   displayCardBattleLengths(card)}
               </TableCell>
-              <TableCell>{card.setName}</TableCell>
               <TableCell>{card.effects.length || "None"}</TableCell>
             </SortableTableRow>
           ))}

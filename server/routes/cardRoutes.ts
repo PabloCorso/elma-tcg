@@ -64,8 +64,6 @@ FROM
       { name: "battle_length_min", value: card.battleLengthMin },
       { name: "battle_length_max", value: card.battleLengthMax },
       { name: "flavor_text", value: card.flavorText },
-      { name: "set_name", value: card.setName },
-      { name: "collector_number", value: card.collectorNumber },
       { name: "rarity", value: card.rarity },
     ];
     return getInsertQuery({ tableName: "cards", params, returnId: true });
