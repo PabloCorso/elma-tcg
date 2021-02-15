@@ -3,6 +3,7 @@ type Fetch = (input: RequestInfo, init?: RequestInit) => Promise<Response>;
 export type ApiClientType = {
   get: (url: string) => Promise<Response>;
   post: (url: string, body: unknown) => Promise<Response>;
+  put: (url: string, body: unknown) => Promise<Response>;
 };
 
 const ApiClient = (fetch: Fetch) => {
@@ -26,7 +27,18 @@ const ApiClient = (fetch: Fetch) => {
     });
   };
 
-  return { get, post };
+  const put = async (url: string, body: unknown) => {
+    return fetch(url, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+  };
+
+  return { get, post, put };
 };
 
 export default ApiClient;

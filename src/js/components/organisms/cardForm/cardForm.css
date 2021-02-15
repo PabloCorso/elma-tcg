@@ -1,46 +1,46 @@
-.create-card {
+.card-form {
   display: flex;
   flex-direction: column;
 }
 
-.create-card__values {
+.card-form__values {
   display: flex;
   flex-direction: column;
 }
 
-.create-card__values > div {
+.card-form__values > div {
   margin-bottom: var(--margin-s);
 }
 
 @media (min-width: 500px) {
-  .create-card__values {
+  .card-form__values {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--margin-s);
     margin-bottom: var(--margin-m);
   }
 
-  .create-card__values > div {
+  .card-form__values > div {
     margin-bottom: 0;
   }
 }
 
-.create-card__flavor {
+.card-form__flavor {
   margin-bottom: var(--margin-m);
 }
 
-.create-card__flavor > div {
+.card-form__flavor > div {
   width: 100%;
 }
 
-.create-card__effects {
+.card-form__effects {
   margin-bottom: var(--margin-l);
 }
 
-.create-card__submit {
+.card-form__submit {
   width: 200px;
 }
 
-.create-card-result {
+.card-form-result {
   overflow-wrap: break-word;
 }

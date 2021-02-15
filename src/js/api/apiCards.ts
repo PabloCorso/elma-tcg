@@ -1,5 +1,5 @@
-import { CardType } from "server/models";
-import { CreateCardResult } from "../../../server/routes/cardRoutes";
+import { Card, CardType } from "server/models";
+import { SaveCardResult } from "../../../server/routes/cardRoutes";
 import { ApiClientType } from "./apiClient";
 
 const ApiCards = (ApiClient: ApiClientType) => {
@@ -14,15 +14,41 @@ const ApiCards = (ApiClient: ApiClientType) => {
     }
   };
 
+  const get = async (cardId: number) => {
+    try {
+      const response = await ApiClient.get(`/api/v1.0/card/${cardId}`);
+      const data: { card: CardType } = await response.json();
+      return Card(data.card);
+    } catch (error) {
+      console.log(error);
+      return Card({});
+    }
+  };
+
   const create = async (card: CardType) => {
     try {
       const response = await ApiClient.post("/api/v1.0/card", card);
-      const data: CreateCardResult = await response.json();
+      const data: SaveCardResult = await response.json();
       return {
         cardId: data.cardId || 0,
         effectIds: data.effectIds || [],
         error: data.error,
-      } as CreateCardResult;
+      } as SaveCardResult;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  };
+
+  const edit = async (card: CardType) => {
+    try {
+      const response = await ApiClient.put("/api/v1.0/card", card);
+      const data: SaveCardResult = await response.json();
+      return {
+        cardId: data.cardId || 0,
+        effectIds: data.effectIds || [],
+        error: data.error,
+      } as SaveCardResult;
     } catch (error) {
       console.log(error);
       return { error };
@@ -31,7 +57,9 @@ const ApiCards = (ApiClient: ApiClientType) => {
 
   return {
     getAll,
+    get,
     create,
+    edit,
   };
 };
 

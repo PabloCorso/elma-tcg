@@ -1,12 +1,6 @@
 import React, { ClipboardEvent, useEffect, useState } from "react";
-import {
-  CardType,
-  CardTypeEnum,
-  Rarity,
-  Card,
-  EffectType,
-} from "server/models";
-import { CreateCardResult } from "../../../../../server/routes/cardRoutes";
+import { CardType, CardTypeEnum, Rarity, EffectType } from "server/models";
+import { SaveCardResult } from "../../../../../server/routes/cardRoutes";
 import { apiEffects } from "../../../api";
 import {
   TextField,
@@ -15,7 +9,7 @@ import {
   TextFieldAutocomplete,
 } from "../../atoms";
 import AddCardEffects from "./addCardEffects";
-import "./createCard.css";
+import "./cardForm.css";
 
 const cardTypes = [
   { value: "Kuski", label: "Kuski" },
@@ -54,17 +48,17 @@ const stringToNumber = (value: string) => (value ? Number(value) : null);
 const numberToString = (value: number) => (value ? value + "" : "");
 
 type Props = {
-  createCard: (card: CardType) => Promise<CreateCardResult>;
+  card: CardType;
+  onChange: (card: Partial<CardType>) => void;
+  onSave: (card: CardType) => Promise<SaveCardResult>;
 };
 
-const CreateCard: React.FC<Props> = ({ createCard }) => {
-  const [card, setCard] = useState<CardType>(Card({}));
-
+const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
   const [existingEffects, setExistingEffects] = useState<EffectType[]>([]);
 
   const [isCreatingCard, setIsCreatingCard] = useState(false);
-  const [createRequested, setCreateRequested] = useState(false);
-  const [createResult, setCreateResult] = useState<CreateCardResult>({});
+  const [saveRequested, setSaveRequested] = useState(false);
+  const [saveResult, setSaveResult] = useState<SaveCardResult>({});
 
   useEffect(() => {
     const getEffects = async () => {
@@ -75,18 +69,17 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
     getEffects();
   }, []);
 
-  const handleCreate = async () => {
+  const handleSave = async () => {
     setIsCreatingCard(true);
-    setCreateRequested(true);
-    const result = await createCard(card);
+    setSaveRequested(true);
+    const result = await onSave(card);
     setIsCreatingCard(false);
-    console.log(result);
-    setCreateResult(result || {});
+    setSaveResult(result || {});
   };
 
   const handleChange = (newValues: Partial<CardType>) => {
-    setCreateRequested(false);
-    setCard((state) => ({ ...state, ...newValues }));
+    setSaveRequested(false);
+    onChange(newValues);
   };
 
   const onPastePrs = (event: ClipboardEvent<HTMLDivElement>) => {
@@ -98,7 +91,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
         const pr = possiblePrs[i].trim();
         if (pr) {
           const prName = `pr${i + 1}` as PrNames;
-          setCard((state) => ({ ...state, [prName]: pr }));
+          onChange({ [prName]: pr });
         }
       }
     }
@@ -107,13 +100,13 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
   return (
     <>
       <h1 className="title">New card</h1>
-      <form autoComplete="off" className="create-card">
-        <section className="create-card__values">
+      <form autoComplete="off" className="card-form">
+        <section className="card-form__values">
           <TextField
             label="Name"
             value={card.name}
             onChange={(name) => {
-              setCard((state) => ({ ...state, name }));
+              handleChange({ name });
             }}
           />
           <SelectField
@@ -189,7 +182,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
             }}
           />
         </section>
-        <section className="create-card__flavor">
+        <section className="card-form__flavor">
           <TextField
             multiline
             label="Flavor Text"
@@ -199,7 +192,7 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
             }}
           />
         </section>
-        <section className="create-card__effects">
+        <section className="card-form__effects">
           <AddCardEffects
             effects={card.effects}
             setEffects={(effects) => {
@@ -210,27 +203,27 @@ const CreateCard: React.FC<Props> = ({ createCard }) => {
         </section>
         <Button
           type="submit"
-          className="create-card__submit"
+          className="card-form__submit"
           onClick={(event) => {
             event.preventDefault();
-            handleCreate();
+            handleSave();
           }}
-          isLoading={createRequested && isCreatingCard}
+          isLoading={saveRequested && isCreatingCard}
         >
-          Create
+          {card.id ? "Edit" : "Create"}
         </Button>
       </form>
-      {createRequested && !isCreatingCard && !createResult.error && (
-        <span className="create-card-result">
-          ✔ New card created with id: {createResult.cardId}{" "}
-          {createResult.effectIds && createResult.effectIds.length
-            ? `(effect ids: ${createResult.effectIds.join(", ")})`
+      {saveRequested && !isCreatingCard && !saveResult.error && (
+        <span className="card-form-result">
+          ✔ New card created with id: {saveResult.cardId}{" "}
+          {saveResult.effectIds && saveResult.effectIds.length
+            ? `(effect ids: ${saveResult.effectIds.join(", ")})`
             : ""}
         </span>
       )}
-      {createRequested && !isCreatingCard && createResult.error && (
-        <span className="create-card-result">
-          ❌ Error ocurred: {JSON.stringify(createResult.error)}
+      {saveRequested && !isCreatingCard && saveResult.error && (
+        <span className="card-form-result">
+          ❌ Error ocurred: {JSON.stringify(saveResult.error)}
         </span>
       )}
     </>
@@ -249,4 +242,4 @@ const getLineTypeCardTypes = (cardType: CardTypeEnum) => {
   }
 };
 
-export default CreateCard;
+export default CardForm;

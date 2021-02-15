@@ -65,6 +65,7 @@ module.exports = {
       inject: true,
       chunks: ["index"],
       filename: "index.html",
+      publicPath: "/",
     }),
   ],
 };

@@ -1,9 +1,9 @@
 import express from "express";
-import { Pool } from "pg";
+import { Pool, QueryConfig } from "pg";
 import { CardFromDb, Effect, CardType, EffectType } from "../models";
 import { QueryParams, getInsertQuery, getMultiInsertQuery } from "./queryUtils";
 
-export type CreateCardResult = {
+export type SaveCardResult = {
   cardId?: number;
   effectIds?: number[];
   error?: string;
@@ -17,31 +17,65 @@ SELECT c.*, e.*, c.name, e.name as effect_name
 FROM
   cards AS c
   LEFT OUTER JOIN cards_effects AS ce ON ce.card_id = c.id
-  LEFT OUTER JOIN effects AS e ON e.id = ce.effect_id;
+  LEFT OUTER JOIN effects AS e ON e.id = ce.effect_id
+ORDER BY ce.position
 `;
+
+  const readCardsFromRows = (rows: any[]) => {
+    const cards = [];
+    let currentCardName = "";
+    for (const row of rows) {
+      if (currentCardName !== row.name) {
+        cards.push(CardFromDb(row));
+        currentCardName = row.name;
+      }
+
+      if (row.effect_name) {
+        const effect = Effect(row);
+        const currentCard = cards[cards.length - 1];
+        currentCard.effects.push(effect);
+      }
+    }
+
+    return cards;
+  };
 
   router.get("/api/v1.0/cards", async (_req, res) => {
     try {
       const client = await pool.connect();
       const result = await client.query(selectCardsQuery);
       const rows = result.rows || [];
-
-      const cards = [];
-      let currentCardName = "";
-      for (const row of rows) {
-        if (currentCardName !== row.name) {
-          cards.push(CardFromDb(row));
-          currentCardName = row.name;
-        }
-
-        if (row.effect_name) {
-          const effect = Effect(row);
-          const currentCard = cards[cards.length - 1];
-          currentCard.effects.push(effect);
-        }
-      }
-
+      const cards = readCardsFromRows(rows);
       res.send({ cards });
+      client.release();
+    } catch (error) {
+      console.error(error);
+      res.send({ error });
+    }
+  });
+
+  const selectCardByIdQuery = (cardId: number): QueryConfig => ({
+    text: `
+  SELECT c.*, e.*, c.name, e.name as effect_name
+  FROM
+    cards AS c
+    LEFT OUTER JOIN cards_effects AS ce ON ce.card_id = c.id
+    LEFT OUTER JOIN effects AS e ON e.id = ce.effect_id
+  WHERE c.id = $1
+  ORDER BY ce.position
+  `,
+    values: [cardId],
+  });
+
+  router.get("/api/v1.0/card/:cardId", async (req, res) => {
+    try {
+      const cardId = Number(req.params.cardId);
+
+      const client = await pool.connect();
+      const result = await client.query(selectCardByIdQuery(cardId));
+      const rows = result.rows || [];
+      const cards = readCardsFromRows(rows);
+      res.send({ card: cards[0] });
       client.release();
     } catch (error) {
       console.error(error);
@@ -100,7 +134,7 @@ FROM
     const body = req.body as CardType;
     const client = await pool.connect();
 
-    let result: CreateCardResult;
+    let result: SaveCardResult;
     try {
       await client.query("BEGIN");
 
@@ -132,6 +166,46 @@ FROM
     } finally {
       client.release();
     }
+
+    res.send(result);
+  });
+
+  router.put("/api/v1.0/card", async (req, res) => {
+    const body = req.body as CardType;
+    const client = await pool.connect();
+
+    let result: SaveCardResult;
+    // try {
+    //   await client.query("BEGIN");
+
+    //   const cardResult = await client.query(getInsertCardQuery(body));
+    //   const newCardId = cardResult.rows[0].id;
+
+    //   const effectIds = [];
+    //   if (body.effects && body.effects.length > 0) {
+    //     for (const effect of body.effects) {
+    //       let effectId = effect.id || 0;
+    //       if (!effectId) {
+    //         const result = await client.query(getInsertEffectQuery(effect));
+    //         effectId = result.rows[0].id;
+    //       }
+
+    //       effectIds.push(effectId);
+    //     }
+
+    //     await client.query(getInsertCardEffectsQuery(newCardId, effectIds));
+    //   }
+
+    //   await client.query("COMMIT");
+
+    //   result = { cardId: newCardId, effectIds };
+    // } catch (error) {
+    //   await client.query("ROLLBACK");
+    //   console.error(error);
+    //   result = { error };
+    // } finally {
+    //   client.release();
+    // }
 
     res.send(result);
   });

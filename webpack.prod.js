@@ -68,6 +68,7 @@ module.exports = {
       inject: "body",
       chunks: ["index"],
       filename: "index.html",
+      publicPath: "/",
     }),
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",

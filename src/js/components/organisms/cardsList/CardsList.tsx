@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CardType, CardTypeEnum } from "server/models";
 import {
   IconButton,
@@ -19,14 +19,21 @@ import "./cardsList.css";
 
 type Props = {
   cards: CardType[];
+  onEdit: (cardId: number) => void;
+  onDelete: (cardId: number) => void;
   maxWidth?: number;
 };
 
-const CardsList: React.FC<Props> = ({ cards, maxWidth = 600 }) => {
+const CardsList: React.FC<Props> = ({
+  cards,
+  onEdit,
+  onDelete,
+  maxWidth = 600,
+}) => {
+  const [cardId, setCardId] = useState(0);
   const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(
     null
   );
-  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {};
   const handleMenuClose = () => {
     setMenuAnchorEl(null);
   };
@@ -44,7 +51,7 @@ const CardsList: React.FC<Props> = ({ cards, maxWidth = 600 }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cards.map((card, index) => (
+            {cards.map((card) => (
               <TableRow key={card.name}>
                 <TableCell component="th" scope="row">
                   {card.name}
@@ -60,6 +67,7 @@ const CardsList: React.FC<Props> = ({ cards, maxWidth = 600 }) => {
                 <TableCell align="right">
                   <IconButton
                     onClick={(event) => {
+                      setCardId(card.id);
                       setMenuAnchorEl(event.currentTarget);
                     }}
                   >
@@ -77,12 +85,20 @@ const CardsList: React.FC<Props> = ({ cards, maxWidth = 600 }) => {
         open={Boolean(menuAnchorEl)}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={handleMenuClose}>
+        <MenuItem
+          onClick={() => {
+            onEdit(cardId);
+          }}
+        >
           <EditIcon /> Edit
         </MenuItem>
-        {/* <MenuItem onClick={handleMenuClose}>
+        <MenuItem
+          onClick={() => {
+            onDelete(cardId);
+          }}
+        >
           <DeleteIcon /> Delete
-        </MenuItem> */}
+        </MenuItem>
       </Menu>
     </>
   );

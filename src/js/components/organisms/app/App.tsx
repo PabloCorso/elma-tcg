@@ -1,29 +1,25 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { CardType } from "../../../../../server/models";
-import { apiCards } from "../../../api";
-import { paths } from "../../../utils";
-import CreateCard from "../createCard";
+import { Paths } from "../../../config";
 import Home from "../home";
-
+import CardSaveView from "../cardSaveView";
 import "./app.css";
 
 const App = () => {
-  const createCard = async (card: CardType) => {
-    return apiCards.create(card);
-  };
-
   return (
     <Router>
       <main className="main">
         <nav className="nav">
-          <Link to={paths.home}>elma-tcg</Link>
+          <Link to={Paths.home}>elma-tcg</Link>
         </nav>
         <Switch>
-          <Route path={paths.newCard}>
-            <CreateCard createCard={createCard} />
+          <Route path={Paths.editCard()}>
+            <CardSaveView />
           </Route>
-          <Route path={paths.home}>
+          <Route path={Paths.newCard}>
+            <CardSaveView />
+          </Route>
+          <Route path={Paths.home}>
             <Home />
           </Route>
         </Switch>
