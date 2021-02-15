@@ -24,6 +24,16 @@
   cursor: pointer;
 }
 
+.add-effect-name__fields {
+  position: relative;
+}
+
+.add-effect-name__state {
+  position: absolute;
+  top: 0;
+  right: 2px;
+}
+
 @media (min-width: 500px) {
   .add-effect-name {
     display: grid;

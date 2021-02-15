@@ -99,7 +99,6 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
 
   return (
     <>
-      <h1 className="title">New card</h1>
       <form autoComplete="off" className="card-form">
         <section className="card-form__values">
           <TextField

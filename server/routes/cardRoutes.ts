@@ -13,7 +13,7 @@ const cardRoutes = (pool: Pool) => {
   const router = express.Router();
 
   const selectCardsQuery = `
-SELECT c.*, e.*, c.name, e.name as effect_name
+SELECT c.*, e.*, c.name, e.id as effect_id, e.name as effect_name
 FROM
   cards AS c
   LEFT OUTER JOIN cards_effects AS ce ON ce.card_id = c.id
@@ -31,7 +31,12 @@ ORDER BY ce.position
       }
 
       if (row.effect_name) {
-        const effect = Effect(row);
+        const effect = Effect({
+          id: row.effect_id,
+          name: row.effect_name,
+          text: row.text,
+          italicText: row.italic_text,
+        });
         const currentCard = cards[cards.length - 1];
         currentCard.effects.push(effect);
       }
@@ -170,42 +175,62 @@ ORDER BY ce.position
     res.send(result);
   });
 
+  const getUpdateCardQuery = (card: CardType) => {
+    const params: QueryParams = [
+      { name: "name", value: card.name },
+      { name: "card_type", value: card.cardType },
+      { name: "type1", value: card.type1 },
+      { name: "type2", value: card.type2 },
+      { name: "pr1", value: card.pr1 },
+      { name: "pr2", value: card.pr2 },
+      { name: "pr3", value: card.pr3 },
+      { name: "pr4", value: card.pr4 },
+      { name: "pr5", value: card.pr5 },
+      { name: "pr6", value: card.pr6 },
+      { name: "battle_length_min", value: card.battleLengthMin },
+      { name: "battle_length_max", value: card.battleLengthMax },
+      { name: "flavor_text", value: card.flavorText },
+      { name: "rarity", value: card.rarity },
+    ];
+    return getInsertQuery({ tableName: "cards", params, returnId: true });
+  };
+
   router.put("/api/v1.0/card", async (req, res) => {
     const body = req.body as CardType;
     const client = await pool.connect();
 
     let result: SaveCardResult;
-    // try {
-    //   await client.query("BEGIN");
+    try {
+      await client.query("BEGIN");
 
-    //   const cardResult = await client.query(getInsertCardQuery(body));
-    //   const newCardId = cardResult.rows[0].id;
+      const cardResult = await client.query(getInsertCardQuery(body));
+      const newCardId = cardResult.rows[0].id;
 
-    //   const effectIds = [];
-    //   if (body.effects && body.effects.length > 0) {
-    //     for (const effect of body.effects) {
-    //       let effectId = effect.id || 0;
-    //       if (!effectId) {
-    //         const result = await client.query(getInsertEffectQuery(effect));
-    //         effectId = result.rows[0].id;
-    //       }
+      const effectIds = [];
+      if (body.effects && body.effects.length > 0) {
+        for (const effect of body.effects) {
+          let effectId = effect.id || 0;
+          if (!effectId) {
+            const result = await client.query(getInsertEffectQuery(effect));
+            effectId = result.rows[0].id;
+          }
 
-    //       effectIds.push(effectId);
-    //     }
+          effectIds.push(effectId);
+        }
 
-    //     await client.query(getInsertCardEffectsQuery(newCardId, effectIds));
-    //   }
+        await client.query(getInsertCardEffectsQuery(newCardId, effectIds));
+      }
 
-    //   await client.query("COMMIT");
+      await client.query("COMMIT");
 
-    //   result = { cardId: newCardId, effectIds };
-    // } catch (error) {
-    //   await client.query("ROLLBACK");
-    //   console.error(error);
-    //   result = { error };
-    // } finally {
-    //   client.release();
-    // }
+      result = { cardId: newCardId, effectIds };
+    } catch (error) {
+      await client.query("ROLLBACK");
+      console.error(error);
+      result = { error };
+    } finally {
+      client.release();
+    }
 
     res.send(result);
   });

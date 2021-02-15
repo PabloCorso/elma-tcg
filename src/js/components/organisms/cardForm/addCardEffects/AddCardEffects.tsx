@@ -96,20 +96,28 @@ const AddCardEffects: React.FC<Props> = ({
             />
           </header>
           <section className="add-effect-name">
-            <TextFieldAutocomplete
-              label="Effect name"
-              value={effect.name}
-              options={options.map((option) => ({
-                value: option.id + "",
-                label: option.name,
-              }))}
-              onChange={(name, option) => {
-                const newValues = option
-                  ? options.find((o) => o.id === Number(option.value))
-                  : { name };
-                handleChange({ ...effect, ...newValues }, index);
-              }}
-            />
+            <div className="add-effect-name__fields">
+              <TextFieldAutocomplete
+                label="Effect name"
+                value={effect.name}
+                options={options.map((option) => ({
+                  value: option.id + "",
+                  label: option.name,
+                }))}
+                onChange={(name, option) => {
+                  const newValues = option
+                    ? options.find((o) => o.id === Number(option.value))
+                    : { name };
+                  handleChange({ ...effect, ...newValues }, index);
+                }}
+              />
+              <span
+                className="add-effect-name__state"
+                title={effect.id ? "From DB" : "New effect"}
+              >
+                {effect.id ? "💾" : "🆕"}
+              </span>
+            </div>
           </section>
           <TextField
             multiline

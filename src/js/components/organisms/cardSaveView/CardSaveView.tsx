@@ -38,6 +38,9 @@ const CardSaveView = () => {
   const handleSave = card.id ? handleCreate : handleEdit;
   return (
     <>
+      {!isLoading && (
+        <h1 className="title">{card.id ? "Edit card" : "New card"}</h1>
+      )}
       <CardForm card={card} onChange={handleCardChange} onSave={handleSave} />
       <Backdrop open={isLoading} style={{ zIndex: 1, color: "white" }}>
         <CircularProgress color="inherit" />
