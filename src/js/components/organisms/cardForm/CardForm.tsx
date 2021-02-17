@@ -209,7 +209,7 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
           }}
           isLoading={saveRequested && isCreatingCard}
         >
-          {card.id ? "Edit" : "Create"}
+          {card.id ? "Save" : "Create"}
         </Button>
       </form>
       {saveRequested && !isCreatingCard && !saveResult.error && (

@@ -22,7 +22,7 @@ const CardSaveView = () => {
           const data = await apiCards.get(cardId);
           setCard(data);
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
       }
 
@@ -35,7 +35,7 @@ const CardSaveView = () => {
   const handleCreate = async (card: CardType) => apiCards.create(card);
   const handleEdit = async (card: CardType) => apiCards.edit(card);
 
-  const handleSave = card.id ? handleCreate : handleEdit;
+  const handleSave = card.id ? handleEdit : handleCreate;
   return (
     <>
       {!isLoading && (
