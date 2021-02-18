@@ -6,6 +6,7 @@ import {
   CardType,
   EffectType,
   CardEffectType,
+  Card,
 } from "../models";
 import {
   QueryParams,
@@ -172,20 +173,20 @@ ORDER BY ce.position
   };
 
   router.post("/api/v1.0/card", async (req, res) => {
-    const body = req.body as CardType;
+    const card = Card(req.body);
     const client = await pool.connect();
 
     let result: SaveCardResult;
     try {
       await client.query("BEGIN");
 
-      const cardResult = await client.query(getInsertCardQuery(body));
+      const cardResult = await client.query(getInsertCardQuery(card));
       const newCardId = cardResult.rows[0].id;
 
       const effectIds = [];
-      const hasEffects = body.effects && body.effects.length > 0;
+      const hasEffects = card.effects && card.effects.length > 0;
       if (hasEffects) {
-        for (const effect of body.effects) {
+        for (const effect of card.effects) {
           let effectId = effect.id || 0;
           if (!effectId) {
             const result = await client.query(getInsertEffectQuery(effect));
@@ -278,19 +279,19 @@ AND ${effectTexts.join(" AND ")}
   };
 
   router.put("/api/v1.0/card", async (req, res) => {
-    const body = req.body as CardType;
+    const card = Card(req.body);
     const client = await pool.connect();
 
     let result: SaveCardResult;
     try {
       await client.query("BEGIN");
 
-      await client.query(getUpdateCardQuery(body));
+      await client.query(getUpdateCardQuery(card));
 
       const resultEffectIds = await client.query(
-        getSelectCardEffectIdsQuery(body.id)
+        getSelectCardEffectIdsQuery(card.id)
       );
-      const incomingEffectIds = body.effects
+      const incomingEffectIds = card.effects
         .map(({ id }) => id)
         .filter((id) => Boolean(id));
       const currentEffectIds: number[] = resultEffectIds.rows.map(
@@ -304,7 +305,7 @@ AND ${effectTexts.join(" AND ")}
       if (effectIdsToDelete.length > 0) {
         await client.query(
           getDropCardEffectsQuery({
-            cardId: body.id,
+            cardId: card.id,
             effectIds: effectIdsToDelete,
           })
         );
@@ -312,15 +313,15 @@ AND ${effectTexts.join(" AND ")}
 
       const effectIds = [];
       const createdEffectIds = [];
-      for (let i = 0; i < body.effects.length; i++) {
-        const effect = body.effects[i];
+      for (let i = 0; i < card.effects.length; i++) {
+        const effect = card.effects[i];
         let effectId = effect.id || 0;
         if (effectId) {
           await client.query(getUpdateEffectQuery(effect));
 
           const isNewCardEffect = !currentEffectIds.includes(effectId);
           const cardEffectParams = {
-            cardId: body.id,
+            cardId: card.id,
             effectId,
             position: i,
           };
@@ -335,7 +336,11 @@ AND ${effectTexts.join(" AND ")}
           createdEffectIds.push(effectId);
 
           await client.query(
-            getInsertCardEffectQuery({ cardId: body.id, effectId, position: i })
+            getInsertCardEffectQuery({
+              cardId: card.id,
+              effectId,
+              position: i,
+            })
           );
         }
 
@@ -344,7 +349,7 @@ AND ${effectTexts.join(" AND ")}
 
       await client.query("COMMIT");
 
-      result = { cardId: body.id, effectIds: [] };
+      result = { cardId: card.id, effectIds: [] };
     } catch (error) {
       await client.query("ROLLBACK");
       console.error(error);
