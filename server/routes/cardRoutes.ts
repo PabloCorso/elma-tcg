@@ -7,6 +7,7 @@ import {
   EffectType,
   CardEffectType,
   Card,
+  CardTypeEnum,
 } from "../models";
 import {
   QueryParams,
@@ -67,6 +68,37 @@ const cardRoutes = (pool: Pool) => {
       const cards = readCardsFromRows(rows);
       res.send({ cards });
       client.release();
+    } catch (error) {
+      console.error(error);
+      res.send({ error });
+    }
+  });
+
+  const selectCardTypesQuery = `
+  SELECT DISTINCT type1 as type, card_type
+  FROM cards
+  WHERE deleted = false AND type1 != ''
+  UNION
+  SELECT DISTINCT type2 as type, card_type
+  FROM cards
+  WHERE deleted = false AND type2 != ''
+`;
+
+  router.get("/api/v1.0/card-types", async (_req, res) => {
+    try {
+      const client = await pool.connect();
+      const queryResult = await client.query(selectCardTypesQuery);
+      const rows = queryResult.rows || [];
+
+      const types = { [CardTypeEnum.KUSKI]: [], [CardTypeEnum.LEVEL]: [] } as {
+        [key: string]: string[];
+      };
+      for (const row of rows) {
+        const { type, card_type: cardType } = row;
+        types[cardType].push(type);
+      }
+
+      res.send({ types });
     } catch (error) {
       console.error(error);
       res.send({ error });

@@ -55,7 +55,7 @@ const CardsList: React.FC<Props> = ({
               <TableRow
                 key={card.name}
                 onClick={() => {
-                  onEdit(cardId);
+                  onEdit(card.id);
                 }}
                 className="card-item"
               >

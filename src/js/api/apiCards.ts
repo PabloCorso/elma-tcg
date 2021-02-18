@@ -2,6 +2,8 @@ import { Card, CardType } from "server/models";
 import { SaveCardResult } from "../../../server/routes/cardRoutes";
 import { ApiClientType } from "./apiClient";
 
+type GetTypesResult = { types: { [key: string]: string[] } };
+
 const ApiCards = (ApiClient: ApiClientType) => {
   const getAll = async () => {
     try {
@@ -57,12 +59,22 @@ const ApiCards = (ApiClient: ApiClientType) => {
 
   const del = async (cardId: number) => {
     try {
-      const response = await ApiClient.del(`/api/v1.0/card/${cardId}`);
-      const data = await response.json();
+      await ApiClient.del(`/api/v1.0/card/${cardId}`);
       return true;
     } catch (error) {
       console.error(error);
       return false;
+    }
+  };
+
+  const getTypes = async () => {
+    try {
+      const response = await ApiClient.get("/api/v1.0/card-types");
+      const data: GetTypesResult = await response.json();
+      return data.types || {};
+    } catch (error) {
+      console.error(error);
+      return {};
     }
   };
 
@@ -72,6 +84,7 @@ const ApiCards = (ApiClient: ApiClientType) => {
     create,
     edit,
     del,
+    getTypes,
   };
 };
 

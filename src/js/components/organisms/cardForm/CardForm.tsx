@@ -1,7 +1,7 @@
 import React, { ClipboardEvent, useEffect, useState } from "react";
 import { CardType, CardTypeEnum, Rarity, EffectType } from "server/models";
 import { SaveCardResult } from "../../../../../server/routes/cardRoutes";
-import { apiEffects } from "../../../api";
+import { apiCards, apiEffects } from "../../../api";
 import {
   TextField,
   SelectField,
@@ -15,17 +15,6 @@ const cardTypes = [
   { value: "Kuski", label: "Kuski" },
   { value: "Level", label: "Level" },
   { value: "Instant", label: "Instant" },
-];
-
-const kuskiTypes = [
-  { value: "Moporator", label: "Moporator" },
-  { value: "Battler", label: "Battler" },
-  { value: "Casual", label: "Casual" },
-];
-
-const levelTypes = [
-  { value: "Long cruise", label: "Long cruise" },
-  { value: "Hoyla", label: "Hoyla" },
 ];
 
 const battleLengthOptions = [{ value: "", label: "None" }].concat(
@@ -47,6 +36,8 @@ const prIndices = [1, 2, 3, 4, 5, 6];
 const stringToNumber = (value: string) => (value ? Number(value) : null);
 const numberToString = (value: number) => (value ? value + "" : "");
 
+type StringArraysObject = { [key: string]: string[] };
+
 type Props = {
   card: CardType;
   onChange: (card: Partial<CardType>) => void;
@@ -55,6 +46,7 @@ type Props = {
 
 const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
   const [existingEffects, setExistingEffects] = useState<EffectType[]>([]);
+  const [existingTypes, setExistingTypes] = useState<StringArraysObject>({});
 
   const [isCreatingCard, setIsCreatingCard] = useState(false);
   const [saveRequested, setSaveRequested] = useState(false);
@@ -66,7 +58,13 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
       setExistingEffects(response);
     };
 
+    const getTypes = async () => {
+      const response = await apiCards.getTypes();
+      setExistingTypes(response);
+    };
+
     getEffects();
+    getTypes();
   }, []);
 
   const handleSave = async () => {
@@ -97,6 +95,16 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
     }
   };
 
+  const lineCardType = existingTypes[card.cardType];
+  const lineCardTypeOptions = lineCardType
+    ? lineCardType
+        .filter((type) => type !== card.type1 && type !== card.type2)
+        .map((type) => ({
+          value: type,
+          label: type,
+        }))
+    : [];
+
   return (
     <>
       <form autoComplete="off" className="card-form">
@@ -119,7 +127,7 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
           <TextFieldAutocomplete
             label="Type 1"
             value={card.type1}
-            options={getLineTypeCardTypes(card.cardType)}
+            options={lineCardTypeOptions}
             onChange={(type1) => {
               handleChange({ type1 });
             }}
@@ -127,7 +135,7 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
           <TextFieldAutocomplete
             label="Type 2"
             value={card.type2}
-            options={getLineTypeCardTypes(card.cardType)}
+            options={lineCardTypeOptions}
             onChange={(type2) => {
               handleChange({ type2 });
             }}
@@ -227,18 +235,6 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
       )}
     </>
   );
-};
-
-const getLineTypeCardTypes = (cardType: CardTypeEnum) => {
-  switch (cardType) {
-    case CardTypeEnum.KUSKI:
-      return kuskiTypes;
-    case CardTypeEnum.LEVEL:
-      return levelTypes;
-    case CardTypeEnum.INSTANT:
-    default:
-      return [];
-  }
 };
 
 export default CardForm;
