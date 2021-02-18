@@ -1,0 +1,7 @@
+.card-item {
+  cursor: pointer;
+}
+
+.card-item:hover {
+  background-color: #fafafa;
+}

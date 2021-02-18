@@ -52,7 +52,13 @@ const CardsList: React.FC<Props> = ({
           </TableHead>
           <TableBody>
             {cards.map((card) => (
-              <TableRow key={card.name}>
+              <TableRow
+                key={card.name}
+                onClick={() => {
+                  onEdit(cardId);
+                }}
+                className="card-item"
+              >
                 <TableCell component="th" scope="row">
                   {card.name}
                 </TableCell>
@@ -67,6 +73,7 @@ const CardsList: React.FC<Props> = ({
                 <TableCell align="right">
                   <IconButton
                     onClick={(event) => {
+                      event.stopPropagation();
                       setCardId(card.id);
                       setMenuAnchorEl(event.currentTarget);
                     }}
