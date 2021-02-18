@@ -30,7 +30,7 @@ FROM
   cards AS c
   LEFT OUTER JOIN cards_effects AS ce ON ce.card_id = c.id
   LEFT OUTER JOIN effects AS e ON e.id = ce.effect_id
-ORDER BY ce.position
+ORDER BY c.id, ce.position
 `;
 
   const readCardsFromRows = (rows: any[]) => {
