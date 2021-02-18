@@ -26,7 +26,7 @@ const cardRoutes = (pool: Pool) => {
   const router = express.Router();
 
   const selectCardsQuery = `
-  SELECT c.*, c.name, e.id as effect_id, e.name as effect_name, e.text, e.italic_text
+  SELECT c.*, e.id as effect_id, e.name as effect_name, e.text, e.italic_text
   FROM
     cards AS c
     LEFT OUTER JOIN cards_effects AS ce ON ce.card_id = c.id
@@ -107,7 +107,7 @@ const cardRoutes = (pool: Pool) => {
 
   const selectCardByIdQuery = (cardId: number): QueryConfig => ({
     text: `
-  SELECT c.*, e.*, c.name, e.id as effect_id, e.name as effect_name
+  SELECT c.*, e.id as effect_id, e.name as effect_name, e.text, e.italic_text
   FROM
     cards AS c
     LEFT OUTER JOIN cards_effects AS ce ON ce.card_id = c.id
