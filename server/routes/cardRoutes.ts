@@ -25,21 +25,23 @@ const cardRoutes = (pool: Pool) => {
   const router = express.Router();
 
   const selectCardsQuery = `
-SELECT c.*, e.*, c.name, e.id as effect_id, e.name as effect_name
-FROM
-  cards AS c
-  LEFT OUTER JOIN cards_effects AS ce ON ce.card_id = c.id
-  LEFT OUTER JOIN effects AS e ON e.id = ce.effect_id
-ORDER BY c.id, ce.position
+  SELECT c.*, c.name, e.id as effect_id, e.name as effect_name, e.text, e.italic_text
+  FROM
+    cards AS c
+    LEFT OUTER JOIN cards_effects AS ce ON ce.card_id = c.id
+    LEFT OUTER JOIN effects AS e ON e.id = ce.effect_id
+  WHERE c.deleted = false
+  ORDER BY c.id, ce.position
 `;
 
   const readCardsFromRows = (rows: any[]) => {
     const cards = [];
-    let currentCardName = "";
+    let currentCardId = 0;
     for (const row of rows) {
-      if (currentCardName !== row.name) {
+      const cardId = Number(row.id);
+      if (currentCardId !== cardId) {
         cards.push(CardFromDb(row));
-        currentCardName = row.name;
+        currentCardId = cardId;
       }
 
       if (row.effect_name) {
@@ -356,6 +358,25 @@ AND ${effectTexts.join(" AND ")}
       result = { error };
     } finally {
       client.release();
+    }
+
+    res.send(result);
+  });
+
+  const getDeleteCardQuery = (cardId: number) => {
+    return { text: `UPDATE cards SET deleted = true WHERE id = ${cardId}` };
+  };
+
+  router.delete("/api/v1.0/card/:cardId", async (req, res) => {
+    const cardId = Number(req.params.cardId) || 0;
+    const client = await pool.connect();
+
+    let result = {};
+    try {
+      await client.query(getDeleteCardQuery(cardId));
+    } catch (error) {
+      console.error(error);
+      result = { error };
     }
 
     res.send(result);

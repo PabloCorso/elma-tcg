@@ -13,7 +13,8 @@ CREATE TABLE cards (
   battle_length_min integer,
   battle_length_max integer,
   flavor_text text,
-  rarity rarity
+  rarity rarity,
+  deleted boolean NOT NULL DEFAULT false
 );
 
 CREATE TABLE effects (

@@ -87,6 +87,7 @@ const CardsList: React.FC<Props> = ({
       >
         <MenuItem
           onClick={() => {
+            setMenuAnchorEl(null);
             onEdit(cardId);
           }}
         >
@@ -94,6 +95,7 @@ const CardsList: React.FC<Props> = ({
         </MenuItem>
         <MenuItem
           onClick={() => {
+            setMenuAnchorEl(null);
             onDelete(cardId);
           }}
         >

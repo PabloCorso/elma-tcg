@@ -9,7 +9,7 @@ const ApiCards = (ApiClient: ApiClientType) => {
       const data: { cards: CardType[] } = await response.json();
       return data.cards || [];
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return [];
     }
   };
@@ -20,7 +20,7 @@ const ApiCards = (ApiClient: ApiClientType) => {
       const data: { card: CardType } = await response.json();
       return Card(data.card);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return Card({});
     }
   };
@@ -35,7 +35,7 @@ const ApiCards = (ApiClient: ApiClientType) => {
         error: data.error,
       } as SaveCardResult;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return { error };
     }
   };
@@ -50,8 +50,19 @@ const ApiCards = (ApiClient: ApiClientType) => {
         error: data.error,
       } as SaveCardResult;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return { error };
+    }
+  };
+
+  const del = async (cardId: number) => {
+    try {
+      const response = await ApiClient.del(`/api/v1.0/card/${cardId}`);
+      const data = await response.json();
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
     }
   };
 
@@ -60,6 +71,7 @@ const ApiCards = (ApiClient: ApiClientType) => {
     get,
     create,
     edit,
+    del,
   };
 };
 

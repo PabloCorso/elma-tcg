@@ -11,25 +11,35 @@ import "./home.css";
 const Home = () => {
   const [cards, setCards] = useState<CardType[]>([]);
 
-  useEffect(() => {
-    const getCards = async () => {
-      const response = await apiCards.getAll();
-      setCards(response);
-    };
+  const getCards = async () => {
+    const response = await apiCards.getAll();
+    setCards(response);
+  };
 
+  useEffect(() => {
     getCards();
   }, []);
 
   const history = useHistory();
+  const redirectToCardEdit = (cardId: number) => {
+    history.push(Paths.editCard(cardId));
+  };
 
   return (
     <section>
       <CardsList
         cards={cards || []}
-        onEdit={(cardId: number) => {
-          history.push(Paths.editCard(cardId));
+        onEdit={redirectToCardEdit}
+        onDelete={async (cardId) => {
+          const success = await apiCards.del(cardId);
+          if (success) {
+            await getCards();
+          } else {
+            window.alert(
+              `An error ocurred while trying to delete card id: ${cardId}`
+            );
+          }
         }}
-        onDelete={() => {}}
       />
       <Link to={Paths.newCard}>
         <Fab
@@ -37,7 +47,6 @@ const Home = () => {
           classes={{ root: "fab-add" }}
           color="primary"
           aria-label="add"
-          onClick={() => {}}
         >
           <AddIcon />
         </Fab>
