@@ -3,15 +3,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Paths } from "../../../config";
 import Home from "../home";
 import CardSaveView from "../cardSaveView";
+import Navigation from "../navigation";
 import "./app.css";
 
 const App = () => {
   return (
     <Router>
       <main className="main">
-        <nav className="nav">
-          <Link to={Paths.home}>elma-tcg</Link>
-        </nav>
+        <Navigation />
         <Switch>
           <Route path={Paths.editCard()}>
             <CardSaveView />

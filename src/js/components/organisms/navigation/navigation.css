@@ -1,0 +1,27 @@
+.nav {
+  margin-bottom: var(--margin-l);
+  display: flex;
+}
+
+.nav > a,
+.nav > a:link,
+.nav > a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-logo {
+  flex: 1;
+  font-weight: bold;
+}
+
+.nav-new-card {
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .nav-new-card {
+    display: block;
+    align-self: flex-end;
+  }
+}

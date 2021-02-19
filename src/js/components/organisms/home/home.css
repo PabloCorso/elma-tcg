@@ -1,5 +1,11 @@
 .fab-add {
-  position: absolute !important;
+  position: fixed !important;
   right: var(--margin-s);
   bottom: var(--margin-s);
+}
+
+@media (min-width: 500px) {
+  .fab-add {
+    display: none !important;
+  }
 }

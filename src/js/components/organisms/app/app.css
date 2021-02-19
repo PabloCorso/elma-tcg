@@ -37,16 +37,13 @@ html {
 }
 
 .main {
-  padding: 20px;
+  padding: 20px 20px 100px 20px;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
-.nav {
-  margin-bottom: var(--margin-l);
-}
-
-.nav > a,
-.nav > a:link,
-.nav > a:visited {
-  text-decoration: none;
-  color: black;
+@media (min-width: 500px) {
+  .main {
+    padding: 20px;
+  }
 }
