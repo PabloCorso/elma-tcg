@@ -16,7 +16,6 @@ const TextFieldAutocomplete: React.FC<Props> = ({
   options,
   onChange,
 }) => {
-  console.log(options, value);
   return (
     <Autocomplete
       freeSolo

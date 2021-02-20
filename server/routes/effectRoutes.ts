@@ -1,14 +1,16 @@
 import express from "express";
 import { Pool } from "pg";
-import { EffectFromDb } from "../models";
+import { CardTypeEnum, EffectFromDb, EffectType } from "../models";
 
 const effectRoutes = (pool: Pool) => {
   const router = express.Router();
 
   const selectEffectsQuery = `
-  SELECT * 
-  FROM effects
-  ORDER BY name
+  SELECT DISTINCT e.id, e.name, e.text, e.italic_text, c.card_type
+  FROM effects as e
+  LEFT OUTER JOIN cards_effects as ce ON ce.effect_id = e.id
+  LEFT OUTER JOIN cards as c ON c.id = ce.card_id
+  ORDER BY e.name
   `;
 
   router.get("/api/v1.0/effects", async (_req, res) => {
@@ -17,7 +19,19 @@ const effectRoutes = (pool: Pool) => {
       const result = await client.query(selectEffectsQuery);
       const rows = result.rows || [];
 
-      const effects = rows.map((row) => EffectFromDb(row));
+      const effects = {
+        [CardTypeEnum.KUSKI]: [],
+        [CardTypeEnum.LEVEL]: [],
+        [CardTypeEnum.INSTANT]: [],
+      } as {
+        [key: string]: EffectType[];
+      };
+      for (const row of rows) {
+        const { card_type: cardType, ...effectRow } = row;
+        const effect = EffectFromDb(effectRow);
+        effects[cardType].push(effect);
+      }
+
       res.send({ effects });
       client.release();
     } catch (error) {

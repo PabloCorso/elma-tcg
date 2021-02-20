@@ -40,3 +40,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.add-effect-config {
+  margin-left: auto;
+}

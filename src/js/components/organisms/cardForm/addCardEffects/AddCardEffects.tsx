@@ -10,6 +10,7 @@ type Props = {
   effects: EffectType[];
   setEffects: (effects: EffectType[]) => void;
   options?: EffectType[];
+  renderConfig?: React.ReactNode;
 };
 
 const getEmptyEffect = () => ({
@@ -23,6 +24,7 @@ const AddCardEffects: React.FC<Props> = ({
   effects,
   setEffects,
   options = [],
+  renderConfig = null,
 }) => {
   const handleChange = (effect: EffectType, index: number) => {
     const newEffects = [
@@ -94,6 +96,9 @@ const AddCardEffects: React.FC<Props> = ({
                 handleDelete(index);
               }}
             />
+            {index === 0 && renderConfig && (
+              <div className="add-effect-config">{renderConfig}</div>
+            )}
           </header>
           <section className="add-effect-name">
             <div className="add-effect-name__fields">

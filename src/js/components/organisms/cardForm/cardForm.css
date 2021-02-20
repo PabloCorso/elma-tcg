@@ -44,3 +44,7 @@
 .card-form-result {
   overflow-wrap: break-word;
 }
+
+.card-form__effects-config {
+  cursor: pointer;
+}

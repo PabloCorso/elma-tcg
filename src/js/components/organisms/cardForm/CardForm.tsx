@@ -36,7 +36,8 @@ const prIndices = [1, 2, 3, 4, 5, 6];
 const stringToNumber = (value: string) => (value ? Number(value) : null);
 const numberToString = (value: number) => (value ? value + "" : "");
 
-type StringArraysObject = { [key: string]: string[] };
+type ValuesMap = { [key: string]: string[] };
+type EffectsMap = { [key: string]: EffectType[] };
 
 type Props = {
   card: CardType;
@@ -45,8 +46,9 @@ type Props = {
 };
 
 const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
-  const [existingEffects, setExistingEffects] = useState<EffectType[]>([]);
-  const [existingTypes, setExistingTypes] = useState<StringArraysObject>({});
+  const [existingTypes, setExistingTypes] = useState<ValuesMap>({});
+  const [existingEffects, setExistingEffects] = useState<EffectsMap>({});
+  const [showAllEffects, setShowAllEffects] = useState(false);
 
   const [isCreatingCard, setIsCreatingCard] = useState(false);
   const [saveRequested, setSaveRequested] = useState(false);
@@ -82,7 +84,10 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
 
   const onPastePrs = (event: ClipboardEvent<HTMLDivElement>) => {
     event.preventDefault();
-    const data = event.clipboardData.getData("Text");
+    const clipboardData = event.clipboardData as {
+      getData: (option: string) => string;
+    };
+    const data = clipboardData.getData("Text");
     if (data) {
       const possiblePrs = data.split(">");
       for (let i = 0; i < possiblePrs.length; i++) {
@@ -95,15 +100,17 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
     }
   };
 
-  const lineCardType = existingTypes[card.cardType];
+  const lineCardType = existingTypes[card.cardType] || [];
   const lineCardTypeOptions = lineCardType
-    ? lineCardType
-        .filter((type) => type !== card.type1 && type !== card.type2)
-        .map((type) => ({
-          value: type,
-          label: type,
-        }))
-    : [];
+    .filter((type) => type !== card.type1 && type !== card.type2)
+    .map((type) => ({
+      value: type,
+      label: type,
+    }));
+
+  const effectOptions = showAllEffects
+    ? Object.values(existingEffects).flat()
+    : existingEffects[card.cardType];
 
   return (
     <>
@@ -205,7 +212,17 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
             setEffects={(effects) => {
               handleChange({ effects });
             }}
-            options={existingEffects}
+            options={effectOptions}
+            renderConfig={
+              <span
+                className="card-form__effects-config"
+                onClick={() => {
+                  setShowAllEffects((state) => !state);
+                }}
+              >
+                {showAllEffects ? "Show all effects" : "Show same type effects"}
+              </span>
+            }
           />
         </section>
         <Button
