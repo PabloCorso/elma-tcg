@@ -1,9 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Paths } from "../../../config";
-import Home from "../home";
-import CardSaveView from "../cardSaveView";
-import Navigation from "../navigation";
+import { Home } from "..";
+import { CardSaveView, Navigation } from "../../organisms";
 import "./app.css";
 
 const App = () => {

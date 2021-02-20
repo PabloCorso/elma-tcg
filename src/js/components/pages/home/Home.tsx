@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { CardType } from "../../../../../server/models/card";
-import { CardsList } from "..";
+import { CardsList } from "../../organisms";
 import { apiCards } from "../../../api";
 import { Fab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";

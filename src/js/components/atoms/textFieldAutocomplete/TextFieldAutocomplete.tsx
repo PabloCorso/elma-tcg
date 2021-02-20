@@ -5,7 +5,7 @@ import { Option } from "../types";
 
 type Props = {
   label: string;
-  value: string | Option;
+  value: string;
   options: Option[];
   onChange: (value: string, option?: Option) => void;
 };
@@ -15,33 +15,26 @@ const TextFieldAutocomplete: React.FC<Props> = ({
   value,
   options,
   onChange,
-}) => (
-  <Autocomplete
-    freeSolo
-    openOnFocus
-    options={options}
-    value={value}
-    getOptionLabel={(option: Option | string) =>
-      typeof option === "string" ? option : option.label
-    }
-    renderInput={(params) => (
-      <TextField
-        {...params}
-        label={label}
-        onChange={(value) => {
-          onChange(value);
-        }}
-      />
-    )}
-    onChange={(_event, selectedValue) => {
-      if (typeof selectedValue === "string") {
-        onChange(selectedValue);
-      } else {
-        const value = selectedValue ? selectedValue.value : "";
-        onChange(value, selectedValue);
+}) => {
+  console.log(options, value);
+  return (
+    <Autocomplete
+      freeSolo
+      options={options}
+      value={value}
+      getOptionLabel={(option: Option | string) =>
+        typeof option === "string" ? option : option.label
       }
-    }}
-  />
-);
-
+      renderInput={(params) => <TextField {...params} label={label} />}
+      onChange={(_event, selectedValue) => {
+        if (typeof selectedValue === "string") {
+          onChange(selectedValue);
+        } else {
+          const value = selectedValue ? selectedValue.value : "";
+          onChange(value, selectedValue);
+        }
+      }}
+    />
+  );
+};
 export default TextFieldAutocomplete;

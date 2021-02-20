@@ -2,7 +2,7 @@ import React from "react";
 import MuiTextField, { TextFieldProps } from "@material-ui/core/TextField";
 
 export type Props = Omit<TextFieldProps, "onChange"> & {
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 };
 
 const TextField: React.FC<Props> = ({ onChange, ...props }) => (
@@ -10,7 +10,9 @@ const TextField: React.FC<Props> = ({ onChange, ...props }) => (
     variant="outlined"
     {...props}
     onChange={(event) => {
-      onChange(event.target.value);
+      if (onChange) {
+        onChange(event.target.value);
+      }
     }}
   />
 );
