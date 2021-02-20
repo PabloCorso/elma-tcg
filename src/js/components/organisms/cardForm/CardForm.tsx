@@ -50,8 +50,7 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
   const [existingEffects, setExistingEffects] = useState<EffectsMap>({});
   const [showAllEffects, setShowAllEffects] = useState(false);
 
-  const [isCreatingCard, setIsCreatingCard] = useState(false);
-  const [saveRequested, setSaveRequested] = useState(false);
+  const [isSavingCard, setIsSavingCard] = useState(false);
   const [saveResult, setSaveResult] = useState<SaveCardResult>({});
 
   useEffect(() => {
@@ -70,15 +69,14 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
   }, []);
 
   const handleSave = async () => {
-    setIsCreatingCard(true);
-    setSaveRequested(true);
+    setIsSavingCard(true);
     const result = await onSave(card);
-    setIsCreatingCard(false);
+    setIsSavingCard(false);
     setSaveResult(result || {});
   };
 
   const handleChange = (newValues: Partial<CardType>) => {
-    setSaveRequested(false);
+    setSaveResult({});
     onChange(newValues);
   };
 
@@ -232,20 +230,20 @@ const CardForm: React.FC<Props> = ({ card, onChange, onSave }) => {
             event.preventDefault();
             handleSave();
           }}
-          isLoading={saveRequested && isCreatingCard}
+          isLoading={isSavingCard}
         >
           {card.id ? "Save" : "Create"}
         </Button>
       </form>
-      {saveRequested && !isCreatingCard && !saveResult.error && (
+      {saveResult.cardId && !isSavingCard && !saveResult.error && (
         <span className="card-form-result">
-          ✔ New card created with id: {saveResult.cardId}{" "}
+          ✔ Saved card with id: {saveResult.cardId}{" "}
           {saveResult.effectIds && saveResult.effectIds.length
             ? `(effect ids: ${saveResult.effectIds.join(", ")})`
             : ""}
         </span>
       )}
-      {saveRequested && !isCreatingCard && saveResult.error && (
+      {!isSavingCard && saveResult.error && (
         <span className="card-form-result">
           ❌ Error ocurred: {JSON.stringify(saveResult.error)}
         </span>

@@ -16,23 +16,29 @@ const TextFieldAutocomplete: React.FC<Props> = ({
   options,
   onChange,
 }) => {
+  const handleChange = (
+    _event: React.ChangeEvent<{}>,
+    selectedValue: string | Option
+  ) => {
+    if (typeof selectedValue === "string") {
+      onChange(selectedValue);
+    } else {
+      const value = selectedValue ? selectedValue.value : "";
+      onChange(value, selectedValue);
+    }
+  };
   return (
     <Autocomplete
       freeSolo
+      inputValue={value}
+      onInputChange={handleChange}
       options={options}
       value={value}
       getOptionLabel={(option: Option | string) =>
         typeof option === "string" ? option : option.label
       }
       renderInput={(params) => <TextField {...params} label={label} />}
-      onChange={(_event, selectedValue) => {
-        if (typeof selectedValue === "string") {
-          onChange(selectedValue);
-        } else {
-          const value = selectedValue ? selectedValue.value : "";
-          onChange(value, selectedValue);
-        }
-      }}
+      onChange={handleChange}
     />
   );
 };

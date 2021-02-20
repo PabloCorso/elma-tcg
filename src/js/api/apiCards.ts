@@ -38,7 +38,7 @@ const ApiCards = (ApiClient: ApiClientType) => {
       } as SaveCardResult;
     } catch (error) {
       console.error(error);
-      return { error };
+      return { error } as SaveCardResult;
     }
   };
 
@@ -53,7 +53,7 @@ const ApiCards = (ApiClient: ApiClientType) => {
       } as SaveCardResult;
     } catch (error) {
       console.error(error);
-      return { error };
+      return { error } as SaveCardResult;
     }
   };
 

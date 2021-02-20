@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import CardForm from "../cardForm";
 import { CardType, Card } from "server/models";
 import { apiCards } from "../../../api";
 import { Backdrop, CircularProgress } from "@material-ui/core";
+import { Paths } from "../../../config";
 
-const CardSaveView = () => {
+const cardEdition = () => {
   const [card, setCard] = useState<CardType>(Card({}));
   const handleCardChange = (newValues: Partial<CardType>) => {
     setCard((state) => ({ ...state, ...newValues }));
   };
 
   const [isLoading, setIsLoading] = useState(true);
+  const history = useHistory();
 
   const params: { cardId?: string } = useParams();
   useEffect(() => {
@@ -35,7 +37,21 @@ const CardSaveView = () => {
   const handleCreate = async (card: CardType) => apiCards.create(card);
   const handleEdit = async (card: CardType) => apiCards.edit(card);
 
-  const handleSave = card.id ? handleEdit : handleCreate;
+  const redirectToCardEdit = (cardId: number) => {
+    history.push(Paths.editCard(cardId));
+  };
+
+  const handleSave = async (card: CardType) => {
+    const action = card.id ? handleEdit : handleCreate;
+    const result = await action(card);
+    const isSuccess = !result.error && result.cardId;
+    if (isSuccess) {
+      redirectToCardEdit(result.cardId);
+    }
+
+    return result;
+  };
+
   return (
     <>
       {!isLoading && (
@@ -49,4 +65,4 @@ const CardSaveView = () => {
   );
 };
 
-export default CardSaveView;
+export default cardEdition;

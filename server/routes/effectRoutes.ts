@@ -23,11 +23,13 @@ const effectRoutes = (pool: Pool) => {
         [CardTypeEnum.KUSKI]: [],
         [CardTypeEnum.LEVEL]: [],
         [CardTypeEnum.INSTANT]: [],
+        None: [],
       } as {
         [key: string]: EffectType[];
       };
       for (const row of rows) {
-        const { card_type: cardType, ...effectRow } = row;
+        const { card_type, ...effectRow } = row;
+        const cardType = card_type || "None";
         const effect = EffectFromDb(effectRow);
         effects[cardType].push(effect);
       }
