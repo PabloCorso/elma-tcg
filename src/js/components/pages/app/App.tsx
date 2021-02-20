@@ -1,13 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Paths } from "../../../config";
-import { Home } from "..";
+import Home from "../home";
+import { ScrollToTop } from "../../atoms";
 import { CardSaveView, Navigation } from "../../organisms";
 import "./app.css";
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <main className="main">
         <Navigation />
         <Switch>
