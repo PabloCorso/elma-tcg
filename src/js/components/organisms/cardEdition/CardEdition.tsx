@@ -3,8 +3,8 @@ import { useHistory, useParams } from "react-router-dom";
 import CardForm from "../cardForm";
 import { CardType, Card } from "server/models";
 import { apiCards } from "../../../api";
-import { Backdrop, CircularProgress } from "@material-ui/core";
 import { Paths } from "../../../config";
+import CardEditionSkeleton from "./CardEditionSkeleton";
 
 const cardEdition = () => {
   const [card, setCard] = useState<CardType>(Card({}));
@@ -55,12 +55,16 @@ const cardEdition = () => {
   return (
     <>
       {!isLoading && (
-        <h1 className="title">{card.id ? "Edit card" : "New card"}</h1>
+        <>
+          <h1 className="title">{card.id ? "Edit card" : "New card"}</h1>
+          <CardForm
+            card={card}
+            onChange={handleCardChange}
+            onSave={handleSave}
+          />
+        </>
       )}
-      <CardForm card={card} onChange={handleCardChange} onSave={handleSave} />
-      <Backdrop open={isLoading} style={{ zIndex: 1, color: "white" }}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      {isLoading && <CardEditionSkeleton />}
     </>
   );
 };

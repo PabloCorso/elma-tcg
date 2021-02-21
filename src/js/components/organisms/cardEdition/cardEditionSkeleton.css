@@ -1,0 +1,36 @@
+.card-edition-sekeleton__header {
+  height: 70px !important;
+  margin-bottom: var(--margin-m) !important;
+  width: 40%;
+}
+
+.card-edition-skeleton__form {
+}
+
+.card-edition-skeleton__item {
+  margin-bottom: var(--margin-s) !important;
+  transform: none !important;
+  height: 50px !important;
+}
+
+.card-edition-sekeleton__submit {
+  height: 70px !important;
+  width: 40%;
+}
+
+.card-edition-skeleton__form-flavor {
+  margin-bottom: var(--margin-m);
+}
+
+@media (min-width: 500px) {
+  .card-edition-skeleton__form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--margin-s);
+    margin-bottom: var(--margin-s);
+  }
+
+  .card-edition-skeleton__item {
+    margin-bottom: 0 !important;
+  }
+}
