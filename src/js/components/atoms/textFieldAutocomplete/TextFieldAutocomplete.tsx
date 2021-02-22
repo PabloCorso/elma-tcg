@@ -30,8 +30,7 @@ const TextFieldAutocomplete: React.FC<Props> = ({
   return (
     <Autocomplete
       freeSolo
-      inputValue={value}
-      onInputChange={handleChange}
+      autoSelect
       options={options}
       value={value}
       getOptionLabel={(option: Option | string) =>

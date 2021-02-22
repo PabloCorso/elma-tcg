@@ -4,9 +4,6 @@
   width: 40%;
 }
 
-.card-edition-skeleton__form {
-}
-
 .card-edition-skeleton__item {
   margin-bottom: var(--margin-s) !important;
   transform: none !important;
