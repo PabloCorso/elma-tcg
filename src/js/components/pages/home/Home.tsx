@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { CardType } from "../../../../../server/models/card";
-import { CardsList } from "../../organisms";
+import { CardType, CardTypeEnum } from "../../../../../server/models";
+import { CardsList, defaultShownCardTypes } from "../../organisms";
 import { apiCards } from "../../../api";
-import { Fab } from "@material-ui/core";
+import { Fab, Checkbox, FormGroup, FormControlLabel } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { Paths } from "../../../config";
 import "./home.css";
@@ -25,10 +25,59 @@ const Home = () => {
     history.push(Paths.editCard(cardId));
   };
 
+  const [shownCardTypes, setShownCardTypes] = useState(defaultShownCardTypes);
+
+  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setShownCardTypes((state) => ({
+      ...state,
+      [event.target.name]: event.target.checked,
+    }));
+  };
+
+  const filteredCards = cards
+    ? cards.filter((card) => shownCardTypes[card.cardType])
+    : [];
+
   return (
     <section>
+      <FormGroup row>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={shownCardTypes[CardTypeEnum.KUSKI]}
+              onChange={handleCheck}
+              name={CardTypeEnum.KUSKI}
+              color="primary"
+            />
+          }
+          label="Kuskis"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={shownCardTypes[CardTypeEnum.LEVEL]}
+              onChange={handleCheck}
+              name={CardTypeEnum.LEVEL}
+              color="primary"
+            />
+          }
+          label="Levels"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={shownCardTypes[CardTypeEnum.INSTANT]}
+              onChange={handleCheck}
+              name={CardTypeEnum.INSTANT}
+              color="primary"
+            />
+          }
+          label="Instants"
+        />
+      </FormGroup>
       <CardsList
-        cards={cards || []}
+        cards={filteredCards}
+        shownCardTypes={shownCardTypes}
         onEdit={redirectToCardEdit}
         onDelete={async (cardId) => {
           const success = await apiCards.del(cardId);

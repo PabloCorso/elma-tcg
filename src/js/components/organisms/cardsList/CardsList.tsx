@@ -17,11 +17,20 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./cardsList.css";
 
+type ShownCardTypes = { [key in CardTypeEnum]?: boolean };
+
+export const defaultShownCardTypes = {
+  [CardTypeEnum.KUSKI]: true,
+  [CardTypeEnum.LEVEL]: true,
+  [CardTypeEnum.INSTANT]: true,
+};
+
 type Props = {
   cards: CardType[];
   onEdit: (cardId: number) => void;
   onDelete: (cardId: number) => void;
   maxWidth?: number;
+  shownCardTypes?: ShownCardTypes;
 };
 
 const CardsList: React.FC<Props> = ({
@@ -29,6 +38,7 @@ const CardsList: React.FC<Props> = ({
   onEdit,
   onDelete,
   maxWidth = 600,
+  shownCardTypes = defaultShownCardTypes,
 }) => {
   const [cardId, setCardId] = useState(0);
   const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(
@@ -38,6 +48,15 @@ const CardsList: React.FC<Props> = ({
     setMenuAnchorEl(null);
   };
 
+  const showKuskis = shownCardTypes[CardTypeEnum.KUSKI];
+  const showLevels = shownCardTypes[CardTypeEnum.LEVEL];
+  const showKuskisOrLevels = showKuskis || showLevels;
+  const showKuskisAndLevels =
+    shownCardTypes[CardTypeEnum.KUSKI] && shownCardTypes[CardTypeEnum.LEVEL];
+  const showKuskisOrLevelsTitle = `${showKuskis ? "PRs" : ""}${
+    showKuskisAndLevels ? " or " : ""
+  }${showLevels ? "Battle length" : ""}`;
+
   return (
     <>
       <TableContainer component={Paper} style={{ maxWidth }}>
@@ -46,7 +65,9 @@ const CardsList: React.FC<Props> = ({
             <TableRow>
               <TableCell>Name</TableCell>
               <TableCell>Type</TableCell>
-              <TableCell>PRs or Battle length</TableCell>
+              {showKuskisOrLevels && (
+                <TableCell>{showKuskisOrLevelsTitle}</TableCell>
+              )}
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
@@ -65,11 +86,14 @@ const CardsList: React.FC<Props> = ({
                 <TableCell>
                   {card.cardType} - {card.rarity}
                 </TableCell>
-                <TableCell>
-                  {card.cardType === CardTypeEnum.KUSKI && displayCardPrs(card)}
-                  {card.cardType === CardTypeEnum.LEVEL &&
-                    displayCardBattleLengths(card)}
-                </TableCell>
+                {showKuskisOrLevels && (
+                  <TableCell>
+                    {card.cardType === CardTypeEnum.KUSKI &&
+                      displayCardPrs(card)}
+                    {card.cardType === CardTypeEnum.LEVEL &&
+                      displayCardBattleLengths(card)}
+                  </TableCell>
+                )}
                 <TableCell align="right">
                   <IconButton
                     onClick={(event) => {
