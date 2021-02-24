@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { CardType, CardTypeEnum } from "../../../../../server/models";
+import {
+  CardType,
+  CardTypeEnum,
+  getValuesByCardType,
+} from "../../../../../server/models";
 import { CardsList, defaultShownCardTypes } from "../../organisms";
 import { apiCards } from "../../../api";
 import { Fab, Checkbox, FormGroup, FormControlLabel } from "@material-ui/core";
@@ -38,41 +42,61 @@ const Home = () => {
     ? cards.filter((card) => shownCardTypes[card.cardType])
     : [];
 
+  const cardTypesCount = getValuesByCardType(0);
+  for (const card of cards) {
+    cardTypesCount[card.cardType] += 1;
+  }
+
   return (
     <section>
       <FormGroup row>
         <FormControlLabel
           control={
             <Checkbox
+              size="small"
               checked={shownCardTypes[CardTypeEnum.KUSKI]}
               onChange={handleCheck}
               name={CardTypeEnum.KUSKI}
               color="primary"
             />
           }
-          label="Kuskis"
+          label={`Kuskis ${
+            cardTypesCount[CardTypeEnum.KUSKI]
+              ? `(${cardTypesCount[CardTypeEnum.KUSKI]})`
+              : ""
+          }`}
         />
         <FormControlLabel
           control={
             <Checkbox
+              size="small"
               checked={shownCardTypes[CardTypeEnum.LEVEL]}
               onChange={handleCheck}
               name={CardTypeEnum.LEVEL}
               color="primary"
             />
           }
-          label="Levels"
+          label={`Levels ${
+            cardTypesCount[CardTypeEnum.LEVEL]
+              ? `(${cardTypesCount[CardTypeEnum.LEVEL]})`
+              : ""
+          }`}
         />
         <FormControlLabel
           control={
             <Checkbox
+              size="small"
               checked={shownCardTypes[CardTypeEnum.INSTANT]}
               onChange={handleCheck}
               name={CardTypeEnum.INSTANT}
               color="primary"
             />
           }
-          label="Instants"
+          label={`Instants ${
+            cardTypesCount[CardTypeEnum.INSTANT]
+              ? `(${cardTypesCount[CardTypeEnum.INSTANT]})`
+              : ""
+          }`}
         />
       </FormGroup>
       <CardsList

@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { CardType, CardTypeEnum } from "server/models";
+import {
+  CardType,
+  CardTypeEnum,
+  ValuesByCardType,
+  getValuesByCardType,
+} from "server/models";
 import {
   IconButton,
   Menu,
@@ -17,13 +22,9 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./cardsList.css";
 
-type ShownCardTypes = { [key in CardTypeEnum]?: boolean };
+type ShownCardTypes = ValuesByCardType<boolean>;
 
-export const defaultShownCardTypes = {
-  [CardTypeEnum.KUSKI]: true,
-  [CardTypeEnum.LEVEL]: true,
-  [CardTypeEnum.INSTANT]: true,
-};
+export const defaultShownCardTypes = getValuesByCardType(true);
 
 type Props = {
   cards: CardType[];
