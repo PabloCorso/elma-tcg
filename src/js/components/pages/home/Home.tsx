@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { CardType, getValuesByCardType } from "../../../../../server/models";
 import {
-  CardType,
-  CardTypeEnum,
-  getValuesByCardType,
-} from "../../../../../server/models";
-import { CardsList, defaultShownCardTypes } from "../../organisms";
+  CardsList,
+  CardTypesFilter,
+  defaultShownCardTypes,
+  ShownCardTypes,
+} from "../../organisms";
 import { apiCards } from "../../../api";
-import { Fab, Checkbox, FormGroup, FormControlLabel } from "@material-ui/core";
+import { Fab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { Paths } from "../../../config";
 import "./home.css";
@@ -31,13 +32,6 @@ const Home = () => {
 
   const [shownCardTypes, setShownCardTypes] = useState(defaultShownCardTypes);
 
-  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setShownCardTypes((state) => ({
-      ...state,
-      [event.target.name]: event.target.checked,
-    }));
-  };
-
   const filteredCards = cards
     ? cards.filter((card) => shownCardTypes[card.cardType])
     : [];
@@ -49,56 +43,13 @@ const Home = () => {
 
   return (
     <section>
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Checkbox
-              size="small"
-              checked={shownCardTypes[CardTypeEnum.KUSKI]}
-              onChange={handleCheck}
-              name={CardTypeEnum.KUSKI}
-              color="primary"
-            />
-          }
-          label={`Kuskis ${
-            cardTypesCount[CardTypeEnum.KUSKI]
-              ? `(${cardTypesCount[CardTypeEnum.KUSKI]})`
-              : ""
-          }`}
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              size="small"
-              checked={shownCardTypes[CardTypeEnum.LEVEL]}
-              onChange={handleCheck}
-              name={CardTypeEnum.LEVEL}
-              color="primary"
-            />
-          }
-          label={`Levels ${
-            cardTypesCount[CardTypeEnum.LEVEL]
-              ? `(${cardTypesCount[CardTypeEnum.LEVEL]})`
-              : ""
-          }`}
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              size="small"
-              checked={shownCardTypes[CardTypeEnum.INSTANT]}
-              onChange={handleCheck}
-              name={CardTypeEnum.INSTANT}
-              color="primary"
-            />
-          }
-          label={`Instants ${
-            cardTypesCount[CardTypeEnum.INSTANT]
-              ? `(${cardTypesCount[CardTypeEnum.INSTANT]})`
-              : ""
-          }`}
-        />
-      </FormGroup>
+      <CardTypesFilter
+        shownCardTypes={shownCardTypes}
+        cardTypesCount={cardTypesCount}
+        onChange={(values: ShownCardTypes) => {
+          setShownCardTypes((state) => ({ ...state, ...values }));
+        }}
+      />
       <CardsList
         cards={filteredCards}
         shownCardTypes={shownCardTypes}

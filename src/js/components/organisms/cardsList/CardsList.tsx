@@ -20,11 +20,11 @@ import {
 import MenuIcon from "@material-ui/icons/MoreVert";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import {
+  defaultShownCardTypes,
+  ShownCardTypes,
+} from "../cardTypesFilter/CardTypesFilter";
 import "./cardsList.css";
-
-type ShownCardTypes = ValuesByCardType<boolean>;
-
-export const defaultShownCardTypes = getValuesByCardType(true);
 
 type Props = {
   cards: CardType[];
