@@ -9,3 +9,7 @@
     display: none !important;
   }
 }
+
+.home-total-card {
+  margin-bottom: var(--margin-xs);
+}

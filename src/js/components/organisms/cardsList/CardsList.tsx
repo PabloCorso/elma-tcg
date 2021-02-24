@@ -69,7 +69,9 @@ const CardsList: React.FC<Props> = ({
               {showKuskisOrLevels && (
                 <TableCell>{showKuskisOrLevelsTitle}</TableCell>
               )}
-              <TableCell align="right"></TableCell>
+              <TableCell align="right" className="cards-list__total">
+                {cards.length} 🃏
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

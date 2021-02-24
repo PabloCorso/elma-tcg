@@ -5,3 +5,7 @@
 .card-item:hover {
   background-color: #fafafa;
 }
+
+.cards-list__total {
+  color: grey !important;
+}
