@@ -6,16 +6,26 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "prisma db seed",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:reset": "prisma migrate reset"
   },
   "dependencies": {
+    "@epic-web/remember": "^1.1.0",
+    "@prisma/client": "^6.5.0",
     "@react-router/node": "^7.5.3",
     "@react-router/serve": "^7.5.3",
+    "clsx": "^2.1.1",
     "isbot": "^5.1.27",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.5.3",
-    "react-router-dom": "^7.6.1"
+    "react-router-dom": "^7.5.3",
+    "tailwind-merge": "^3.3.0",
+    "vite-env-only": "^3.0.3",
+    "zod": "^3.25.32"
   },
   "devDependencies": {
     "@react-router/dev": "^7.5.3",
@@ -23,10 +33,16 @@
     "@types/node": "^20",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "cross-env": "^7.0.3",
+    "prisma": "^6.8.2",
     "tailwindcss": "^4.1.4",
+    "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vite": "^6.3.3",
     "vite-plugin-devtools-json": "^0.1.0",
     "vite-tsconfig-paths": "^5.1.4"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   }
 }

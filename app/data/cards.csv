@@ -1,0 +1,63 @@
+id,name,card_type,type1,type2,pr1,pr2,pr3,pr4,pr5,pr6,battle_length_min,battle_length_max,flavor_text,rarity,deleted
+1,Kopaka,Kuski,Moporator,"",48.5,,43.0,,37.8,,,,"",R,false
+2,Grob,Kuski,Battler,"",33.8,30.5,29.9,,,25.5,,,"",R,false
+4,Adi,Kuski,Battler,"",38.0,,35.0,,33.0,,,,"",U,false
+5,Test Delete,Kuski,Moporator,Battler,1.0,2.0,3.0,4.0,5.0,6.0,,,"",C,true
+6,Pob0124,Level,Long cruise,"",,,,,,,3,6,"",U,false
+7,Smibu80,Level,Long cruise,"",,,,,,,3,6,"",R,false
+8,"Pab, rookie",Kuski,Rookie,"",50.5,48.4,45.0,43.7,41.5,38.2,,,Pab rookie 2008,C,false
+9,"Jblaze, rookie",Kuski,Rookie,"",47.5,45.4,43.2,40.5,38.7,,,,"",C,false
+10,Markku,Kuski,Moporator,Battler,35.4,34.9,,32.5,,28.9,,,Gz Markku.,R,false
+11,Spef,Kuski,"","",36.9,35.2,33.0,29.3,28.1,,,,"",R,false
+12,"Pab, the multiplayer",Kuski,Casual,"",48.5,42.5,38.2,,37.4,35.2,,,"",C,false
+13,Zweq,Kuski,"","",40.9,37.6,34.6,31.5,29.8,,,,"",R,false
+14,Zspin01,Level,Tricky,"",,,,,,,1,3,"",C,false
+15,Rage quit,Instant,"","",,,,,,,,,"",U,false
+16,Long battle stop,Instant,"","",,,,,,,,,"",C,false
+17,Queue abort,Instant,"","",,,,,,,,,"",U,false
+19,Lucky first try,Instant,"","",,,,,,,,,"",C,false
+20,Wheel pop,Instant,"","",,,,,,,,,"",C,false
+21,Lucky ride,Instant,"","",,,,,,,,,"",C,false
+22,Disconnect,Instant,"","",,,,,,,,,"",C,false
+23,Battler block,Instant,"","",,,,,,,,,"",C,false
+24,Designer block,Instant,"","",,,,,,,,,"",C,false
+25,Nekit,Kuski,"","",35.5,,34.0,32.5,,,,,"",U,false
+26,Nekit01,Level,Uphill,"",,,,,,,2,6,"",C,false
+27,Warm up,Level,Internal,Hoyla,,,,,,,1,6,"",U,false
+28,Zero [dat],Kuski,"","",38.5,33.5,,31.0,,29.9,,,"",U,false
+29,Bene [dat],Kuski,"","",46.8,42.6,38.7,35.1,32.0,30.3,,,"",U,false
+30,FinMan [dat],Kuski,"","",45.9,42.1,33.8,,31.9,30.0,,,"",U,false
+31,Pab [dat],Kuski,"","",45.3,41.6,35.6,31.0,30.8,30.5,,,"",U,false
+32,Soft rage quit,Instant,"","",,,,,,,,,"",C,false
+33,Vsync level abort,Instant,"","",,,,,,,,,"",C,false
+34,Self abort,Instant,"","",,,,,,,,,"",C,false
+35,Quick abort,Instant,"","",,,,,,,,,"""Wrong version please abort""",C,false
+36,Bad luck mopo,Instant,"","",,,,,,,,,"",C,false
+37,Shadow record,Instant,"","",,,,,,,,,"",C,false
+38,Forced play,Instant,"","",,,,,,,,,"",C,false
+39,Quick steal,Instant,"","",,,,,,,,,"",C,false
+40,Barryp,Kuski,"","",47.0,43.0,40.2,38.9,38.5,37.9,,,"",C,false
+41,Jonsta,Kuski,"","",45.6,42.3,41.1,40.9,37.5,35.6,,,"",C,false
+42,Chain01,Level,Multi-route,Puzzle,,,,,,,3,6,"",U,false
+43,Mirror01,Level,Mirror,"",,,,,,,1,2,"",U,false
+44,ChanPi01,Level,Long cruise,Pipe,,,,,,,3,6,"",R,false
+45,Apple01,Level,Gravity,"",,,,,,,1,4,"",C,false
+46,FC01,Level,Hoyla,"",,,,,,,1,2,"",C,false
+47,P-script,Kuski,Battler,"",40.0,38.7,36.4,34.9,33.0,32.5,,,"",C,false
+48,OneLifer,Level,Long cruise,"",,,,,,,2,4,"",C,false
+49,Multi01,Level,"","",,,,,,,1,6,"",C,false
+50,Slowpoke,Level,Tricky,"",,,,,,,1,6,"",C,false
+51,PRs blocker,Instant,"","",,,,,,,,,"",U,false
+52,Unban,Instant,"","",,,,,,,,,"",U,false
+53,UHDFF02,Level,Long cruise,Multi-route,,,,,,,3,6,"",U,false
+54,FII11,Level,Hoyla,Gravity,,,,,,,1,3,"",C,false
+55,Pob001,Level,Normal,"",,,,,,,1,6,"",U,false
+56,Min01,Level,Tricky,"",,,,,,,1,3,"",C,false
+57,Slowness,Instant,"","",,,,,,,,,"",U,false
+58,Mielz,Kuski,Battler,"",38.0,36.9,35.2,33.2,32.6,29.8,,,"",U,false
+59,Ramone,Kuski,"","",41.6,40.0,38.2,35.3,34.1,32.8,,,"",U,false
+60,Talli,Kuski,Casual,"",39.0,36.9,35.2,,33.2,31.5,,,"",U,false
+61,Hosp,Kuski,"","",44.0,41.6,38.5,37.1,36.2,34.1,,,"",C,false
+63,Bjenn,Kuski,"","",39.5,37.2,35.5,32.9,31.1,29.2,,,"",U,false
+64,Chris,Kuski,"","",43.5,41.9,38.9,37.4,35.0,34.2,,,Get well,U,false
+65,Nobody,Kuski,Battler,"",35.0,32.1,30.9,28.5,,27.3,,,"",R,false

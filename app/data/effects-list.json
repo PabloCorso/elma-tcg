@@ -1,0 +1,448 @@
+{
+  "effects": [
+    {
+      "id": 1,
+      "name": "kopaka-ban",
+      "text": "Play this ability while Kopaka is online: send Kopaka offline, ban an online kuski you control from the game, ban an online kuski your opponent controls from the game.",
+      "italicText": ""
+    },
+    {
+      "id": 2,
+      "name": "battler",
+      "text": "",
+      "italicText": "Battlers cannot add levels to the queue."
+    },
+    {
+      "id": 3,
+      "name": "grob-orka",
+      "text": "Grob enters the game with 6 orka counters on it. At the beginning of your turn, remove one orka counter from Grob. If Grob has no more orka counters on it, discard it.",
+      "italicText": ""
+    },
+    {
+      "id": 4,
+      "name": "pipe-pro-10",
+      "text": "Pipe pro -10",
+      "italicText": "Decrease this kuski's PRs by 10 seconds on pipe levels."
+    },
+    {
+      "id": 5,
+      "name": "first-finish",
+      "text": "First Finish",
+      "italicText": "Kuski times are calculated as kuski's first finish plus 1 minute per full turn already battled."
+    },
+    {
+      "id": 6,
+      "name": "force-play",
+      "text": "All online kuskis that can enter this level must enter it.",
+      "italicText": ""
+    },
+    {
+      "id": 7,
+      "name": "pre-announced",
+      "text": "Pre-announced",
+      "italicText": "This level can be added in any position of the queue."
+    },
+    {
+      "id": 8,
+      "name": "pab-rookie",
+      "text": "Pab enters the game online and does not go offline after playing a battle.",
+      "italicText": ""
+    },
+    {
+      "id": 9,
+      "name": "jblaze-rookie",
+      "text": "Jblaze always finishes levels with first finish in second place, unless he is the only kuski that played the level.",
+      "italicText": ""
+    },
+    {
+      "id": 10,
+      "name": "cannot-uphill",
+      "text": "Cannot play uphill levels.",
+      "italicText": ""
+    },
+    {
+      "id": 11,
+      "name": "watchful",
+      "text": "Watchful",
+      "italicText": "This kuski can enter a pre-announced battle while being offline."
+    },
+    {
+      "id": 12,
+      "name": "markku-apple",
+      "text": "Whenever an apple level is added to the queue, add an apple counter to Markku.",
+      "italicText": ""
+    },
+    {
+      "id": 13,
+      "name": "internal-pro-5",
+      "text": "Internal pro -5",
+      "italicText": "Decrease this kuski's PRs by 5 seconds on internal levels."
+    },
+    {
+      "id": 14,
+      "name": "multiplayer-pro-2",
+      "text": "Multiplayer pro -2",
+      "italicText": "Decrease this kuski's PRs and it's team player by 2 seconds on multiplayer levels."
+    },
+    {
+      "id": 15,
+      "name": "pab-multiplayer",
+      "text": "Pab can play it's own multiplayer levels. If Pab plays his own level, ban him from the game after the battle ends.",
+      "italicText": ""
+    },
+    {
+      "id": 16,
+      "name": "markku-limits",
+      "text": "Markku can only play internal levels or levels with first finish, apple or pre-announced.",
+      "italicText": ""
+    },
+    {
+      "id": 17,
+      "name": "z-spin-pro-10",
+      "text": "Z-spin pro 10",
+      "italicText": "Decrease this kuski's PRs by 10 seconds on levels with zpin shortcut."
+    },
+    {
+      "id": 18,
+      "name": "z-spin-shortcut",
+      "text": "Z-spin shortcut.",
+      "italicText": ""
+    },
+    {
+      "id": 19,
+      "name": "rage-quit",
+      "text": "Target kuski gains: \"Whenever this kuski loses in a battle, discard it.\"",
+      "italicText": ""
+    },
+    {
+      "id": 20,
+      "name": "long-battle-stop",
+      "text": "Stop the ongoing battle if it was already played for 2 full turns or more. This effect plays as if the battle ended normally.",
+      "italicText": ""
+    },
+    {
+      "id": 21,
+      "name": "queue-abort",
+      "text": "Abort a level from the queue. The kuski that started that level may add a new level to the queue.",
+      "italicText": ""
+    },
+    {
+      "id": 22,
+      "name": "lucky-first-try",
+      "text": "Target kuski improves its first PR time by 3 seconds.",
+      "italicText": ""
+    },
+    {
+      "id": 23,
+      "name": "wheel-pop",
+      "text": "Target kuski improves its current PR by 2 seconds.",
+      "italicText": ""
+    },
+    {
+      "id": 24,
+      "name": "lucky-ride",
+      "text": "Target kuski improves its current PR by 1 second for each full turn already battled by it.",
+      "italicText": ""
+    },
+    {
+      "id": 25,
+      "name": "disconnect",
+      "text": "Send offline the target online kuski.",
+      "italicText": ""
+    },
+    {
+      "id": 26,
+      "name": "battler-block",
+      "text": "Target kuski becomes a battler in addition to it's other types.",
+      "italicText": ""
+    },
+    {
+      "id": 27,
+      "name": "designer-block",
+      "text": "Target kuski becomes a designer in addition to it's other types.",
+      "italicText": ""
+    },
+    {
+      "id": 28,
+      "name": "designer",
+      "text": "",
+      "italicText": "Designers cannot play battles."
+    },
+    {
+      "id": 29,
+      "name": "uphill-pro-10",
+      "text": "Uphill pro -10",
+      "italicText": "Decrease this kuski's PRs by 10 seconds on uphill levels."
+    },
+    {
+      "id": 30,
+      "name": "nekit-limits",
+      "text": "If Nekit stays online for 2 turns without playing a battle, ban Nekit from the game.",
+      "italicText": ""
+    },
+    {
+      "id": 31,
+      "name": "zero-dat",
+      "text": "While Zero is playing a battle, other team dat kuskis improve all their PRs by 2 seconds.",
+      "italicText": ""
+    },
+    {
+      "id": 32,
+      "name": "bene-dat",
+      "text": "Teammates playing a multi route level improve their PR by 4 seconds.",
+      "italicText": ""
+    },
+    {
+      "id": 33,
+      "name": "finman-dat",
+      "text": "All playing team dat kuskis gain \"Pipe pro -2\".",
+      "italicText": "Decrease this kuski's PRs by 2 seconds on pipe levels."
+    },
+    {
+      "id": 34,
+      "name": "finman-dat-own",
+      "text": "If the ongoing battle was started by FinMan, all playing team dat kuskis gain \"Pipe pro -4\".",
+      "italicText": ""
+    },
+    {
+      "id": 35,
+      "name": "pab-dat",
+      "text": "Pab can be put online at any moment while there is another teammate online under your control.",
+      "italicText": ""
+    },
+    {
+      "id": 36,
+      "name": "soft-rage-quit",
+      "text": "Target kuski gains: \"Whenever this kuski fails to improve it's PR during a battle turn, send it offline\".",
+      "italicText": ""
+    },
+    {
+      "id": 37,
+      "name": "vsync-level-abort",
+      "text": "Abort the ongoing battle. No one gets points from that battle and each player can choose to send their playing kuski online or offline.",
+      "italicText": ""
+    },
+    {
+      "id": 38,
+      "name": "self-abort",
+      "text": "Abort an ongoing or queued level started by one of your kuskis. That kuski may add a new level to the queue. If the battle was ongoing, no one gets points from that battle and playing kuskis are sent offline.",
+      "italicText": ""
+    },
+    {
+      "id": 39,
+      "name": "quick-abort",
+      "text": "Remove target level from the queue and add it to the bottom of it. This level is still owned by the kuski that added it in the first place.",
+      "italicText": ""
+    },
+    {
+      "id": 40,
+      "name": "bad-luck-mopo",
+      "text": "Target kuski with at least one finish on the ongoing battle cannot improve that time anymore.",
+      "italicText": ""
+    },
+    {
+      "id": 41,
+      "name": "shadow-record",
+      "text": "Target kuski with a PR on the ongoing battle makes a new PR equal to the next best time on the board.",
+      "italicText": ""
+    },
+    {
+      "id": 42,
+      "name": "forced-play",
+      "text": "Choose an offline kuski from the game. If there is an ongoing battle, that kuski enters the battle.",
+      "italicText": ""
+    },
+    {
+      "id": 43,
+      "name": "quick-steal",
+      "text": "Choose an offline kuski from the game. If there is an ongoing battle, that kuski enters the battle. The kuski's PRs count as if the kuski entered the battle on the first battle turn. When this battle ends, ban that kuski from the game.",
+      "italicText": ""
+    },
+    {
+      "id": 44,
+      "name": "jonsta-effect",
+      "text": "Whenever Jonsta enters the game field, you may search for a puzzle or multi-route level and put it in your hand, then shuffle your library.",
+      "italicText": ""
+    },
+    {
+      "id": 46,
+      "name": "barryp-effect",
+      "text": "When Barryp enters the game field, you may search your library for a pipe level and put it in your hand, then shuffle your library.",
+      "italicText": ""
+    },
+    {
+      "id": 47,
+      "name": "jonsta-no-abort",
+      "text": "Levels started by Jonsta cannot be aborted.",
+      "italicText": ""
+    },
+    {
+      "id": 48,
+      "name": "all-gain-watchful",
+      "text": "While this level is being battled, all your kuskis gain watchful.",
+      "italicText": "This kuski can enter a pre-announced battle while being offline."
+    },
+    {
+      "id": 49,
+      "name": "chain-level-3",
+      "text": "Chain level 3",
+      "italicText": "This level must be started by 3 or more kuskis."
+    },
+    {
+      "id": 50,
+      "name": "block-opponents-1",
+      "text": "Your opponent's kuskis cannot enter a battle in this level during it's first full turn.",
+      "italicText": ""
+    },
+    {
+      "id": 51,
+      "name": "force-start-ban",
+      "text": "You may force any kuski from the game field to start this level as a battle. After this level is battled and discarded, ban that kuski from the game.",
+      "italicText": ""
+    },
+    {
+      "id": 52,
+      "name": "chain-pi-effect",
+      "text": "When ChaiPi01 is added to the queue, search your library for a kuski with pipe pro and put it in your hand, then shuffle your library.",
+      "italicText": ""
+    },
+    {
+      "id": 53,
+      "name": "apple",
+      "text": "Apple",
+      "italicText": "During battle, if a kuski were to improve its best time, add an apple counter to it instead. The kuski with more apples wins. When the battle ends, remove all apple counters from playing kuskis."
+    },
+    {
+      "id": 54,
+      "name": "finish-count",
+      "text": "Finish count",
+      "italicText": "During battle, if a kuski were to improve its best time, add a finish counter to it instead. The kuski with more finishes wins. When the battle ends, remove all finish counters from playing kuskis."
+    },
+    {
+      "id": 55,
+      "name": "one-life",
+      "text": "One life",
+      "italicText": "Kuskis can only enter this battle during the battle's first full turn. Kuski times are calculated as kuski's first finish plus 1 minute per full turn already battled. If all kuskis have finished and the battle is still ongoing, the battle ends on the next turn."
+    },
+    {
+      "id": 56,
+      "name": "multiplayer",
+      "text": "Multiplayer",
+      "italicText": "This level must be played by pairs of kuskis. The worse PR between both is the time that counts."
+    },
+    {
+      "id": 57,
+      "name": "slowness",
+      "text": "Slowness",
+      "italicText": "The kuski with the slowest time wins."
+    },
+    {
+      "id": 58,
+      "name": "prs-blocker-3",
+      "text": "Add 3 killer counters on target kuski.",
+      "italicText": "The next time this kuski will do a PR, it doesn't, remove a killer counter from it instead."
+    },
+    {
+      "id": 59,
+      "name": "unban",
+      "text": "Return target banned kuski to it's owner's hand.",
+      "italicText": ""
+    },
+    {
+      "id": 60,
+      "name": "min-full-turns-2",
+      "text": "Kuskis must play at least 2 full turns before it first PR counts as finish.",
+      "italicText": ""
+    },
+    {
+      "id": 61,
+      "name": "winner-extra-full-turns",
+      "text": "Winner gets 1 extra point for each full turn played on this battle.",
+      "italicText": ""
+    },
+    {
+      "id": 62,
+      "name": "kuski-battle-quit-1",
+      "text": "You may remove one of your kuskis from this battle during your turn, and put it as offline.",
+      "italicText": ""
+    },
+    {
+      "id": 64,
+      "name": "min-full-turns-1",
+      "text": "Kuskis must play at least 1 full turns before it first PR counts as finish.",
+      "italicText": ""
+    },
+    {
+      "id": 65,
+      "name": "min-time-40",
+      "text": "Only times under 40 seconds count in the battle results.",
+      "italicText": ""
+    },
+    {
+      "id": 66,
+      "name": "slowness-swap",
+      "text": "Choose target queued level or ongoing battle without apple, first finish, finish count or onelife, it gains slowness and loses it's other types",
+      "italicText": "The kuski with the slowest time wins."
+    },
+    {
+      "id": 67,
+      "name": "remove-battle-type-effects",
+      "text": "Remove all other battle type effects from the target level.",
+      "italicText": "Battle types are: apple, first finish, finish count, multiplayer, one life  and slowness "
+    },
+    {
+      "id": 68,
+      "name": "",
+      "text": "",
+      "italicText": ""
+    },
+    {
+      "id": 69,
+      "name": "ramone-effect",
+      "text": "When a battle started by Ramone finishes, you win 1 point for each battler that played it.",
+      "italicText": ""
+    },
+    {
+      "id": 70,
+      "name": "pipe-pro-2",
+      "text": "Pipe Pro -2",
+      "italicText": "Decrease this kuski's PRs by 2 seconds on pipe levels."
+    },
+    {
+      "id": 71,
+      "name": "talli-effect",
+      "text": "When Talli enters the game field you win 1 point and your opponents loses 1 point.",
+      "italicText": ""
+    },
+    {
+      "id": 72,
+      "name": "hosp-effect",
+      "text": "Designer's curse",
+      "italicText": "Whenever this kuski adds a level to the queue, you may choose another target kuski. When this battle starts, that kuski is sent offline and remains offline until the end of it."
+    },
+    {
+      "id": 74,
+      "name": "chris-enter",
+      "text": "When Chris enters the game field you may search your library for an apple level and put it in your hand. If you do, shuffle your library.",
+      "italicText": ""
+    },
+    {
+      "id": 75,
+      "name": "chirs-effect",
+      "text": "Whenever an apple battle starts you may put an apple counter to another kuski.",
+      "italicText": ""
+    },
+    {
+      "id": 76,
+      "name": "enter-all",
+      "text": "This kuski enters every ongoing battle if it can.",
+      "italicText": ""
+    },
+    {
+      "id": 77,
+      "name": "nobody-effect",
+      "text": "Whenever Nobody wins an after battle you get 1 point.",
+      "italicText": ""
+    }
+  ]
+}
