@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+When working with React Router:
+
+- Always use `react-router` instead of `react-router-dom`
+- Import components directly from 'react-router'

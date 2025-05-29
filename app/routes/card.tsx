@@ -8,6 +8,7 @@ import { PathName, Paths } from "#app/config/paths";
 import { prisma } from "#app/utils/db.server";
 import type { Route } from "./+types/card";
 import { TopBackLink } from "#app/components/topBackLink";
+import { Link } from "react-router";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const cardId = Number(params.cardId);
@@ -15,7 +16,20 @@ export async function loader({ params }: Route.LoaderArgs) {
     where: { id: cardId },
     include: { effects: true },
   });
-  return data({ card });
+
+  // Get previous and next cards
+  const [prevCard, nextCard] = await Promise.all([
+    prisma.card.findFirst({
+      where: { id: { lt: cardId }, deleted: false },
+      orderBy: { id: "desc" },
+    }),
+    prisma.card.findFirst({
+      where: { id: { gt: cardId }, deleted: false },
+      orderBy: { id: "asc" },
+    }),
+  ]);
+
+  return data({ card, prevCard, nextCard });
 }
 
 export default function CardPage({ loaderData }: Route.ComponentProps) {
@@ -42,6 +56,18 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
             }
           />
         ) : null}
+      </div>
+      <div className="flex justify-between px-4">
+        {loaderData.prevCard ? (
+          <Link to={Paths.cardId(loaderData.prevCard.id)}>&larr; Previous</Link>
+        ) : (
+          <div />
+        )}
+        {loaderData.nextCard ? (
+          <Link to={Paths.cardId(loaderData.nextCard.id)}>Next &rarr;</Link>
+        ) : (
+          <div />
+        )}
       </div>
     </main>
   );
