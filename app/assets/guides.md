@@ -49,11 +49,11 @@ The illustration is printed on the upper half of a card and has no effect on gam
 
 #### Type line
 
-The type line is directly below the illustration. It contains the card’s card type(s). It also contains the card’s subtype(s), if applicable. Some effects set an object’s card type. In such cases, the new card type(s) replaces any existing card types, unless the effect specifies that it retains their prior card type.
+The type line is directly below the illustration. It contains the card's card type(s). It also contains the card's subtype(s), if applicable. Some effects set an object's card type. In such cases, the new card type(s) replaces any existing card types, unless the effect specifies that it retains their prior card type.
 
 #### Text box
 
-The text box is printed on the lower half of the card. It usually contains rules text defining the card’s abilities. The text box may also contain italicised text that has no game function.
+The text box is printed on the lower half of the card. It usually contains rules text defining the card's abilities. The text box may also contain italicised text that has no game function.
 
 If a rule is described with a keyword it may contain the explanation written in italics and between parenthesis. For example: "First Finish _(Only the first finish of each kuski is taken into account in the result.)_"
 
@@ -68,7 +68,7 @@ A level card defines a range or single number that represent the possible battle
 > #### Information below the text box `(To be defined)`
 >
 > Cards may feature text below the text box that has no effect on game play.
-> A card’s rarity is indicated with a single letter following the collector number.
+> A card's rarity is indicated with a single letter following the collector number.
 > The illustration credit for a card follows the paintbrush icon.
 
 ![Card example](images/card-example-2x.png)
@@ -102,7 +102,7 @@ Levels define the amount of full turns they can be played as a battle.
 
 A full turn is equal to the number of players. In a two-player game a full turn is equal to two turns, one for each player.
 
-A level defines it's possible battle length(s) at the bottom right of the card. This length(s) can be a number or a range between 1 and 6 full turns.
+A level defines its possible battle length(s) at the bottom right of the card. This length(s) can be a number or a range between 1 and 6 full turns.
 
 When a level that defines a length range is added to the queue, the player that played that level card decides the length (between that range) that the battle will be started with. If the level defines a single number instead of a range, that's the length the battle will be started with.
 
@@ -110,7 +110,7 @@ When a level that defines a length range is added to the queue, the player that 
 
 A kuski that is offline or online can add a level card to the queue during the active player's main phase.
 
-A kuski can have only one level on the queue at a time. If a battle is ongoing, the kuski that added that level is allowed to add a new level to the queue.
+A kuski can have only one level in the queue at a time. If a battle is ongoing, the kuski that added that level is allowed to add a new level to the queue.
 
 Only online kuskis that are not already playing a battle or after battle can enter an ongoing battle. By default, a kuski cannot enter a battle on a level added by itself. Kuskis that enter a battle or after battle are still considered as online.
 
@@ -124,43 +124,36 @@ A battle cannot be started if there was an ongoing battle at the beginning of th
 
 ## Game phases
 
-Setup: Each player draws 7 cards.
+1. Setup: Each player draws 7 cards.
 
-#### 1.1 Battle start
+2. Battle start
+   If there is no ongoing battle and there is at least one queued level, the first level on the queue is started as a battle.
 
-If there is no ongoing battle and there is at least one queued level, the first level on the queue is started as a battle.
+3. Battle end
+   If an ongoing battle has ended, the level goes into the after battle area and all kuskis that were playing the battle are put into that after battle.
 
-#### 1.2 Battle end
+4. Battle times update
+   Active player's kuskis that started this turn playing a battle or after battle, update their personal record for that battle or after battle.
 
-If an ongoing battle has ended, the level goes into the after battle area and all kuskis that were playing the battle are put into that after battle.
+5. After battle clean up
+   The active player puts their kuskis that started this turn on the after battle area into their offline area.
 
-#### 2. Battle times update
+   If there are no more kuskis in an ongoing after battle, the after battle ends and the level is discarded.
 
-Active player's kuskis that started this turn playing a battle or after battle, update their personal record for that battle or after battle.
+6. Draw
+   The active player draws one card. The player who goes first skips the draw step on their first turn to make up for the advantage of going first.
 
-#### 3. After battle clean up
+7. Main phase
+   Play up to one kuski and add as many levels to the queue as you want.
 
-The active player puts his or her kuskis that started this turn on the after battle area into his or her offline area.
+   If a level is added to the queue and there is no ongoing battle, plus one turn has passed since the last battle has ended (if there was any), the level is started as battle immediately.
 
-If there are no more kuskis in an ongoing after battle, the after battle ends and the level is discarded.
+   You can put any number of kuskis online that started this turn as offline.
 
-#### 4. Draw
+   If a battle is ongoing, any number of online kuskis can enter that battle. When kuskis enter a battle, their times are updated immediately, if applicable.
 
-The active player draws one card. The player who goes first skips the draw step on their first turn to make up for the advantage of going first.
-
-#### 5. Main phase
-
-Play up to one kuski and add as many levels to the queue as you want.
-
-If a level is added to the queue and there is no ongoing battle, plus one turn has passed since the last battle has ended (if there was any), the level is started as battle immediately.
-
-You can put any number of kuskis online that started this turn as offline.
-
-If a battle is ongoing, any number of online kuskis can enter that battle. When kuskis enter a battle, their times are updated immediately, if applicable.
-
-#### 6. Clean up
-
-If you have more than seven cards in your hand, choose and discard cards until you have only seven.
+8. Clean up
+   If you have more than seven cards in your hand, choose and discard cards until you have only seven.
 
 ## General
 
