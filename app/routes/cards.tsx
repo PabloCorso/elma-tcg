@@ -1,7 +1,7 @@
 import { TopBackLink } from "#app/components/topBackLink";
 import { Paths } from "#app/config/paths";
 import { prisma } from "#app/utils/db.server";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { data } from "react-router";
 import type { Route } from "./+types/cards";
 
@@ -19,17 +19,11 @@ export default function CardsPage({ loaderData }: Route.ComponentProps) {
   };
 
   return (
-    <>
+    <main className="flex flex-col gap-6 p-4 pt-6">
       <TopBackLink />
-      <h1 className="mb-6 text-center text-4xl font-bold">Cards</h1>
-      <Link
-        to={Paths.newCard}
-        className="btn-circle btn fixed right-6 bottom-6 z-10"
-      >
-        +
-      </Link>
-      <div className="isolate overflow-x-auto">
-        <div className="mb-1 text-end">{loaderData.cards.length} cards</div>
+      <h1 className="text-center text-4xl font-bold">Cards</h1>
+      <div className="isolate flex flex-col gap-2 overflow-x-auto">
+        <div className="text-end">{loaderData.cards.length} cards</div>
         <table className="table-compact table w-full">
           <thead>
             <tr>
@@ -63,6 +57,6 @@ export default function CardsPage({ loaderData }: Route.ComponentProps) {
           </tbody>
         </table>
       </div>
-    </>
+    </main>
   );
 }

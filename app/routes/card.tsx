@@ -1,4 +1,4 @@
-import { data, Link } from "react-router";
+import { data } from "react-router";
 import sky from "#app/assets/images/illustration.png";
 import bike from "#app/assets/images/card-illustration-bike.png";
 import ground from "#app/assets/images/inner-container-image.png";
@@ -20,19 +20,11 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 export default function CardPage({ loaderData }: Route.ComponentProps) {
   return (
-    <>
+    <main className="flex flex-col gap-6 p-4 pt-6">
       <TopBackLink to={Paths.cards}>{PathName.cards}</TopBackLink>
-      <h1 className="mb-6 text-center text-4xl font-bold">
+      <h1 className="text-center text-4xl font-bold">
         {loaderData.card?.name}
       </h1>
-      {typeof loaderData.card?.id !== "undefined" ? (
-        <Link
-          to={Paths.editCardId(loaderData.card.id)}
-          className="btn-circle btn fixed right-6 bottom-6 z-10"
-        >
-          ✎
-        </Link>
-      ) : null}
       <div className="flex justify-center">
         {loaderData.card ? (
           <CardPreview
@@ -51,6 +43,6 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
           />
         ) : null}
       </div>
-    </>
+    </main>
   );
 }
