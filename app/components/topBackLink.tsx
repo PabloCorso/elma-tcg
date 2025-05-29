@@ -5,7 +5,7 @@ export function TopBackLink({
   to = Paths.home,
   children = PathName.home,
   ...delegated
-}: LinkProps) {
+}: Omit<LinkProps, "to"> & { to?: string }) {
   return (
     <Link to={to} className="absolute top-1 left-4" {...delegated}>
       ← {children}

@@ -1,8 +1,8 @@
 import cardsData from "../data/cards.json";
 import effectsData from "../data/effects.json";
 import cardsEffectsData from "../data/all_cards_effects_positioned.json";
-import type { CardType, Rarity } from "~/types";
-import type { Effect, CardWithEffects } from "~/models/card.server";
+import type { CardType, Rarity } from "#app/utils/types";
+import type { Card, Effect } from "@prisma/client";
 
 type CardData = {
   id: number; // "integer",
@@ -47,7 +47,7 @@ type Data = {
   type_names: string[];
 };
 
-function parseCardData(data: CardData): CardWithEffects {
+function parseCardData(data: CardData): Card & { effects: Effect[] } {
   return {
     id: data.id,
     name: data.name,

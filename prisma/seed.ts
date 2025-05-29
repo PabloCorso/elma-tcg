@@ -1,7 +1,7 @@
 import { prisma } from "#app/utils/db.server";
-import cardsList from "#app/data/cards-list.json";
-import effectsList from "#app/data/effects-list.json";
-import cardsEffectsList from "#app/data/cards-effects-list.json";
+import cardsList from "#app/assets/data/cards-list.json";
+import effectsList from "#app/assets/data/effects-list.json";
+import cardsEffectsList from "#app/assets/data/cards-effects-list.json";
 
 console.info("🌱 Seeding...");
 console.time(`🌱 Database has been seeded`);
