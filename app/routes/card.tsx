@@ -3,11 +3,11 @@ import sky from "#app/assets/images/illustration.png";
 import bike from "#app/assets/images/card-illustration-bike.png";
 import ground from "#app/assets/images/inner-container-image.png";
 
-import { CardPreview } from "#app/components/cardPreview";
+import { CardPreview } from "#app/components/card-preview";
 import { PathName, Paths } from "#app/config/paths";
 import { prisma } from "#app/utils/db.server";
 import type { Route } from "./+types/card";
-import { TopBackLink } from "#app/components/topBackLink";
+import { TopBackLink } from "#app/components/top-back-link";
 import { Link } from "react-router";
 
 export async function loader({ params }: Route.LoaderArgs) {
@@ -42,6 +42,7 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
       <div className="flex justify-center">
         {loaderData.card ? (
           <CardPreview
+            className="shadow-lg shadow-gray-800"
             card={loaderData.card}
             borderImageUrl={ground}
             image={

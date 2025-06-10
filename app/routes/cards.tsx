@@ -1,4 +1,4 @@
-import { TopBackLink } from "#app/components/topBackLink";
+import { TopBackLink } from "#app/components/top-back-link";
 import { Paths } from "#app/config/paths";
 import { prisma } from "#app/utils/db.server";
 import { useNavigate } from "react-router";

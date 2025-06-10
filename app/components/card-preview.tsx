@@ -1,3 +1,4 @@
+import { cn } from "#app/utils/misc";
 import { CardType } from "#app/utils/types";
 import type { Card, Effect } from "@prisma/client";
 
@@ -20,12 +21,18 @@ export type CardProps = {
   card: Card & { effects: Effect[] };
   image: React.ReactNode;
   borderImageUrl: string;
+  className?: string;
 };
 
-export function CardPreview({ card, image, borderImageUrl }: CardProps) {
+export function CardPreview({
+  card,
+  image,
+  borderImageUrl,
+  className,
+}: CardProps) {
   const showBottomLine = card.cardType !== CardType.INSTANT;
   return (
-    <div className="w-[300px]" data-testid="card-preview">
+    <div className={cn("w-[300px]", className)} data-testid="card-preview">
       <div
         style={{
           aspectRatio: cardSize.aspectRatio,
@@ -34,14 +41,13 @@ export function CardPreview({ card, image, borderImageUrl }: CardProps) {
           backgroundRepeat: "round",
         }}
       >
-        <div className="h-full w-full rounded-sm bg-white text-gray-900">
+        <div className="h-full divide-y divide-black w-full rounded-sm bg-white text-gray-900">
           <div
-            className="flex items-center font-card-name text-xl font-bold"
+            className="flex items-center font-card-name text-[21px] font-bold"
             style={{
               height: cardSize.nameHeight,
               paddingLeft: cardSize.innerPaddingX,
               paddingRight: cardSize.innerPaddingX,
-              fontSize: 21,
             }}
             data-testid="card-preview-name"
           >
@@ -51,12 +57,11 @@ export function CardPreview({ card, image, borderImageUrl }: CardProps) {
             {image}
           </div>
           <div
-            className="flex items-center font-card-type font-medium"
+            className="flex items-center font-card-type text-lg font-medium"
             style={{
               height: cardSize.typeLineHeight,
               paddingLeft: cardSize.innerPaddingX,
               paddingRight: cardSize.innerPaddingX,
-              fontSize: 18,
             }}
           >
             <div className="text-sm" data-testid="card-preview-type-line">
@@ -69,7 +74,7 @@ export function CardPreview({ card, image, borderImageUrl }: CardProps) {
             </div>
           </div>
           <div
-            className="flex h-full flex-col gap-2 overflow-auto border-t-[1px] border-black py-2 text-sm"
+            className="flex h-full flex-col gap-2 overflow-auto py-2 text-sm"
             style={{
               height: showBottomLine
                 ? cardSize.textBoxHeight
@@ -95,7 +100,7 @@ export function CardPreview({ card, image, borderImageUrl }: CardProps) {
           </div>
           {showBottomLine && (
             <div
-              className="flex items-center justify-center border-t-[1px] border-black font-medium"
+              className="flex items-center justify-center font-medium"
               style={{ height: cardSize.prsHeight }}
               data-testid="card-preview-bottom-line"
             >
