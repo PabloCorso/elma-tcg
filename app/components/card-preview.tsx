@@ -31,8 +31,42 @@ export function CardPreview({
   className,
 }: CardProps) {
   const showBottomLine = card.cardType !== CardType.INSTANT;
+
+  // Text size calculation. TODO: find a more robust way to do this.
+  const totalTextLength =
+    card.effects.reduce(
+      (acc, effect) =>
+        acc + ((effect.text?.length ?? 0) + (effect.italicText?.length ?? 0)),
+      0
+    ) + (card.flavorText?.length ?? 0);
+  const totalParagraphs = card.effects.length - 1 + (card.flavorText ? 1 : 0);
+  const totalSimplifiedTextLength = card.effects
+    .filter((effect) => effect.text)
+    .reduce((acc, effect) => acc + (effect.text?.length ?? 0), 0);
+
+  const totalTextWeight = totalParagraphs * 35 + totalTextLength;
+  const simplifiedTextWeight = totalParagraphs * 20 + totalSimplifiedTextLength;
+
+  const firstLevelTextWeight = 250;
+  const secondLevelTextWeight = 280;
+  const textVariant =
+    totalTextWeight < firstLevelTextWeight ? "full" : "simplified";
+  const textWeight =
+    textVariant === "full" ? totalTextWeight : simplifiedTextWeight;
+
+  let textSize: 14 | 13 | 12 = 14;
+  if (textWeight > firstLevelTextWeight) {
+    textSize = 13;
+  }
+  if (textWeight > secondLevelTextWeight) {
+    textSize = 12;
+  }
+
   return (
-    <div className={cn("w-[300px]", className)} data-testid="card-preview">
+    <div
+      className={cn("w-[300px] cursor-default", className)}
+      data-testid="card-preview"
+    >
       <div
         style={{
           aspectRatio: cardSize.aspectRatio,
@@ -74,7 +108,14 @@ export function CardPreview({
             </div>
           </div>
           <div
-            className="flex h-full flex-col gap-2 overflow-auto py-2 text-sm"
+            className={cn(
+              "flex h-full flex-col gap-2 overflow-auto py-2 text-sm leading-tight",
+              {
+                "text-[13px] gap-1.5 leading-tight tracking-tight":
+                  textSize === 13,
+                "text-xs leading-tight gap-1.5 tracking-tight": textSize === 12,
+              }
+            )}
             style={{
               height: showBottomLine
                 ? cardSize.textBoxHeight
@@ -84,14 +125,15 @@ export function CardPreview({
               paddingRight: cardSize.innerPaddingX,
             }}
           >
-            {card.effects?.map((effect, index) => (
-              <p
-                key={`effect-${effect?.id}-${index}`}
-                data-testid={`card-preview-effect-${index}`}
-              >
-                <EffectText effect={effect} />
-              </p>
-            ))}
+            {card.effects?.map((effect) => {
+              return (
+                <EffectText
+                  key={effect.id}
+                  effect={effect}
+                  variant={textVariant}
+                />
+              );
+            })}
             {card.flavorText ? (
               <i className="mt-auto" data-testid="card-preview-flavor-text">
                 {card.flavorText}
@@ -120,18 +162,32 @@ export function CardPreview({
   );
 }
 
-function EffectText({ effect }: { effect: Effect }) {
+function EffectText({
+  effect,
+  variant = "full",
+}: {
+  effect: Effect;
+  variant?: "full" | "simplified";
+}) {
+  if (variant === "simplified" && !effect.text) {
+    return null;
+  }
+
   return (
-    <>
-      {effect.text}{" "}
-      {effect.italicText ? (
+    <p>
+      <span
+        title={variant === "simplified" ? effect.italicText || "" : undefined}
+      >
+        {effect.text}
+      </span>
+      {effect.italicText && variant === "full" ? (
         <i>
-          {"("}
+          {" ("}
           {effect.italicText}
           {")"}
         </i>
       ) : null}
-    </>
+    </p>
   );
 }
 
