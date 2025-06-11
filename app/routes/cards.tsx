@@ -1,14 +1,12 @@
 import { TopBackLink } from "#app/components/top-back-link";
 import { Paths } from "#app/config/paths";
-import { prisma } from "#app/utils/db.server";
 import { useNavigate } from "react-router";
 import { data } from "react-router";
 import type { Route } from "./+types/cards";
+import { getCards } from "#app/assets/data/data";
 
 export async function loader() {
-  const cards = await prisma.card.findMany({
-    include: { effects: true },
-  });
+  const cards = getCards();
   return data({ cards });
 }
 
@@ -34,11 +32,11 @@ export default function CardsPage({ loaderData }: Route.ComponentProps) {
             </tr>
           </thead>
           <tbody>
-            {loaderData.cards.map((card, index) => (
+            {loaderData.cards.map((card) => (
               <tr
                 className="cursor-pointer"
-                tabIndex={index + 1}
-                key={card.id}
+                tabIndex={card.id}
+                key={card.name}
                 onClick={() => {
                   goToCard(card.id);
                 }}
@@ -48,9 +46,9 @@ export default function CardsPage({ loaderData }: Route.ComponentProps) {
                   }
                 }}
               >
-                <td>{index + 1}</td>
+                <td>{card.id}</td>
                 <td>{card.name}</td>
-                <td className="text-center">{card.cardType.slice(0, 1)}</td>
+                <td className="text-center">{card.cardType?.slice(0, 1)}</td>
                 <td className="text-center">{card.rarity}</td>
               </tr>
             ))}

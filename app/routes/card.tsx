@@ -1,42 +1,36 @@
-import { data } from "react-router";
+import { data, UNSAFE_invariant } from "react-router";
 import sky from "#app/assets/images/illustration.png";
 import bike from "#app/assets/images/card-illustration-bike.png";
 import ground from "#app/assets/images/inner-container-image.png";
 
 import { CardPreview } from "#app/components/card-preview";
 import { PathName, Paths } from "#app/config/paths";
-import { prisma } from "#app/utils/db.server";
 import type { Route } from "./+types/card";
 import { TopBackLink } from "#app/components/top-back-link";
 import { Link } from "react-router";
+import { getCardById, getCards } from "#app/assets/data/data";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const cardId = Number(params.cardId);
-  const card = await prisma.card.findUnique({
-    where: { id: cardId },
-    include: { effects: true },
-  });
+  const card = getCardById(cardId);
+  const cards = getCards();
 
-  // Get previous and next cards
-  const [prevCard, nextCard] = await Promise.all([
-    prisma.card.findFirst({
-      where: { id: { lt: cardId }, deleted: false },
-      orderBy: { id: "desc" },
-    }),
-    prisma.card.findFirst({
-      where: { id: { gt: cardId }, deleted: false },
-      orderBy: { id: "asc" },
-    }),
-  ]);
+  UNSAFE_invariant(card, "Card not found");
 
-  return data({ card, prevCard, nextCard });
+  return data({ card, cardId, lastCardId: cards.length });
 }
 
 export default function CardPage({ loaderData }: Route.ComponentProps) {
+  const prevCardId =
+    loaderData.cardId === 1 ? loaderData.lastCardId : loaderData.cardId - 1;
+  const nextCardId =
+    loaderData.cardId === loaderData.lastCardId ? 1 : loaderData.cardId + 1;
+
   return (
     <main className="flex flex-col gap-6 p-4 pt-6">
       <TopBackLink to={Paths.cards}>{PathName.cards}</TopBackLink>
       <h1 className="text-center text-4xl font-bold">
+        <span className="text-gray-300">#{loaderData.cardId}</span>{" "}
         {loaderData.card?.name}
       </h1>
       <div className="flex justify-center">
@@ -59,16 +53,8 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
         ) : null}
       </div>
       <div className="flex justify-between px-4">
-        {loaderData.prevCard ? (
-          <Link to={Paths.cardId(loaderData.prevCard.id)}>&larr; Previous</Link>
-        ) : (
-          <div />
-        )}
-        {loaderData.nextCard ? (
-          <Link to={Paths.cardId(loaderData.nextCard.id)}>Next &rarr;</Link>
-        ) : (
-          <div />
-        )}
+        <Link to={Paths.cardId(prevCardId)}>&larr; Previous</Link>
+        <Link to={Paths.cardId(nextCardId)}>Next &rarr;</Link>
       </div>
     </main>
   );

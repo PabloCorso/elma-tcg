@@ -1,6 +1,5 @@
 import { cn } from "#app/utils/misc";
-import { CardType } from "#app/utils/types";
-import type { Card, Effect } from "@prisma/client";
+import { CardType, type Card, type Effect } from "#app/utils/types";
 
 const textBoxHeightPercentage = 39.2;
 const prsHeightPercentage = 7.2;
@@ -18,7 +17,7 @@ const cardSize = {
 };
 
 export type CardProps = {
-  card: Card & { effects: Effect[] };
+  card: Card;
   image: React.ReactNode;
   borderImageUrl: string;
   className?: string;
@@ -33,16 +32,20 @@ export function CardPreview({
   const showBottomLine = card.cardType !== CardType.INSTANT;
 
   // Text size calculation. TODO: find a more robust way to do this.
-  const totalTextLength =
-    card.effects.reduce(
+  const totalEffectsTextLength =
+    card.effects?.reduce(
       (acc, effect) =>
         acc + ((effect.text?.length ?? 0) + (effect.italicText?.length ?? 0)),
       0
-    ) + (card.flavorText?.length ?? 0);
-  const totalParagraphs = card.effects.length - 1 + (card.flavorText ? 1 : 0);
-  const totalSimplifiedTextLength = card.effects
-    .filter((effect) => effect.text)
-    .reduce((acc, effect) => acc + (effect.text?.length ?? 0), 0);
+    ) ?? 0;
+  const totalTextLength =
+    totalEffectsTextLength + (card.flavorText?.length ?? 0);
+  const totalParagraphs =
+    (card.effects?.length ?? 0) - 1 + (card.flavorText ? 1 : 0);
+  const totalSimplifiedTextLength =
+    card.effects
+      ?.filter((effect) => effect.text)
+      .reduce((acc, effect) => acc + (effect.text?.length ?? 0), 0) ?? 0;
 
   const totalTextWeight = totalParagraphs * 35 + totalTextLength;
   const simplifiedTextWeight = totalParagraphs * 20 + totalSimplifiedTextLength;
@@ -63,10 +66,7 @@ export function CardPreview({
   }
 
   return (
-    <div
-      className={cn("w-[300px] cursor-default", className)}
-      data-testid="card-preview"
-    >
+    <div className={cn("w-[300px] cursor-default", className)}>
       <div
         style={{
           aspectRatio: cardSize.aspectRatio,
@@ -83,7 +83,6 @@ export function CardPreview({
               paddingLeft: cardSize.innerPaddingX,
               paddingRight: cardSize.innerPaddingX,
             }}
-            data-testid="card-preview-name"
           >
             {card.name}
           </div>
@@ -98,14 +97,12 @@ export function CardPreview({
               paddingRight: cardSize.innerPaddingX,
             }}
           >
-            <div className="text-sm" data-testid="card-preview-type-line">
+            <div className="text-sm">
               {card.cardType}
               {card.type1 || card.type2 ? " - " : null}
               {card.type1} {card.type2}
             </div>
-            <div className="ml-auto" data-testid="card-preview-rarity">
-              {card.rarity}
-            </div>
+            <div className="ml-auto">{card.rarity}</div>
           </div>
           <div
             className={cn(
@@ -128,23 +125,20 @@ export function CardPreview({
             {card.effects?.map((effect) => {
               return (
                 <EffectText
-                  key={effect.id}
+                  key={effect.text || effect.italicText}
                   effect={effect}
                   variant={textVariant}
                 />
               );
             })}
             {card.flavorText ? (
-              <i className="mt-auto" data-testid="card-preview-flavor-text">
-                {card.flavorText}
-              </i>
+              <i className="mt-auto">{card.flavorText}</i>
             ) : null}
           </div>
           {showBottomLine && (
             <div
               className="flex items-center justify-center font-medium"
               style={{ height: cardSize.prsHeight }}
-              data-testid="card-preview-bottom-line"
             >
               {card.cardType === CardType.KUSKI ? (
                 <KuskiPrs card={card} />

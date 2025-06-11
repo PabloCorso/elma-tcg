@@ -1,8 +1,11 @@
-import cardsData from "../data/cards.json";
-import effectsData from "../data/effects.json";
-import cardsEffectsData from "../data/all_cards_effects_positioned.json";
+import cardsData from "./cards.json";
+import effectsData from "./effects.json";
+import cardsEffectsData from "./all_cards_effects_positioned.json";
 import type { CardType, Rarity } from "#app/utils/types";
-import type { Card, Effect } from "@prisma/client";
+// import type { Card, Effect } from "@prisma/client";
+
+type Card = any;
+type Effect = any;
 
 type CardData = {
   id: number; // "integer",
