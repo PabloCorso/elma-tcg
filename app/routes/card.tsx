@@ -3,7 +3,7 @@ import sky from "#app/assets/images/illustration.png";
 import bike from "#app/assets/images/card-illustration-bike.png";
 import ground from "#app/assets/images/inner-container-image.png";
 import { useNavigate } from "react-router";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { CardPreview } from "#app/components/card-preview";
 import { PathName, Paths } from "#app/config/paths";
@@ -58,7 +58,7 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
       setIsTransitioning(true);
       const isSwipeRight = distance > 0;
 
-      setTimeout(() => {
+      setTimeout(function navigateWithDelay() {
         navigate(
           isSwipeRight ? Paths.cardId(nextCardId) : Paths.cardId(prevCardId)
         );
@@ -67,6 +67,24 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
     }
   };
 
+  const navigateWithArrowKeys = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft" && prevCardId) {
+        navigate(Paths.cardId(prevCardId));
+      } else if (event.key === "ArrowRight" && nextCardId) {
+        navigate(Paths.cardId(nextCardId));
+      }
+    },
+    [navigate, prevCardId, nextCardId]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", navigateWithArrowKeys);
+    return () => {
+      window.removeEventListener("keydown", navigateWithArrowKeys);
+    };
+  }, [navigateWithArrowKeys]);
+
   return (
     <main ref={mainRef} className="flex flex-col gap-4 p-4 pt-10">
       <TopBackLink to={Paths.cards}>{PathName.cards}</TopBackLink>
@@ -74,7 +92,7 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
         <span className="text-gray-300">#{loaderData.cardId}</span>{" "}
         {loaderData.card?.name}
       </h1>
-      <div className="grid grid-cols-[1fr_300px_1fr] justify-center items-center gap-4">
+      <div className="grid grid-cols-[1fr_300px_1fr] justify-center items-center">
         <Link
           className="text-gray-800 text-2xl h-full hover:text-gray-300 flex items-center justify-center"
           to={Paths.cardId(prevCardId)}

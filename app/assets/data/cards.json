@@ -14,6 +14,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "R",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Play this ability while Kopaka is online: send Kopaka offline, ban an online kuski you control from the game, ban an online kuski your opponent controls from the game.",
@@ -36,6 +37,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "R",
+    "effectsSize": null,
     "effects": [
       {
         "text": "",
@@ -62,6 +64,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Pipe pro -10",
@@ -84,6 +87,7 @@
     "battleLengthMax": 6,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "First Finish",
@@ -110,18 +114,15 @@
     "battleLengthMax": 6,
     "flavorText": "",
     "rarity": "R",
+    "effectsSize": null,
     "effects": [
       {
-        "text": "First Finish",
-        "italicText": "Kuski times are calculated as kuski's first finish plus 1 minute per full turn already battled."
-      },
-      {
-        "text": "Pre-announced",
-        "italicText": "This level can be added in any position of the queue."
+        "text": "First Finish, Pre-announced",
+        "italicText": ""
       },
       {
         "text": "While this level is being battled, all your kuskis gain watchful.",
-        "italicText": "This kuski can enter a pre-announced battle while being offline."
+        "italicText": ""
       },
       {
         "text": "Kuskis must play at least 2 full turns before it first PR counts as finish.",
@@ -144,6 +145,7 @@
     "battleLengthMax": null,
     "flavorText": "Pab rookie 2008",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Pab enters the game online and does not go offline after playing a battle.",
@@ -166,6 +168,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Jblaze always finishes levels with first finish in second place, unless he is the only kuski that played the level.",
@@ -192,21 +195,18 @@
     "battleLengthMax": null,
     "flavorText": "Gz Markku.",
     "rarity": "R",
+    "effectsSize": "small",
     "effects": [
       {
-        "text": "",
-        "italicText": "Battlers cannot add levels to the queue."
-      },
-      {
         "text": "Watchful",
-        "italicText": "This kuski can enter a pre-announced battle while being offline."
+        "italicText": ""
       },
       {
         "text": "Markku can only play internal levels or levels with first finish, apple or pre-announced.",
         "italicText": ""
       },
       {
-        "text": "Whenever an apple level is added to the queue, add an apple counter to Markku.",
+        "text": "Whenever an apple level is added to the queue, add 4 apple counters to Markku.",
         "italicText": ""
       }
     ]
@@ -226,6 +226,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "R",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Internal pro -5",
@@ -248,6 +249,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Multiplayer pro -2",
@@ -274,6 +276,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "R",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Internal pro -5",
@@ -300,6 +303,7 @@
     "battleLengthMax": 3,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Z-spin shortcut.",
@@ -322,6 +326,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Target kuski gains: \"Whenever this kuski loses in a battle, discard it.\"",
@@ -344,6 +349,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Stop the ongoing battle if it was already played for 2 full turns or more. This effect plays as if the battle ended normally.",
@@ -366,6 +372,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Abort a level from the queue. The kuski that started that level may add a new level to the queue.",
@@ -388,6 +395,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Target kuski improves its first PR time by 3 seconds.",
@@ -410,6 +418,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Target kuski improves its current PR by 2 seconds.",
@@ -432,6 +441,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Target kuski improves its current PR by 1 second for each full turn already battled by it.",
@@ -454,6 +464,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Send offline the target online kuski.",
@@ -476,13 +487,10 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Target kuski becomes a battler in addition to it's other types.",
-        "italicText": ""
-      },
-      {
-        "text": "",
         "italicText": "Battlers cannot add levels to the queue."
       }
     ]
@@ -502,13 +510,10 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Target kuski becomes a designer in addition to it's other types.",
-        "italicText": ""
-      },
-      {
-        "text": "",
         "italicText": "Designers cannot play battles."
       }
     ]
@@ -528,6 +533,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Uphill pro -10",
@@ -554,6 +560,7 @@
     "battleLengthMax": 6,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "First Finish",
@@ -580,6 +587,7 @@
     "battleLengthMax": 6,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": []
   },
   {
@@ -597,6 +605,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "While Zero is playing a battle, other team dat kuskis improve all their PRs by 2 seconds.",
@@ -619,6 +628,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Teammates playing a multi route level improve their PR by 4 seconds.",
@@ -641,6 +651,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "All playing team dat kuskis gain \"Pipe pro -2\".",
@@ -667,6 +678,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Pab can be put online at any moment while there is another teammate online under your control.",
@@ -689,6 +701,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Target kuski gains: \"Whenever this kuski fails to improve it's PR during a battle turn, send it offline\".",
@@ -711,6 +724,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Abort the ongoing battle. No one gets points from that battle and each player can choose to send their playing kuski online or offline.",
@@ -733,6 +747,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Abort an ongoing or queued level started by one of your kuskis. That kuski may add a new level to the queue. If the battle was ongoing, no one gets points from that battle and playing kuskis are sent offline.",
@@ -755,6 +770,7 @@
     "battleLengthMax": null,
     "flavorText": "\"Wrong version please abort\"",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Remove target level from the queue and add it to the bottom of it. This level is still owned by the kuski that added it in the first place.",
@@ -777,6 +793,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Target kuski with at least one finish on the ongoing battle cannot improve that time anymore.",
@@ -799,6 +816,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Target kuski with a PR on the ongoing battle makes a new PR equal to the next best time on the board.",
@@ -821,6 +839,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Choose an offline kuski from the game. If there is an ongoing battle, that kuski enters the battle.",
@@ -843,6 +862,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Choose an offline kuski from the game. If there is an ongoing battle, that kuski enters the battle. The kuski's PRs count as if the kuski entered the battle on the first battle turn. When this battle ends, ban that kuski from the game.",
@@ -865,6 +885,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "When Barryp enters the game field, you may search your library for a pipe level and put it in your hand, then shuffle your library.",
@@ -887,6 +908,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Whenever Jonsta enters the game field, you may search for a puzzle or multi-route level and put it in your hand, then shuffle your library.",
@@ -913,6 +935,7 @@
     "battleLengthMax": 6,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Chain level 3",
@@ -939,6 +962,7 @@
     "battleLengthMax": 2,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "You may force any kuski from the game field to start this level as a battle. After this level is battled and discarded, ban that kuski from the game.",
@@ -947,7 +971,7 @@
     ]
   },
   {
-    "name": "ChanPi01",
+    "name": "ChainPi01",
     "cardType": "Level",
     "type1": "Long cruise",
     "type2": "Pipe",
@@ -961,18 +985,15 @@
     "battleLengthMax": 6,
     "flavorText": "",
     "rarity": "R",
+    "effectsSize": "small",
     "effects": [
       {
-        "text": "Chain level 3",
-        "italicText": "This level must be started by 3 or more kuskis."
-      },
-      {
-        "text": "Pre-announced",
-        "italicText": "This level can be added in any position of the queue."
+        "text": "Chain level 3, Pre-announced",
+        "italicText": ""
       },
       {
         "text": "While this level is being battled, all your kuskis gain watchful.",
-        "italicText": "This kuski can enter a pre-announced battle while being offline."
+        "italicText": ""
       },
       {
         "text": "When ChaiPi01 is added to the queue, search your library for a kuski with pipe pro and put it in your hand, then shuffle your library.",
@@ -995,10 +1016,11 @@
     "battleLengthMax": 4,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Apple",
-        "italicText": "During battle, if a kuski were to improve its best time, add an apple counter to it instead. The kuski with more apples wins. When the battle ends, remove all apple counters from playing kuskis."
+        "italicText": "During battle, if a kuski were to improve its best time, add an apple counter to it instead for each second improved. The kuski with more apples wins. When the battle ends, remove all apple counters from playing kuskis."
       }
     ]
   },
@@ -1017,6 +1039,7 @@
     "battleLengthMax": 2,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Finish count",
@@ -1039,6 +1062,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": []
   },
   {
@@ -1056,6 +1080,7 @@
     "battleLengthMax": 4,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "One life",
@@ -1078,6 +1103,7 @@
     "battleLengthMax": 6,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Multiplayer",
@@ -1100,6 +1126,7 @@
     "battleLengthMax": 6,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Slowness",
@@ -1122,6 +1149,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Add 3 killer counters on target kuski.",
@@ -1144,6 +1172,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Return target banned kuski to it's owner's hand.",
@@ -1166,10 +1195,11 @@
     "battleLengthMax": 6,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "First Finish",
-        "italicText": "Kuski times are calculated as kuski's first finish plus 1 minute per full turn already battled."
+        "italicText": ""
       },
       {
         "text": "Kuskis must play at least 2 full turns before it first PR counts as finish.",
@@ -1196,6 +1226,7 @@
     "battleLengthMax": 3,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": []
   },
   {
@@ -1213,6 +1244,7 @@
     "battleLengthMax": 6,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "You may remove one of your kuskis from this battle during your turn, and put it as offline.",
@@ -1235,6 +1267,7 @@
     "battleLengthMax": 3,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Only times under 40 seconds count in the battle results.",
@@ -1257,6 +1290,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Choose target queued level or ongoing battle without apple, first finish, finish count or onelife, it gains slowness and loses it's other types",
@@ -1279,6 +1313,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": []
   },
   {
@@ -1296,6 +1331,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "When a battle started by Ramone finishes, you win 1 point for each battler that played it.",
@@ -1318,6 +1354,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Pipe Pro -2",
@@ -1344,6 +1381,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "C",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Designer's curse",
@@ -1366,6 +1404,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "U",
+    "effectsSize": null,
     "effects": [
       {
         "text": "Internal pro -5",
@@ -1392,13 +1431,14 @@
     "battleLengthMax": null,
     "flavorText": "Get well",
     "rarity": "U",
+    "effectsSize": "small",
     "effects": [
       {
         "text": "When Chris enters the game field you may search your library for an apple level and put it in your hand. If you do, shuffle your library.",
         "italicText": ""
       },
       {
-        "text": "Whenever an apple battle starts you may put an apple counter to another kuski.",
+        "text": "Whenever an apple battle starts you may put an 4 apple counters to another kuski.",
         "italicText": ""
       }
     ]
@@ -1418,6 +1458,7 @@
     "battleLengthMax": null,
     "flavorText": "",
     "rarity": "R",
+    "effectsSize": null,
     "effects": [
       {
         "text": "This kuski enters every ongoing battle if it can.",
