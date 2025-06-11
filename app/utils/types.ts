@@ -14,7 +14,7 @@ export type Card = {
   battleLengthMax?: number | null;
   flavorText?: string;
   rarity?: Rarity | string;
-  effectsSize?: string;
+  effectsSize?: string | null;
   effects?: Effect[];
 };
 
