@@ -7,7 +7,11 @@ export function TopBackLink({
   ...delegated
 }: Omit<LinkProps, "to"> & { to?: string }) {
   return (
-    <Link to={to} className="absolute top-1 left-4" {...delegated}>
+    <Link
+      to={to}
+      className="absolute text-gray-300 top-2 left-4"
+      {...delegated}
+    >
       ← {children}
     </Link>
   );
