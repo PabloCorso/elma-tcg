@@ -74,53 +74,53 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
         <span className="text-gray-300">#{loaderData.cardId}</span>{" "}
         {loaderData.card?.name}
       </h1>
-      <div
-        className="flex justify-center touch-none"
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-        style={{ touchAction: "none" }}
-      >
-        {loaderData.card ? (
-          <CardPreview
-            className={`shadow-lg shadow-gray-800 transition-opacity duration-150 ${
-              isTransitioning ? "opacity-90" : "opacity-100"
-            }`}
-            card={loaderData.card}
-            borderImageUrl={ground}
-            image={
-              <>
-                <img
-                  src={sky}
-                  alt="Illustration"
-                  className="h-full w-full"
-                  loading="eager"
-                />
-                <img
-                  className="absolute top-1/2 left-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2"
-                  src={bike}
-                  alt="Bike"
-                  loading="eager"
-                />
-              </>
-            }
-          />
-        ) : null}
-      </div>
-      <div className="flex justify-between px-4">
+      <div className="grid grid-cols-[1fr_300px_1fr] justify-center items-center gap-4">
         <Link
-          className="text-gray-300"
+          className="text-gray-800 text-2xl h-full hover:text-gray-300 flex items-center justify-center"
           to={Paths.cardId(prevCardId)}
           prefetch="viewport"
         >
-          &larr; Previous
+          {"<"}
         </Link>
+        <div
+          className="flex justify-center touch-none"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          style={{ touchAction: "none" }}
+        >
+          {loaderData.card ? (
+            <CardPreview
+              className={`shadow-lg shadow-gray-800 transition-opacity duration-150 ${
+                isTransitioning ? "opacity-90" : "opacity-100"
+              }`}
+              card={loaderData.card}
+              borderImageUrl={ground}
+              image={
+                <>
+                  <img
+                    src={sky}
+                    alt="Illustration"
+                    className="h-full w-full"
+                    loading="eager"
+                  />
+                  <img
+                    className="absolute top-1/2 left-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2"
+                    src={bike}
+                    alt="Bike"
+                    loading="eager"
+                  />
+                </>
+              }
+            />
+          ) : null}
+        </div>
         <Link
-          className="text-gray-300"
+          className="text-gray-800 text-2xl h-full hover:text-gray-300 flex items-center justify-center"
           to={Paths.cardId(nextCardId)}
           prefetch="viewport"
         >
-          Next &rarr;
+          {">"}
         </Link>
       </div>
     </main>
