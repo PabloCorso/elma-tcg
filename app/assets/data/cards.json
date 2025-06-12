@@ -185,12 +185,12 @@
     "cardType": "Kuski",
     "type1": "Moporator",
     "type2": "Battler",
-    "pr1": 35.4,
-    "pr2": 34.9,
-    "pr3": null,
-    "pr4": 32.5,
-    "pr5": null,
-    "pr6": 28.9,
+    "pr1": 40.4,
+    "pr2": 36.9,
+    "pr3": 32.9,
+    "pr4": 30.5,
+    "pr5": 29.9,
+    "pr6": 28.5,
     "battleLengthMin": null,
     "battleLengthMax": null,
     "flavorText": "Gz Markku.",
@@ -206,7 +206,7 @@
         "italicText": ""
       },
       {
-        "text": "Whenever an apple level is added to the queue, add 4 apple counters to Markku.",
+        "text": "Whenever an apple level is added to the queue, add 1 + X apple counters to Markku, where X is the number of levels in the queue.",
         "italicText": ""
       }
     ]
@@ -1474,7 +1474,7 @@
         "italicText": ""
       },
       {
-        "text": "Whenever an apple battle starts you may put an 4 apple counters to another kuski.",
+        "text": "Whenever an apple battle starts you may put 3 apple counters to other kuskis divided as you want.",
         "italicText": ""
       }
     ]
