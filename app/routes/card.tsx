@@ -109,7 +109,7 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
         >
           {loaderData.card ? (
             <CardPreview
-              className={`shadow-lg shadow-gray-800 transition-opacity duration-150 ${
+              className={`ring-1 ring-gray-800 rounded-lg transition-opacity duration-150 ${
                 isTransitioning ? "opacity-90" : "opacity-100"
               }`}
               card={loaderData.card}
