@@ -7,7 +7,7 @@ Earn points by battling level cards with your kuski cards.
 #### Ways to win the game
 
 - The first player to reach 100 points wins the game.
-- A player loses the game if he or she is forced to draw a card and cannot do it.
+- A player loses the game if they are forced to draw a card and cannot do it.
 
 ## Basic concepts
 
@@ -25,7 +25,7 @@ Level cards are added to a queue by kuskis, where the first level on the queue i
 
 #### Game field
 
-The game field consist in several areas, some shared between the players.
+The game field consists of several areas, some shared between the players.
 
 Kuskis area: each player has an area for playing their kuski cards, that can be sub divided into offline and online cards.
 
@@ -133,7 +133,7 @@ A battle cannot be started if there was an ongoing battle at the beginning of th
    If an ongoing battle has ended, the level goes into the after battle area and all kuskis that were playing the battle are put into that after battle.
 
 4. Battle times update
-   Active player's kuskis that started this turn playing a battle or after battle, update their personal record for that battle or after battle.
+   Active player's kuskis that started this turn playing a battle or after battle update their personal record for that battle or after battle.
 
 5. After battle clean up
    The active player puts their kuskis that started this turn on the after battle area into their offline area.
