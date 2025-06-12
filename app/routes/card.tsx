@@ -89,7 +89,7 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
   );
 
   return (
-    <main ref={mainRef} className="flex flex-col gap-4 p-4 pt-10">
+    <main ref={mainRef} className="flex flex-col gap-4 py-4 pt-10">
       <TopBackLink to={Paths.cards}>{PathName.cards}</TopBackLink>
       <h1 className="text-center text-2xl font-bold">
         <span className="text-gray-300">#{loaderData.cardId}</span>{" "}

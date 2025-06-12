@@ -73,9 +73,9 @@ export function CardPreview({
             className={cn(
               "flex h-full flex-col gap-2 overflow-auto py-2 text-sm leading-tight",
               {
-                "text-[0.8125rem] gap-1.5 leading-tight tracking-tight":
+                "text-[13px] gap-1.5 leading-tight tracking-tight":
                   card.effectsSize === "small",
-                "text-xs gap-1.5 leading-tight tracking-tight":
+                "text-[13px] gap-1.5 leading-tight tracking-tighter":
                   card.effectsSize === "smaller",
               }
             )}
