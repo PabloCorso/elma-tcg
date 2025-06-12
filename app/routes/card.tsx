@@ -78,12 +78,15 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
     [navigate, prevCardId, nextCardId]
   );
 
-  useEffect(() => {
-    window.addEventListener("keydown", navigateWithArrowKeys);
-    return () => {
-      window.removeEventListener("keydown", navigateWithArrowKeys);
-    };
-  }, [navigateWithArrowKeys]);
+  useEffect(
+    function addArrowKeysListener() {
+      window.addEventListener("keydown", navigateWithArrowKeys);
+      return () => {
+        window.removeEventListener("keydown", navigateWithArrowKeys);
+      };
+    },
+    [navigateWithArrowKeys]
+  );
 
   return (
     <main ref={mainRef} className="flex flex-col gap-4 p-4 pt-10">

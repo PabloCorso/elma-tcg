@@ -519,60 +519,6 @@
     ]
   },
   {
-    "name": "Nekit",
-    "cardType": "Kuski",
-    "type1": "",
-    "type2": "",
-    "pr1": 35.5,
-    "pr2": null,
-    "pr3": 34,
-    "pr4": 32.5,
-    "pr5": null,
-    "pr6": null,
-    "battleLengthMin": null,
-    "battleLengthMax": null,
-    "flavorText": "",
-    "rarity": "U",
-    "effectsSize": null,
-    "effects": [
-      {
-        "text": "Uphill pro -10",
-        "italicText": "Decrease this kuski's PRs by 10 seconds on uphill levels."
-      },
-      {
-        "text": "If Nekit stays online for 2 turns without playing a battle, ban Nekit from the game.",
-        "italicText": ""
-      }
-    ]
-  },
-  {
-    "name": "Nekit01",
-    "cardType": "Level",
-    "type1": "Uphill",
-    "type2": "",
-    "pr1": null,
-    "pr2": null,
-    "pr3": null,
-    "pr4": null,
-    "pr5": null,
-    "pr6": null,
-    "battleLengthMin": 2,
-    "battleLengthMax": 6,
-    "flavorText": "",
-    "rarity": "C",
-    "effectsSize": null,
-    "effects": [
-      {
-        "text": "First Finish",
-        "italicText": "Kuski times are calculated as kuski's first finish plus 1 minute per full turn already battled."
-      },
-      {
-        "text": "Kuskis must play at least 1 full turns before it first PR counts as finish.",
-        "italicText": ""
-      }
-    ]
-  },
-  {
     "name": "Warm up",
     "cardType": "Level",
     "type1": "Internal",
@@ -1020,7 +966,7 @@
     "effects": [
       {
         "text": "Apple",
-        "italicText": "During battle, if a kuski were to improve its best time, add an apple counter to it instead for each second improved. The kuski with more apples wins. When the battle ends, remove all apple counters from playing kuskis."
+        "italicText": "During battle, if a kuski were to improve its best time, add an apple counter to it instead for each second improved. The kuski with more apples wins. When the battle ends or a kuski leaves the battle, remove all apple counters from it."
       }
     ]
   },
@@ -1043,7 +989,7 @@
     "effects": [
       {
         "text": "Finish count",
-        "italicText": "During battle, if a kuski were to improve its best time, add a finish counter to it instead. The kuski with more finishes wins. When the battle ends, remove all finish counters from playing kuskis."
+        "italicText": "During battle, if a kuski were to improve its best time, add a finish counter to it instead. The kuski with more finishes wins. When the battle ends or a kuski leaves the battle, remove all finish counters from it."
       }
     ]
   },
@@ -1299,7 +1245,34 @@
     ]
   },
   {
-    "name": "Mielz",
+    "name": "DewwCraft [SHOWN]",
+    "cardType": "Kuski",
+    "type1": "Designer",
+    "type2": "",
+    "pr1": 45,
+    "pr2": 42,
+    "pr3": 40,
+    "pr4": 38,
+    "pr5": 37,
+    "pr6": 35,
+    "battleLengthMin": null,
+    "battleLengthMax": null,
+    "flavorText": "",
+    "rarity": "U",
+    "effectsSize": null,
+    "effects": [
+      {
+        "text": "When DewwCraft enters the game field you may search your library for an internal level and put it in your hand. If you do, shuffle your library.",
+        "italicText": ""
+      },
+      {
+        "text": "Other team SHOWN kuskis can't be target of instant effects played by opponents.",
+        "italicText": ""
+      }
+    ]
+  },
+  {
+    "name": "Mielz [SHOWN]",
     "cardType": "Kuski",
     "type1": "Battler",
     "type2": "",
@@ -1314,7 +1287,70 @@
     "flavorText": "",
     "rarity": "U",
     "effectsSize": null,
-    "effects": []
+    "effects": [
+      {
+        "text": "Internal pro -5",
+        "italicText": "Decrease this kuski's PRs by 3 seconds on internal levels."
+      },
+      {
+        "text": "Teammates gain \"Internal pro -2\".",
+        "italicText": ""
+      }
+    ]
+  },
+  {
+    "name": "Nekit [SHOWN]",
+    "cardType": "Kuski",
+    "type1": "",
+    "type2": "",
+    "pr1": 35.5,
+    "pr2": null,
+    "pr3": 34,
+    "pr4": 32.5,
+    "pr5": null,
+    "pr6": null,
+    "battleLengthMin": null,
+    "battleLengthMax": null,
+    "flavorText": "",
+    "rarity": "U",
+    "effectsSize": null,
+    "effects": [
+      {
+        "text": "Uphill pro -10",
+        "italicText": "Decrease this kuski's PRs by 10 seconds on uphill levels."
+      },
+      {
+        "text": "If Nekit stays online for 2 turns without playing a battle, ban Nekit from the game.",
+        "italicText": ""
+      }
+    ]
+  },
+  {
+    "name": "Nekit01",
+    "cardType": "Level",
+    "type1": "Uphill",
+    "type2": "",
+    "pr1": null,
+    "pr2": null,
+    "pr3": null,
+    "pr4": null,
+    "pr5": null,
+    "pr6": null,
+    "battleLengthMin": 2,
+    "battleLengthMax": 6,
+    "flavorText": "",
+    "rarity": "C",
+    "effectsSize": null,
+    "effects": [
+      {
+        "text": "First Finish",
+        "italicText": "Kuski times are calculated as kuski's first finish plus 1 minute per full turn already battled."
+      },
+      {
+        "text": "Kuskis must play at least 1 full turns before it first PR counts as finish.",
+        "italicText": ""
+      }
+    ]
   },
   {
     "name": "Ramone",
@@ -1357,7 +1393,7 @@
     "effectsSize": null,
     "effects": [
       {
-        "text": "Pipe Pro -2",
+        "text": "Pipe pro -2",
         "italicText": "Decrease this kuski's PRs by 2 seconds on pipe levels."
       },
       {
@@ -1411,7 +1447,7 @@
         "italicText": "Decrease this kuski's PRs by 5 seconds on internal levels."
       },
       {
-        "text": "Pipe Pro -2",
+        "text": "Pipe pro -2",
         "italicText": "Decrease this kuski's PRs by 2 seconds on pipe levels."
       }
     ]
@@ -1466,6 +1502,29 @@
       },
       {
         "text": "Whenever Nobody wins an after battle you get 1 point.",
+        "italicText": ""
+      }
+    ]
+  },
+  {
+    "name": "Team switch",
+    "cardType": "Instant",
+    "type1": "",
+    "type2": "",
+    "pr1": null,
+    "pr2": null,
+    "pr3": null,
+    "pr4": null,
+    "pr5": null,
+    "pr6": null,
+    "battleLengthMin": null,
+    "battleLengthMax": null,
+    "flavorText": "",
+    "rarity": "C",
+    "effectsSize": null,
+    "effects": [
+      {
+        "text": "Choose the team name of a kuski you control.",
         "italicText": ""
       }
     ]

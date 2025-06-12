@@ -53,9 +53,9 @@ The type line is directly below the illustration. It contains the card's card ty
 
 #### Text box
 
-The text box is printed on the lower half of the card. It usually contains rules text defining the card's abilities. The text box may also contain italicised text that has no game function.
+The text box is printed on the lower half of the card. It usually contains rules text defining the card's abilities. The text box may also contain italicized text that has no game function.
 
-If a rule is described with a keyword it may contain the explanation written in italics and between parenthesis. For example: "First Finish _(Only the first finish of each kuski is taken into account in the result.)_"
+If a rule is described with a keyword it may contain the explanation written in italics and between parenthesis. For example: "First Finish _(Kuski times are calculated as kuski's first finish plus 1 minute per full turn already battled.)_"
 
 #### Personal Records
 

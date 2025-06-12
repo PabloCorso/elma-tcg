@@ -1,0 +1,23 @@
+{
+  "name": "",
+  "cardType": "",
+  "type1": "",
+  "type2": "",
+  "pr1": null,
+  "pr2": null,
+  "pr3": null,
+  "pr4": null,
+  "pr5": null,
+  "pr6": null,
+  "battleLengthMin": null,
+  "battleLengthMax": null,
+  "flavorText": "",
+  "rarity": "",
+  "effectsSize": null,
+  "effects": [
+    {
+      "text": "",
+      "italicText": ""
+    }
+  ]
+}
