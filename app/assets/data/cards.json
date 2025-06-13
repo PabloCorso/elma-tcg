@@ -891,6 +891,10 @@
     "name": "Team switch",
     "cardType": "Instant",
     "rarity": "C",
-    "effects": [{ "text": "Choose the team name of a kuski you control." }]
+    "effects": [
+      {
+        "text": "If there is an ongoing battle, choose a team name from kuskis you control. Choose target battling kuski with a different team name. Control that kuski, and change it's team name to the chosen one until the end of the battle."
+      }
+    ]
   }
 ]
