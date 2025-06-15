@@ -896,5 +896,34 @@
         "text": "If there is an ongoing battle, choose a team name from kuskis you control. Choose target battling kuski with a different team name. Control that kuski, and change it's team name to the chosen one until the end of the battle."
       }
     ]
+  },
+  {
+    "name": "Skip",
+    "cardType": "Instant",
+    "rarity": "U",
+    "effects": [
+      {
+        "text": "Choose a kuski you control in battle. That kuski's position is ignored for scoring.",
+        "italicText": "It doesn't earn points nor it counts towards other kuski points."
+      }
+    ]
+  },
+  {
+    "name": "Tm",
+    "cardType": "Kuski",
+    "type1": "Battler",
+    "pr1": 42,
+    "pr2": 38,
+    "pr3": null,
+    "pr4": 34,
+    "pr5": 31,
+    "pr6": null,
+    "rarity": "U",
+    "effects": [
+      { "italicText": "Battlers cannot add levels to the queue." },
+      {
+        "text": "When Tm enters a battle, you may draw a card. If you do, discard a card from your hand."
+      }
+    ]
   }
 ]
