@@ -47,7 +47,7 @@
     "rarity": "U",
     "effects": [
       {
-        "text": "Pipe pro -10",
+        "text": "Pipe pro 10",
         "italicText": "Decrease this kuski's PRs by 10 seconds on pipe levels."
       }
     ]
@@ -156,7 +156,7 @@
     "rarity": "R",
     "effects": [
       {
-        "text": "Internal pro -5",
+        "text": "Internal pro 5",
         "italicText": "Decrease this kuski's PRs by 5 seconds on internal levels."
       }
     ]
@@ -174,7 +174,7 @@
     "rarity": "C",
     "effects": [
       {
-        "text": "Multiplayer pro -2",
+        "text": "Multiplayer pro 2",
         "italicText": "Decrease this kuski's PRs and it's team player by 2 seconds on multiplayer levels."
       },
       {
@@ -194,7 +194,7 @@
     "rarity": "R",
     "effects": [
       {
-        "text": "Internal pro -5",
+        "text": "Internal pro 5",
         "italicText": "Decrease this kuski's PRs by 5 seconds on internal levels."
       },
       {
@@ -349,11 +349,11 @@
     "rarity": "U",
     "effects": [
       {
-        "text": "All playing team dat kuskis gain \"Pipe pro -2\".",
+        "text": "All playing team dat kuskis gain \"Pipe pro 2\".",
         "italicText": "Decrease this kuski's PRs by 2 seconds on pipe levels."
       },
       {
-        "text": "If the ongoing battle was started by FinMan, all playing team dat kuskis gain \"Pipe pro -4\"."
+        "text": "If the ongoing battle was started by FinMan, all playing team dat kuskis gain \"Pipe pro 4\"."
       }
     ]
   },
@@ -732,10 +732,10 @@
     "rarity": "U",
     "effects": [
       {
-        "text": "Internal pro -5",
+        "text": "Internal pro 5",
         "italicText": "Decrease this kuski's PRs by 3 seconds on internal levels."
       },
-      { "text": "Teammates gain \"Internal pro -2\"." }
+      { "text": "Teammates gain \"Internal pro 2\"." }
     ]
   },
   {
@@ -750,7 +750,7 @@
     "rarity": "U",
     "effects": [
       {
-        "text": "Uphill pro -10",
+        "text": "Uphill pro 10",
         "italicText": "Decrease this kuski's PRs by 10 seconds on uphill levels."
       },
       {
@@ -804,7 +804,7 @@
     "rarity": "U",
     "effects": [
       {
-        "text": "Pipe pro -2",
+        "text": "Pipe pro 2",
         "italicText": "Decrease this kuski's PRs by 2 seconds on pipe levels."
       },
       {
@@ -841,11 +841,11 @@
     "rarity": "U",
     "effects": [
       {
-        "text": "Internal pro -5",
+        "text": "Internal pro 5",
         "italicText": "Decrease this kuski's PRs by 5 seconds on internal levels."
       },
       {
-        "text": "Pipe pro -2",
+        "text": "Pipe pro 2",
         "italicText": "Decrease this kuski's PRs by 2 seconds on pipe levels."
       }
     ]
@@ -918,11 +918,31 @@
     "pr4": 34,
     "pr5": 31,
     "pr6": null,
-    "rarity": "U",
+    "rarity": "C",
     "effects": [
       { "italicText": "Battlers cannot add levels to the queue." },
       {
         "text": "When Tm enters a battle, you may draw a card. If you do, discard a card from your hand."
+      }
+    ]
+  },
+  {
+    "name": "Labs",
+    "cardType": "Kuski",
+    "pr1": null,
+    "pr2": 34,
+    "pr3": null,
+    "pr4": 32,
+    "pr5": null,
+    "pr6": 28,
+    "rarity": "C",
+    "effects": [
+      {
+        "text": "Internal pro 4",
+        "italicText": "Decrease this kuski's PRs by 4 seconds on internal levels."
+      },
+      {
+        "text": "When Labs becomes online, look at the top 3 cards of your library. Put them back at the top of your library in any order."
       }
     ]
   }
