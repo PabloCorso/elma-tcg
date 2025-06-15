@@ -60,7 +60,7 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
 
       setTimeout(function navigateWithDelay() {
         navigate(
-          isSwipeRight ? Paths.cardId(nextCardId) : Paths.cardId(prevCardId)
+          isSwipeRight ? Paths.cardId(nextCardId) : Paths.cardId(prevCardId),
         );
         setIsTransitioning(false);
       }, SWIPE_DURATION);
@@ -75,7 +75,7 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
         navigate(Paths.cardId(nextCardId));
       }
     },
-    [navigate, prevCardId, nextCardId]
+    [navigate, prevCardId, nextCardId],
   );
 
   useEffect(
@@ -85,7 +85,7 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
         window.removeEventListener("keydown", navigateWithArrowKeys);
       };
     },
-    [navigateWithArrowKeys]
+    [navigateWithArrowKeys],
   );
 
   return (
@@ -95,16 +95,16 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
         <span className="text-gray-300">#{loaderData.cardId}</span>{" "}
         {loaderData.card?.name}
       </h1>
-      <div className="grid grid-cols-[1fr_300px_1fr] justify-center items-center">
+      <div className="grid grid-cols-[1fr_300px_1fr] items-center justify-center">
         <Link
-          className="text-gray-800 text-2xl h-full hover:text-gray-300 flex items-center justify-center"
+          className="flex h-full items-center justify-center rounded-lg text-2xl text-gray-800 hover:bg-gray-800 hover:text-gray-300 active:bg-gray-700"
           to={Paths.cardId(prevCardId)}
           prefetch="viewport"
         >
           {"<"}
         </Link>
         <div
-          className="flex justify-center touch-none"
+          className="flex touch-none justify-center"
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
@@ -112,7 +112,7 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
         >
           {loaderData.card ? (
             <CardPreview
-              className={`ring-1 ring-gray-800 rounded-lg transition-opacity duration-150 ${
+              className={`rounded-lg ring-1 ring-gray-800 transition-opacity duration-150 ${
                 isTransitioning ? "opacity-90" : "opacity-100"
               }`}
               card={loaderData.card}
@@ -137,7 +137,7 @@ export default function CardPage({ loaderData }: Route.ComponentProps) {
           ) : null}
         </div>
         <Link
-          className="text-gray-800 text-2xl h-full hover:text-gray-300 flex items-center justify-center"
+          className="flex h-full items-center justify-center rounded-lg text-2xl text-gray-800 hover:bg-gray-800 hover:text-gray-300 active:bg-gray-700"
           to={Paths.cardId(nextCardId)}
           prefetch="viewport"
         >

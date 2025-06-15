@@ -7,7 +7,8 @@
     "dev": "react-router dev --host",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
-    "validate": "npm run typecheck"
+    "format": "prettier --write .",
+    "validate": "npm run typecheck && npm run format"
   },
   "dependencies": {
     "@epic-web/remember": "^1.1.0",
@@ -33,6 +34,8 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "cross-env": "^7.0.3",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.12",
     "tailwindcss": "^4.1.8",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",

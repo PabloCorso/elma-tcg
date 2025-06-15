@@ -5,7 +5,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import devtoolsJson from "vite-plugin-devtools-json";
 import path from "node:path";
 import { envOnlyMacros } from "vite-env-only";
-import netlifyPlugin from '@netlify/vite-plugin-react-router';
+import netlifyPlugin from "@netlify/vite-plugin-react-router";
 
 const MODE = process.env.NODE_ENV;
 

@@ -9,7 +9,7 @@ export function TopBackLink({
   return (
     <Link
       to={to}
-      className="absolute text-gray-300 top-2 left-4"
+      className="absolute top-2 left-4 text-gray-300"
       {...delegated}
     >
       ← {children}

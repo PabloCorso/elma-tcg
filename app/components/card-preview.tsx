@@ -40,9 +40,9 @@ export function CardPreview({
           backgroundRepeat: "round",
         }}
       >
-        <div className="h-full divide-y divide-black w-full rounded-sm bg-white text-gray-900">
+        <div className="h-full w-full divide-y divide-black rounded-sm bg-white text-gray-900">
           <div
-            className="flex items-center font-card-name text-[21px] font-bold"
+            className="font-card-name flex items-center text-[21px] font-bold"
             style={{
               height: cardSize.nameHeight,
               paddingLeft: cardSize.innerPaddingX,
@@ -55,7 +55,7 @@ export function CardPreview({
             {image}
           </div>
           <div
-            className="flex items-center font-card-type text-lg font-medium"
+            className="font-card-type flex items-center text-lg font-medium"
             style={{
               height: cardSize.typeLineHeight,
               paddingLeft: cardSize.innerPaddingX,
@@ -73,11 +73,11 @@ export function CardPreview({
             className={cn(
               "flex h-full flex-col gap-2 overflow-auto py-2 text-sm leading-tight",
               {
-                "text-[13px] gap-1.5 leading-tight tracking-tight":
+                "gap-1.5 text-[13px] leading-tight tracking-tight":
                   card.effectsSize === "small",
-                "text-[13px] gap-1.5 leading-tight tracking-tighter":
+                "gap-1.5 text-[13px] leading-tight tracking-tighter":
                   card.effectsSize === "smaller",
-              }
+              },
             )}
             style={{
               height: showBottomLine
