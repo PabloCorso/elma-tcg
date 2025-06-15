@@ -1,7 +1,7 @@
 export type Card = {
   id: number;
   name: string;
-  cardType?: CardType | string;
+  cardType?: CardType;
   type1?: string;
   type2?: string;
   pr1?: number | null;
@@ -13,14 +13,14 @@ export type Card = {
   battleLengthMin?: number | null;
   battleLengthMax?: number | null;
   flavorText?: string;
-  rarity?: Rarity | string;
+  rarity?: Rarity;
   effectsSize?: string | null;
   effects?: Effect[];
 };
 
 export type Effect = {
-  text: string;
-  italicText: string;
+  text?: string;
+  italicText?: string;
 };
 
 export enum CardType {

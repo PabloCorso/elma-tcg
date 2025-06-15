@@ -12,3 +12,15 @@ body {
     color-scheme: dark;
   }
 }
+
+.gold-text {
+  background: linear-gradient(45deg, #ffd700, #ffa500, #ffff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.silver-text {
+  background: linear-gradient(45deg, #ccc, #eee, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -17,7 +17,7 @@ export default function CardsPage({ loaderData }: Route.ComponentProps) {
   };
 
   return (
-    <main className="flex flex-col gap-6 p-4 pt-6">
+    <main className="flex flex-col gap-6 p-4 py-6">
       <TopBackLink />
       <h1 className="text-center text-4xl font-bold">Cards</h1>
       <div className="isolate flex flex-col gap-2 overflow-x-auto">
@@ -25,10 +25,10 @@ export default function CardsPage({ loaderData }: Route.ComponentProps) {
         <table className="table-compact table w-full">
           <thead>
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th className="text-center">Type</th>
-              <th className="text-center">Rarity</th>
+              <th className="py-2.5"></th>
+              <th className="py-2.5">Name</th>
+              <th className="py-2.5">Type</th>
+              <th className="py-2.5">Rarity</th>
             </tr>
           </thead>
           <tbody>
@@ -46,7 +46,7 @@ export default function CardsPage({ loaderData }: Route.ComponentProps) {
                   }
                 }}
               >
-                <td>{card.id}</td>
+                <td className="text-sm text-gray-300">{card.id}</td>
                 <td>{card.name}</td>
                 <td className="text-center">{card.cardType?.slice(0, 1)}</td>
                 <td className="text-center">{card.rarity}</td>
