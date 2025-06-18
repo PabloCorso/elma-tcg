@@ -12,7 +12,7 @@
     "rarity": "R",
     "effects": [
       {
-        "text": "Play this ability while Kopaka is online: send Kopaka offline, ban an online kuski you control from the game, ban an online kuski your opponent controls from the game."
+        "text": "Play this ability while Kopaka is online, return Kopaka to your hand: ban an online kuski you control, ban an online kuski your opponent controls."
       }
     ]
   },
@@ -24,8 +24,8 @@
     "pr2": 30,
     "pr3": 29,
     "pr4": null,
-    "pr5": null,
-    "pr6": 25,
+    "pr5": 25,
+    "pr6": null,
     "rarity": "R",
     "effects": [
       { "italicText": "Battlers cannot add levels to the queue." },
@@ -943,6 +943,20 @@
       },
       {
         "text": "When Labs becomes online, look at the top 3 cards of your library. Put them back at the top of your library in any order."
+      }
+    ]
+  },
+  {
+    "name": "Survivor01",
+    "cardType": "Level",
+    "type1": "Tricky",
+    "battleLengthMin": 1,
+    "battleLengthMax": 4,
+    "rarity": "C",
+    "effects": [
+      {
+        "text": "Survivor",
+        "italicText": "Kuski PRs are reversed. The kuski with the slowest time wins."
       }
     ]
   }
