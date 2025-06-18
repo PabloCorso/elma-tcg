@@ -117,7 +117,7 @@ export function CardPreview({
           </div>
           {showBottomLine && (
             <div
-              className="flex items-center justify-center font-medium"
+              className="flex items-center justify-center"
               style={{ height: cardSize.prsHeight }}
             >
               {card.cardType === CardType.KUSKI ? (

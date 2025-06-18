@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -7,8 +8,8 @@
   --font-card-name: "M PLUS Rounded 1c", sans-serif;
   --font-card-type: "Poppins", sans-serif;
   --font-sans:
-    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+    "Rubik", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 html,
@@ -16,16 +17,4 @@ body {
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
-}
-
-.gold-text {
-  background: linear-gradient(45deg, #ffd700, #ffa500, #ffff00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.silver-text {
-  background: linear-gradient(45deg, #ccc, #eee, #aaa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
