@@ -1,5 +1,8 @@
 import { cn } from "#app/utils/misc";
-import { CardType, type Card, type Effect } from "#app/utils/types";
+import { CardType, Rarity, type Card, type Effect } from "#app/utils/types";
+import headCommon from "#app/assets/images/head-common.png";
+import headUncommon from "#app/assets/images/head-uncommon.png";
+import headRare from "#app/assets/images/head-rare.png";
 
 const textBoxHeightPercentage = 39.2;
 const prsHeightPercentage = 7.2;
@@ -14,6 +17,12 @@ const cardSize = {
   prsHeight: `${prsHeightPercentage}%`,
   onlyTextBoxHeight: `${textBoxHeightPercentage + prsHeightPercentage}%`,
   innerPaddingX: "3.08%",
+};
+
+const cardRarityImage = {
+  [Rarity.C]: headCommon,
+  [Rarity.U]: headUncommon,
+  [Rarity.R]: headRare,
 };
 
 export type CardProps = {
@@ -62,12 +71,18 @@ export function CardPreview({
               paddingRight: cardSize.innerPaddingX,
             }}
           >
-            <div className="text-sm">
+            <div className="pt-px text-sm">
               {card.cardType}
               {card.type1 || card.type2 ? " - " : null}
               {card.type1} {card.type2}
             </div>
-            <div className="ml-auto">{card.rarity}</div>
+            <div className="ml-auto h-4 w-4">
+              <img
+                src={cardRarityImage[card.rarity as Rarity]}
+                alt={card.rarity}
+                className="h-full w-full object-contain"
+              />
+            </div>
           </div>
           <div
             className={cn(
