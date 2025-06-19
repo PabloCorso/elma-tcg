@@ -8,3 +8,8 @@ attach to the battle
 Fix Pab [dat] duplicate PR
 Finman text can be simplified
 
+Rule changes 
+limit number of online kuskis per player
+make long battles not very common
+make more ban or dissconnect cards
+think about 6 turns how they might play out
