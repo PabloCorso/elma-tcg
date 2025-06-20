@@ -349,11 +349,8 @@
     "rarity": "U",
     "effects": [
       {
-        "text": "All playing team dat kuskis gain \"Pipe pro 2\".",
+        "text": "Team dat kuskis gain \"Pipe pro 2\". If the ongoing battle was started by FinMan, playing team dat kuskis gain \"Pipe pro 4\".",
         "italicText": "Decrease this kuski's PRs by 2 seconds on pipe levels."
-      },
-      {
-        "text": "If the ongoing battle was started by FinMan, all playing team dat kuskis gain \"Pipe pro 4\"."
       }
     ]
   },
@@ -365,7 +362,6 @@
     "pr3": 35,
     "pr4": 31,
     "pr5": 30,
-    "pr6": 30,
     "rarity": "U",
     "effects": [
       {
@@ -616,7 +612,7 @@
     "effects": [
       {
         "text": "Slowness",
-        "italicText": "The kuski with the slowest time wins."
+        "italicText": "Kuski PRs are reversed. The kuski with the slowest time wins."
       }
     ]
   },
@@ -689,7 +685,7 @@
     ]
   },
   {
-    "name": "Slowness",
+    "name": "Slowdown",
     "cardType": "Instant",
     "rarity": "U",
     "effects": [
@@ -700,7 +696,7 @@
     ]
   },
   {
-    "name": "DewwCraft [SHOWN]",
+    "name": "DewwCraft [shown]",
     "cardType": "Kuski",
     "type1": "Designer",
     "pr1": 45,
@@ -715,12 +711,12 @@
         "text": "When DewwCraft enters the game field you may search your library for an internal level and put it in your hand. If you do, shuffle your library."
       },
       {
-        "text": "Other team SHOWN kuskis can't be target of instant effects played by opponents."
+        "text": "Other team shown kuskis can't be target of instant effects played by opponents."
       }
     ]
   },
   {
-    "name": "Mielz [SHOWN]",
+    "name": "Mielz [shown]",
     "cardType": "Kuski",
     "type1": "Battler",
     "pr1": 38,
@@ -739,7 +735,7 @@
     ]
   },
   {
-    "name": "Nekit [SHOWN]",
+    "name": "Nekit [shown]",
     "cardType": "Kuski",
     "pr1": 35,
     "pr2": null,
@@ -951,12 +947,12 @@
     "cardType": "Level",
     "type1": "Tricky",
     "battleLengthMin": 1,
-    "battleLengthMax": 4,
+    "battleLengthMax": 2,
     "rarity": "C",
     "effects": [
       {
         "text": "Survivor",
-        "italicText": "Kuski PRs are reversed. The kuski with the slowest time wins."
+        "italicText": "The kuski with the slowest time wins. Only the first finish counts."
       }
     ]
   }
