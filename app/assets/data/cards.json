@@ -348,10 +348,11 @@
     "pr6": 30,
     "rarity": "U",
     "effects": [
+      { "text": "Team dat kuskis gain \"Pipe pro 2\"." },
       {
-        "text": "Team dat kuskis gain \"Pipe pro 2\". If the ongoing battle was started by FinMan, playing team dat kuskis gain \"Pipe pro 4\".",
-        "italicText": "Decrease this kuski's PRs by 2 seconds on pipe levels."
-      }
+        "text": "If the ongoing battle was started by FinMan, playing team dat kuskis gain \"Pipe pro 4\"."
+      },
+      { "italicText": "Decrease this kuski's PRs by 2 seconds on pipe levels." }
     ]
   },
   {
